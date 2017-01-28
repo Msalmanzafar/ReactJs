@@ -1,0 +1,26 @@
+{
+  "name": "password",
+  "version": "2.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "build-watch": "./node_modules/.bin/webpack -w",
+    "build": "./node_modules/.bin/webpack"
+  },
+  "author": "Azat Mardan",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      "react"
+    ]
+  },
+  "devDependencies": {
+    "babel-jest": "^13.2.2",
+    "babel-preset-react": "^6.5.0",
+    "jest-cli": "13.2.3",
+    "react": "15.2.1",
+    "react-addons-test-utils": "15.2.1"
+  }
+}
