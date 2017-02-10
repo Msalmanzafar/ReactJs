@@ -1,38 +1,36 @@
-var textAreaCounter = React.createClass({
+// var textAreaCounter = React.createClass({
 
-    propTypes: {
-        text: React.PropTypes.string,
-    },
-    getInitialState: function () {
-        return{
-            text: 'Bob',
-        };
-    },
-    _textChange: function(ev){
-        this.setState({
-            text: ev.target.value,
-        });
-    },
-    render: function() {
-        console.log("this.state", this.props)
+//     propTypes: {
+//         text: React.PropTypes.string,
+//     },
+//     getInitialState: function () {
+//         return{
+//             text: 'Bob',
+//         };
+//     },
+//     _textChange: function(ev){
+//         this.setState({
+//             text: ev.target.value,
+//         });
+//     },
+//     render: function() {
+//         console.log("this.state", this.props)
 
-        return React.DOM.div(null,
-            React.DOM.textarea({
-                defaultValue: this.state.text,
-                onChange: this._textChange,
-            }),
-            React.DOM.h3(null, this.state.text.length)
-        );
-    }
-    })
-    ReactDOM.render(
-        React.createElement(textAreaCounter, {
-        text: "salman",
-        }),
-        document.getElementById("app")
-    )
-
-
+//         return React.DOM.div(null,
+//             React.DOM.textarea({
+//                 defaultValue: this.state.text,
+//                 onChange: this._textChange,
+//             }),
+//             React.DOM.h3(null, this.state.text.length)
+//         );
+//     }
+//     })
+//     ReactDOM.render(
+//         React.createElement(textAreaCounter, {
+//         text: "salman",
+//         }),
+//         document.getElementById("app")
+//     )
 
 
 // const { createElement } = React;

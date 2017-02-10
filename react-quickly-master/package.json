@@ -17,5 +17,7 @@
   },
   "homepage": "https://github.com/azat-co/react-quickly#readme",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "babel-plugin-transform-react-jsx": "^6.22.0"
+  }
 }
