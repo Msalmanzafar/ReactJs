@@ -9,7 +9,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 
-class Tooltip extends React.Component {
+let myTip = class Tooltip extends React.Component {
     constructor(props) {
         super(props)
         this.state = {opacity: false}
@@ -28,8 +28,8 @@ class Tooltip extends React.Component {
         const style = {
             zIndex: (this.state.opacity) ? 1000 : -1000,
             opacity: +this.state.opacity,
-            top: (this.state.top || 0) + 20,
-            left: (this.state.left || 0) - 30
+            top: (this.state.top || 0) + 15,
+            left: (this.state.left || 0) - 50
         }
         return (
             
@@ -51,43 +51,44 @@ class Tooltip extends React.Component {
 }
 ReactDOM.render(
   React.createElement('div',null,React.createElement(
-    Tooltip,
+      myTip,
       { text: 'Master Express.js-The Node.js Framework For Your Web Development' },
       'Pro Express.js'
   ),
   ' was published in 2014. It was one of the first books on v4.x. '
   + 'And it was my second book published with Apress after ',
   React.createElement(
-    Tooltip,
+      myTip,
     { text: 'Practical Node.js: Building Real-World Scalable Web Apps' },
     'Practical Node.js'
   ),
   '. ... The main focus of this post is to compare the four Node.js/Io.js frameworks: ',
   React.createElement(
-    Tooltip,
+      myTip,
     { text: 'HTTP API server' },
     'Hapi'
   ),
   ', ',
   React.createElement(
-    Tooltip,
+      myTip,
     { text: 'Release the Kraken!' },
     'Kraken'
   ),
   ', ',
   React.createElement(
-    Tooltip,
+      myTip,
     { text: 'Sail away' },
     'Sails.js'
   ),
   ' and ',
   React.createElement(
-    Tooltip,
+      myTip,
     { text: 'IBM of frameworks' },
     'Loopback'
   ),
   '. There are many other frameworks to consider, but I had to draw the line somewhere.'
 ), document.getElementById('tooltips'));
+
 // ReactDOM.render(
 //   <Menu />,
 //   document.getElementById('menu')
