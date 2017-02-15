@@ -1,48 +1,89 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import logo from './logo.svg';
 import './App.css';
+import generatePassword from './generate-password';
+import rules from './rules';
+import PasswordGenerate from './password-generate';
+import PasswordInfo from './password-info.jsx';
+import PasswordInput from './password-input.jsx';
+import PasswordVisibility from './password-visibility.jsx';
 
-const SPECIALS = '!@#$%^&*()_+{}:"<>?\|[]\',./`~';
-const LOWERCASE = 'abcdefghijklmnopqrstuvwxyz';
-const UPPERCASE = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const NUMBERS = '0123456789';
-const ALL = `${SPECIALS}${LOWERCASE}${UPPERCASE}${NUMBERS}`;
-
-const getIterable = (length) => Array.from({length}, (_, index) => index + 1);
-
-const pick = (set, min, max) => { 
-    let length = min
-    if (typeof max !== 'undefined') {
-        length += Math.floor(Math.random() * (max - min))
+class Password extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            strength: {},
+            password: '',
+            visible: false,
+            ok: false
+        }
+        this.generate = this.generate.bind(this)
+        this.checkStrength = this.checkStrength.bind(this)
+        this.toggleVisibility = this.toggleVisibility.bind(this)
     }
-    return getIterable(length).map(() => (
-        set.charAt(Math.floor(Math.random() * set.length))
-    )).join('');
-};
+    checkStrength(event) {
+        let password = event.target.value
+        this.setState({ password: password })
+        let strength = {}
+        Object.keys(this.props).forEach((key, index, list) => {
+            if (this.props[key] && rules[key].pattern.test(password)) {
+                strength[key] = true
+            }
+        })
+        this.setState({ strength: strength }, () => {
+            if (Object.keys(this.state.strength).length == Object.keys(this.props).length) {
+                this.setState({ ok: true })
+            } else {
+                this.setState({ ok: false })
+            }
+        })
+    }
+    toggleVisibility() {
+        this.setState({ visible: !this.state.visible }, () => {
 
-
-const shuffle = (set) => { 
-    let array = set.split('');
-    let length = array.length;
-    // we reverse the iterable to get value from max to min.
-    let iterable = getIterable(length).reverse();
-    let shuffled = iterable.reduce((acc, value, index) => {
-        let randomIndex = Math.floor(Math.random() * value);
-    
-        [acc[value -1], 
-        acc[randomIndex]] = [acc[randomIndex], 
-        acc[value - 1]];
-        
-        return acc
-    }, [...array]);
-    return shuffled.join('')
-}
-
-module.exports = () => {
-    let password = (pick(SPECIALS, 1) 
-    + pick(LOWERCASE, 1)
-    + pick(NUMBERS, 1)
-    + pick(UPPERCASE, 1)
-    + pick(ALL, 4, 12))
-    return shuffle(password)
+        })
+    }
+    generate() {
+        this.setState({
+            visible: true,
+            password: generatePassword()
+        },
+            () => {
+                this.checkStrength({
+                    target: { value: this.state.password }
+                })
+            })
+    }
+    render() {
+        var processedRules = Object.keys(this.props).map((key) => {
+            if (this.props[key]) {
+                return {
+                    key: key,
+                    rule: rules[key],
+                    isCompleted: this.state.strength[key] || false
+                }
+            }
+        })
+        return (
+            <div className="well form-group col-md-6">
+                <label>Password</label>
+                <PasswordInput
+                    name="password"
+                    onChange={this.checkStrength}
+                    value={this.state.password}
+                    visible={this.state.visible} />
+                <PasswordVisibility
+                    checked={this.state.visible}
+                    onChange={this.toggleVisibility} />
+                <PasswordInfo rules={processedRules} />
+                <PasswordGenerate onClick={this.generate}>
+                    Generate
+                </PasswordGenerate>
+                <button className={'btn btn-primary' + ((this.state.ok) ? '' : ' disabled')}>
+                    Save
+                </button>
+            </div>
+        )
+    }
 }

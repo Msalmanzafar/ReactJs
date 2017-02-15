@@ -1,5 +1,6 @@
+import React from 'react';
 
-module.exports = {
+export default {
     upperCase: {
         message: 'Must have at least one upper-case character',
         pattern: /([A-Z]+)/
