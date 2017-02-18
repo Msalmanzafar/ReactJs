@@ -27,7 +27,6 @@ const pick = (set, min, max) => {
 const shuffle = (set) => { 
     let array = set.split('');
     let length = array.length;
-    // we reverse the iterable to get value from max to min.
     let iterable = getIterable(length).reverse();
     let shuffled = iterable.reduce((acc, value, index) => {
         let randomIndex = Math.floor(Math.random() * value);

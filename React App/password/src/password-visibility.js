@@ -1,4 +1,5 @@
 import React from 'react';
+
 class PasswordVisibility extends React.Component {
     render() {
         return (

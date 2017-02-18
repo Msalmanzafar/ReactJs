@@ -1,0 +1,18 @@
+
+.heading h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 5px 8px black;
+    height: 60px;
+    line-height: 50px;
+    padding-left: 30px;
+}
+/*.table{
+    border: hidden !important;
+    box-shadow: none;
+}*/
+
+.sigup-button{
+    font-size: 1.3em !important;
+}
