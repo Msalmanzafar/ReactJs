@@ -16,3 +16,17 @@
 .sigup-button{
     font-size: 1.3em !important;
 }
+.btn-new{
+    font-size: 1.5em !important;
+    margin-right: 14px;
+}
+/*.box1{
+    position: relative;
+    top: 130px;
+}*/
+.error{
+    color: red;
+}
+.good{
+    color: darkcyan;
+}
