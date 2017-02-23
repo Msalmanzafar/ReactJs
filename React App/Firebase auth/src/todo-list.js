@@ -1,6 +1,22 @@
 import React, { Component } from 'react';
 
 class TodoList extends Component{
+    constructor(props){
+        super(props);
+        this.createTodo = this.createTodo.bind(this);
+    }
+    createTodo(){
+        var todos = this.refs.todo.value;
+
+        var table = document.createElement("table");
+        var tr = document.createElement("tr");
+        var td = document.createElement("td");
+        td.innerHTML = todos;
+        table.appendChild(tr);
+        tr.appendChild(td);
+        console.log(table);
+    };
+
     render(){
         return(
             <div className="container">
@@ -10,10 +26,10 @@ class TodoList extends Component{
                             <form>
                                 <div className="form-group">
                                     <div className="col-md-8">
-                                        <input type="text" className="form-control" placeholder="Enter your message.."/>
+                                        <input type="text" className="form-control" ref="todo" placeholder="Enter your message.."/>
                                     </div>
                                     <div className="col-md-2 ">
-                                        <button type="button" className="btn btn-success">Send</button>
+                                        <button type="button" className="btn btn-success" onClick={this.createTodo}>Send</button>
                                     </div>
                                 </div>
                             </form>

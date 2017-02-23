@@ -16,6 +16,7 @@ class Signin extends Component {
     signIn() {
         let email = this.refs.txtEmail.value;
         let password = this.refs.txtPassword.value;
+        
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then((user) => {
                 let userDetail = {
