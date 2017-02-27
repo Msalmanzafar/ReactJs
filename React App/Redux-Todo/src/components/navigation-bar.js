@@ -24,8 +24,8 @@ class NavBar extends Component{
         return(
             <div>
                 <nav className="navbar bg-primary">
-                    <div className="container-fluid ">
-                        <div className="navbar-header heading">
+                    <div className="container-fluid heading">
+                        <div className="navbar-header ">
                             <h1>ReduxFirebase Todo App</h1>
                         </div>
                     </div>
