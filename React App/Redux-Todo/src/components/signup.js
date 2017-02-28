@@ -17,21 +17,25 @@ class SignUp extends Component{
                     useruid: user.uid
                 }
                 console.log(userDetail);
-                firebase.database().ref('todos/' + user.uid).set(userDetail)
+                firebase.database().ref('users/' + user.uid).set(userDetail)
                 .then(() => console.log("SignUp Completed"));
         })
         .catch((error) =>{
-            var errorCode = error.code;
-            var errorMessage = error.message;
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
                 
         });
     }
 
     render(){
         return(
-            <div>
-                <h2 className='heading-2'>Sign Up</h2>
-                <MyForm formhandler={this.SignUp}/>
+            <div className="container ">
+                <div className="row">
+                    <div className="col-md-12 ">
+                        <h2 className='heading-2 text-center'>Sign Up</h2>
+                        <MyForm formhandler={this.SignUp}/>
+                    </div>
+                </div>
             </div>
         )
     }

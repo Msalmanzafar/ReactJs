@@ -13,14 +13,16 @@ class Todo extends Component{
         const {
             todos,
             editStatus
-        } = this.props
+        } = this.props;
         firebase.database().ref('todos/' + currentUser.uid).on('child_added', (data)=>{
             let obj = data.val();
-            obj.id = data.key;
+            // obj.id = data.key;
+            console.log("firebase data",obj);
+            
             let currentTodos =  this.props.todos;
             currentTodos = currentTodos.concat(obj)
             this.props.addTodos(currentTodos);
-        })
+        });
         firebase.database().ref('todos/' + currentUser.uid).on('child_changed', (data)=>{
             let obj = data.val();
             obj.id = data.key;

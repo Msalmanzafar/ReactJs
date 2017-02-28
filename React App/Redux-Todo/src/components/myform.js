@@ -30,13 +30,13 @@ class MyForm extends Component{
                         <form name="myForm" onSubmit={this.FormSubmition}>
                             <div className="form-group ">
                                 <label htmlFor="email">Enter email: </label><br />
-                                <input className="form-control" ref="txtEmail" type="email" placeholder="Enter Email" />
+                                <input className="form-control" ref="txtEmail" defaultValue="salmanzafar@gmail.com" type="email" placeholder="Enter Email" />
                             </div>
                             <div className="form-group ">
                                 <label htmlFor="password">Enter password: </label><br />
-                                <input className="form-control" type="password" ref="txtPassword" placeholder="Enter Password" />
+                                <input className="form-control" type="password" defaultValue="123456" ref="txtPassword" placeholder="Enter Password" />
                             </div>
-                            <button className="btn btn-info " type="submit" id="btnSignup">Sign Up</button>
+                            <button className="btn btn-info " type="submit" id="btnSignup">Click Me</button>
                         </form>
                     </div>
                 </div>

@@ -31,28 +31,32 @@ class NavBar extends Component{
                     </div>
                 </nav>
                 <div className="container box1">
-                    {(auth === false ) ? (
-                        <ul className="list-group list-unstyled list-inline text-center">
-                            <li className="">
-                                <Link to='/signup' activeClassName="success-active">
-                                    <button className="btn btn-info">Sign Up</button>
-                                </Link>
-                            </li>
-                            <li className="">
-                                <Link to='/signin' activeClassName="success-active">
-                                    <button className="btn btn-success">Sign In</button>
-                                </Link>
-                            </li>
-                        </ul>
-                    ):(
-                        <ul className="list-group list-unstyled text-right">
-                            <li className="">
-                                <Link to='/signin' activeClassName="success-active">
-                                    <button className="btn btn-warning" onClick={this.logOut}>Log Out</button>
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
+                    <div className="row">
+                        <div className="col-md-12 text-center">
+                            {(auth === false ) ? (
+                                <ul className="list-group list-unstyled list-inline ">
+                                    <li className="">
+                                        <Link to='/signup' activeClassName="success-active">
+                                            <button className="btn btn-info">Sign Up</button>
+                                        </Link>
+                                    </li>
+                                    <li className="">
+                                        <Link to='/signin' activeClassName="success-active">
+                                            <button className="btn btn-success">Sign In</button>
+                                        </Link>
+                                    </li>
+                                </ul>
+                                ):(
+                                <ul className="list-group list-unstyled text-right">
+                                    <li className="">
+                                        <Link to='/signin' activeClassName="success-active">
+                                            <button className="btn btn-warning" onClick={this.logOut}>Log Out</button>
+                                        </Link>
+                                    </li>
+                                </ul>
+                            )}
+                    </div>
+                    </div>
                 </div>
 
                 <div className="container">

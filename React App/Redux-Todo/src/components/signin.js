@@ -29,10 +29,14 @@ class SignIn extends Component{
 
     render() {
     return (
-      <div>
-        <h2 className='heading-2 text-center'>Sign In</h2>
-        <MyForm formhandler={this.SignIn} />
-      </div>
+        <div className="container ">
+              <div className="row">
+                  <div className="col-md-12 ">
+                      <h2 className='heading-2 text-center'>Sign In</h2>
+                      <MyForm formhandler={this.SignIn} />
+                  </div>
+              </div>
+        </div>
     );
   }
 }
