@@ -16,9 +16,8 @@ class Todo extends Component{
         } = this.props;
         firebase.database().ref('todos/' + currentUser.uid).on('child_added', (data)=>{
             let obj = data.val();
-            // obj.id = data.key;
-            console.log("firebase data",obj);
-            
+            obj.id = data.key;
+            // console.log("firebase data",obj);
             let currentTodos =  this.props.todos;
             currentTodos = currentTodos.concat(obj)
             this.props.addTodos(currentTodos);
@@ -68,20 +67,17 @@ class Todo extends Component{
             <div className="container">
                 {this.props.todos.map((v,i) =>{
                     return(
-                        <div className="container">
+                        <div key={i} className="container">
                             <div className="col-md-10 col-md-offset-2">
-                                <table>
-                                    <tr>
-                                       <td key={i} className="">
-                                            {v.todo} {(!this.props.editStatus) ? (
-                                                <span>
-                                                    <button data-id={v.id} onClick={this.deleteTodoHandler} className="btn btn-warning">Delete</button>
-                                                    <button data-id={v.id} data-todo={v.todo} onClick={this.editTodoHandler} className="btn btn-info">Edit</button>
-                                                </span>
-                                            ):''}
-                                        </td> 
-                                    </tr>
-                                </table>
+                                <div  className="">
+                                    <span>{v.todo}</span> {(!this.props.editStatus) ? (
+                                        <span>
+                                            <button data-id={v.id} onClick={this.deleteTodoHandler} className="btn btn-warning">Delete</button>
+                                            <button data-id={v.id} data-todo={v.todo} onClick={this.editTodoHandler} className="btn btn-info">Edit</button>
+                                        </span>
+                                    ):''}
+                                </div> 
+                            
                             </div>
                         </div>
                     );

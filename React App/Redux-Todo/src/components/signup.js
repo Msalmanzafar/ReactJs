@@ -18,7 +18,9 @@ class SignUp extends Component{
                 }
                 console.log(userDetail);
                 firebase.database().ref('users/' + user.uid).set(userDetail)
-                .then(() => console.log("SignUp Completed"));
+                .then(() => {
+                    console.log("SignUp Completed")
+                });
         })
         .catch((error) =>{
             // var errorCode = error.code;

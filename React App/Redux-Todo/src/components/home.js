@@ -12,7 +12,7 @@ class Home extends Component{
 
     addTodo(ev){
         ev.preventDefault();
-        let currentUser = firebase.auth.currentUser;
+        let currentUser = firebase.auth().currentUser;
         // console.log(currentUser.uid, 'currentUser here');
         firebase.database().ref('todos/' + currentUser.uid).push({ todo: this.refs.todo.value })
             .then((v) => {
