@@ -16,7 +16,7 @@ class SignUp extends Component{
                     username: user.email,
                     useruid: user.uid
                 }
-                console.log(userDetail);
+                // console.log(userDetail);
                 firebase.database().ref('users/' + user.uid).set(userDetail)
                 .then(() => {
                     console.log("SignUp Completed")
