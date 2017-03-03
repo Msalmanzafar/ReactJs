@@ -8,18 +8,22 @@ class SignUpForm extends Component{
 
     FormSubmition(ev){
         ev.preventDefault();
-        var fName = this.refs.fName.value;
-        var lName = this.refs.lName.value;
-        var email = this.refs.txtEmail.value;
-        var password = this.refs.txtPassword.value;
-        var blood = this.refs.blood.value;
+        let fName = this.refs.fName.value;
+        let lName = this.refs.lName.value;
+        let email = this.refs.txtEmail.value;
+        let password = this.refs.txtPassword.value;
+        let blood = this.refs.blood.value;
+        let date = this.refs.date.value;
+        let category = this.refs.category.value;
 
         let userUth={
              firstName: fName,
              lastName: lName, 
              email: email,
              password: password,
-             blood: blood
+             blood: blood,
+             date: date,
+             category: category
         }
         
         fName = this.refs.fName.value='';
@@ -27,7 +31,9 @@ class SignUpForm extends Component{
         email = this.refs.txtEmail.value='';
         password = this.refs.txtPassword.value='';
         blood = this.refs.blood.value='';
-
+        date = this.refs.date.value='';
+        category = this.refs.category.value='';
+        
         return this.props.formhandler(userUth);
     }
 
@@ -86,16 +92,12 @@ class SignUpForm extends Component{
                                 </div>
                             </div>
                             <div className="form-group">
+                                <label className="col-md-4 control-label" htmlFor="group">Select blood group:</label><br/>
                                 <div className="col-md-10">
-                                    <label htmlFor="">Select your account option:</label>
-                                </div>
-                                <div className="col-md-10">
-                                    <label className="radio-inline">
-                                        <input type="radio" name="option"/>Doner
-                                    </label>
-                                    <label className="radio-inline">
-                                        <input type="radio" name="option"/>Procurer
-                                    </label>
+                                    <select ref="category" className="multiselect-ui form-control" >
+                                        <option value="doner">Doner</option>
+                                        <option value="procure">Procure</option>
+                                    </select>
                                 </div>
                             </div>
                             <div className="form-group ">

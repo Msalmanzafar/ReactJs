@@ -11,7 +11,7 @@ class SignIn extends Component{
         this.SignIn = this.SignIn.bind(this);
         const{
             auth
-        } = this.props
+        } = this.props;
         console.log(auth, 'user authentication');
     }
 
@@ -22,8 +22,7 @@ class SignIn extends Component{
             this.props.router.push('/home');
         })
         .catch((error)=>{
-          console.log("working");
-          
+            console.log("not working");
         })
     }
 

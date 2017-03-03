@@ -7,35 +7,115 @@ import * as firebase from 'firebase';
 class Home extends Component{
     constructor(props){
         super(props);
-        this.searchUser = this.searchUser.bind(this);
+        this.searchOption = this.searchOption.bind(this);
     }
 
-    searchUser(ev){
+    searchOption(ev){
         ev.preventDefault();
         let currentUser = firebase.auth().currentUser;
         let searchDoner = this.refs.search.value;
+        let tempArray = [];
+        let firebaseData = this.props.doners;
+        // console.log("firebaseData",firebaseData);
         
-        // console.log(doner);
-        // console.log(currentUser.uid, 'currentUser here');
-        // firebase.database().ref('doners/')
-        //     .then((v) => {
-        //         this.refs.search.value = '';
-        //     })
-
+        if(searchDoner === 'A+'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'A+' || firebaseData[i].blood === 'AB+' ) 
+                    && currentUser.uid !== firebaseData[i].id){
+                        tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'B+'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'B+' || 
+                    firebaseData[i].blood === 'AB+') && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'O+'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'B+' || firebaseData[i].blood === 'A+' ||
+                    firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'O+' )
+                    && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'AB+'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'AB+') && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'AB-'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'AB-') && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'A-'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'A-' || firebaseData[i].blood === 'A+' ||
+                    firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'AB-' ) 
+                        && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'B-'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'B-' || firebaseData[i].blood === 'B+' ||
+                    firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'AB-' ) 
+                        && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        if(searchDoner === 'O-'){
+            for(let i=0; i < firebaseData.length; i++){
+                if((firebaseData[i].blood === 'O-' ) && currentUser.uid !== firebaseData[i].id){
+                    tempArray = tempArray.concat(firebaseData[i]);
+                }
+            }
+        }
+        
+        console.log("searchData",tempArray);
+        // return this.props.filterDoners(tempArray);
     }
     render(){
         return(
             <div>
                 <div className="container">
                     <div className="col-md-10 col-md-offset-1">
-                        <form action="">
-                            <input id="search" type="text" name="search" ref="search" placeholder="Search.."/>
-                            <button className="btn btn-primary search"  onClick={this.searchUser}>Search</button>
-                        </form>
+                        <div className="form-group">
+                                <label className="col-md-4 control-label" htmlFor="group">Search:</label><br/>
+                                <div className="col-md-10">
+                                    <select ref="search" onChange={this.searchOption} className="multiselect-ui form-control" >
+                                         <option value="default">Select blood group</option>
+                                        <option value="A+">A+</option>
+                                        <option value="B+">B+</option>
+                                        <option value="O+">O+</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                </div>
+                            </div>
                     </div>
                 </div>
                 <br /> <br />
                 <Doners />
+                <div className="container">
+                    <div className="col-md-10">
+                        {this.props}
+                    </div>
+                </div>
                 <div>
                 </div>
             </div >
@@ -43,4 +123,6 @@ class Home extends Component{
     }
 }
 
-export default connect()(Home);
+export default connect(state => ({
+    doners: state.doner.doners
+}))(Home);

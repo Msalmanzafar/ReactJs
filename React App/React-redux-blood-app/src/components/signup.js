@@ -9,7 +9,7 @@ class SignUp extends Component {
     }
 
     SignUp(userUth) {
-        console.log(userUth);
+        // console.log(userUth);
         firebase.auth().createUserWithEmailAndPassword(userUth.email, userUth.password)
             .then((user) => {
                 userUth.email = user.email;
@@ -17,7 +17,7 @@ class SignUp extends Component {
                 firebase.database().ref('doners/' + user.uid).set(userUth)
                     .then(() => {
                         console.log("SignUp Completed")
-                        console.log(userUth);
+                        // console.log(userUth);
                     });
 
             })
