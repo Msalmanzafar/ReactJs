@@ -2,19 +2,28 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import * as firebase from 'firebase';
  import Doners from './doners';
+import TempDoners from './temp-doners';
+
+
+
+
 
 
 class Home extends Component{
     constructor(props){
         super(props);
         this.searchOption = this.searchOption.bind(this);
+        this.state={
+            rerender:0,
+            arr: null
+        }
     }
-
+    tempArray = [];
     searchOption(ev){
         ev.preventDefault();
         let currentUser = firebase.auth().currentUser;
         let searchDoner = this.refs.search.value;
-        let tempArray = [];
+        
         let firebaseData = this.props.doners;
         // console.log("firebaseData",firebaseData);
         
@@ -22,7 +31,7 @@ class Home extends Component{
             for(let i=0; i < firebaseData.length; i++){
                 if((firebaseData[i].blood === 'A+' || firebaseData[i].blood === 'AB+' ) 
                     && currentUser.uid !== firebaseData[i].id){
-                        tempArray = tempArray.concat(firebaseData[i]);
+                        this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
@@ -30,7 +39,7 @@ class Home extends Component{
             for(let i=0; i < firebaseData.length; i++){
                 if((firebaseData[i].blood === 'B+' || 
                     firebaseData[i].blood === 'AB+') && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
@@ -39,21 +48,21 @@ class Home extends Component{
                 if((firebaseData[i].blood === 'B+' || firebaseData[i].blood === 'A+' ||
                     firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'O+' )
                     && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
         if(searchDoner === 'AB+'){
             for(let i=0; i < firebaseData.length; i++){
                 if((firebaseData[i].blood === 'AB+') && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
         if(searchDoner === 'AB-'){
             for(let i=0; i < firebaseData.length; i++){
                 if((firebaseData[i].blood === 'AB-') && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
@@ -62,7 +71,7 @@ class Home extends Component{
                 if((firebaseData[i].blood === 'A-' || firebaseData[i].blood === 'A+' ||
                     firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'AB-' ) 
                         && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
@@ -71,20 +80,22 @@ class Home extends Component{
                 if((firebaseData[i].blood === 'B-' || firebaseData[i].blood === 'B+' ||
                     firebaseData[i].blood === 'AB+' || firebaseData[i].blood === 'AB-' ) 
                         && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
         if(searchDoner === 'O-'){
             for(let i=0; i < firebaseData.length; i++){
                 if((firebaseData[i].blood === 'O-' ) && currentUser.uid !== firebaseData[i].id){
-                    tempArray = tempArray.concat(firebaseData[i]);
+                    this.tempArray = this.tempArray.concat(firebaseData[i]);
                 }
             }
         }
         
-        console.log("searchData",tempArray);
-        // return this.props.filterDoners(tempArray);
+        console.log("searchData",this.tempArray);
+         this.setState({
+            arr:this.tempArray
+        });
     }
     render(){
         return(
@@ -110,7 +121,11 @@ class Home extends Component{
                     </div>
                 </div>
                 <br /> <br />
-                <Doners />
+
+                {
+                    (this.state.arr !=null) ? <TempDoners data={this.tempArray} /> : <Doners />}
+
+                
                 {/*<div className="container">
                     <div className="col-md-10">
                         {this.props}

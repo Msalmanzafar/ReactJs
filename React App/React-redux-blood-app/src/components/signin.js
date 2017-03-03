@@ -17,13 +17,14 @@ class SignIn extends Component{
 
     SignIn(userUth){
         firebase.auth().signInWithEmailAndPassword(userUth.email, userUth.password)
+        .catch((error)=>{
+            console.log("not working", error);
+        })
         .then((user)=>{
             this.props.authentication();
             this.props.router.push('/home');
         })
-        .catch((error)=>{
-            console.log("not working");
-        })
+        
     }
 
     render() {
