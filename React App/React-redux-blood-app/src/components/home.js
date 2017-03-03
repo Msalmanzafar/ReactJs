@@ -111,11 +111,11 @@ class Home extends Component{
                 </div>
                 <br /> <br />
                 <Doners />
-                <div className="container">
+                {/*<div className="container">
                     <div className="col-md-10">
                         {this.props}
                     </div>
-                </div>
+                </div>*/}
                 <div>
                 </div>
             </div >
