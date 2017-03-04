@@ -1,0 +1,69 @@
+.heading{
+    padding-top: 10px;
+    padding-bottom: 15px;
+}
+.heading h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0px 5px 8px black;
+    /*height: 60px;*/
+    /*line-height: 50px;*/
+    
+    padding-left: 30px;
+}
+.navbar-color{
+    background-color: #354583 !important;
+}
+.Signup{
+    margin-top: 15px;
+}
+.add{
+    margin-top: 15px;
+}
+.box1 button{
+    font-size: 1.4em !important;
+}
+.mid label{
+    font-size: 1.3em !important;
+}
+.btn-new{
+    font-size: 1.5em !important;
+    margin-right: 14px;
+}
+/*.box1{
+    position: relative;
+    top: 130px;
+}*/
+.error{
+    color: red;
+}
+.good{
+    color: darkcyan;
+}
+input[id=search] {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./images/search1.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 9px 10px 9px 20px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+    margin-right: 10px;
+    width: 80%;
+    margin-bottom: 14px;
+}
+
+/*input[id=search]:focus {
+    
+}*/
+.search{
+    font-size: 1.4em !important;
+    position: relative;
+    top: -2px;
+}
