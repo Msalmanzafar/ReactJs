@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import {Uers} from '../components/users';
 import {Main} from '../components/main';
 import {setName} from '../actions/userActions'
-// import {addNumber} from '../actions/mathActions'
-// import {Math, Numbers} from '../components/math-main';
+import {addNumber,subtractNumber} from '../actions/mathActions'
+import {Add, AddNumbers} from '../components/math-main';
 
 class App extends Component{
     render(){
@@ -12,8 +12,9 @@ class App extends Component{
             <div>
                 <Main changeUserName={()=>this.props.setName('Zafar')}/>
                 <Uers username={this.props.user.name}/>    
-                {/*<Math mathChange={()=>this.props.addNumber(2)}/>
-                <Numbers Addnumbers={this.props.math.number}/>*/}
+                <Add mathChange={()=>this.props.addNumber(12)}/>
+                {/*<Math mathChange={()=>this.props.subtractNumber(5)}/>*/}
+                <AddNumbers Addnumbers={this.props.math.number}/>
             </div>
         )
     }
@@ -30,6 +31,12 @@ const mapDispatchToProps =(dispatch) =>{
         setName: (name) =>{
             dispatch(setName(name));
         },
+        addNumber: (number)=>{
+            dispatch(addNumber(number));
+        },
+        subtractNumber: (number)=>{
+            dispatch(subtractNumber(number));
+        }  
        
     };
 }

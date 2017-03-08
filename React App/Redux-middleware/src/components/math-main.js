@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Math = (props)=> {
+export const Add = (props)=> {
         return (
             <div>
                 <div className="row">
@@ -20,7 +20,25 @@ export const Math = (props)=> {
     
 }
 
-export const Numbers = (props)=> {
+export const AddNumbers = (props)=> {
+        return (
+            <div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <h1>The Number Component</h1>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-xs-12">
+                        <p>User Number: {props.Addnumbers}</p>
+                    </div>
+                </div>
+            </div>
+        );
+    
+}
+
+export const Subtract = (props)=> {
         return (
             <div>
                 <div className="row">
