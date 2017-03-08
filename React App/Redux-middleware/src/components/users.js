@@ -10,7 +10,7 @@ export const Uers = (props)=> {
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <p>User Name: {props.username}</p>
+                        <h4>User Name: {props.username}</h4>
                     </div>
                 </div>
             </div>

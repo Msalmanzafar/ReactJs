@@ -4,17 +4,19 @@ import {Uers} from '../components/users';
 import {Main} from '../components/main';
 import {setName} from '../actions/userActions'
 import {addNumber,subtractNumber} from '../actions/mathActions'
-import {Add, AddNumbers} from '../components/math-main';
+import {Add, AddNumbers,Subtract} from '../components/math-main';
 
 class App extends Component{
     render(){
         return(
-            <div>
-                <Main changeUserName={()=>this.props.setName('Zafar')}/>
-                <Uers username={this.props.user.name}/>    
-                <Add mathChange={()=>this.props.addNumber(12)}/>
-                {/*<Math mathChange={()=>this.props.subtractNumber(5)}/>*/}
-                <AddNumbers Addnumbers={this.props.math.number}/>
+            <div className="container">
+                <div className="col-md-12">
+                    <Main changeUserName={()=>this.props.setName('Zafar')}/>
+                    <Uers username={this.props.user.name}/>    
+                    <Add mathChange={()=>this.props.addNumber(10)}/>
+                    <Subtract mathChange={()=>this.props.subtractNumber(5)}/>
+                    <AddNumbers Addnumbers={this.props.math.number}/>                                
+                </div>
             </div>
         )
     }

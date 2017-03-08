@@ -5,14 +5,14 @@ export const Add = (props)=> {
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <h1>This is Math Component</h1>
+                        <h1>For Addition</h1>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
                         <button
-                            className="btn btn-primary"
-                            onClick={props.mathChange}>Change the number</button>
+                            className="btn btn-success"
+                            onClick={props.mathChange}>Addition</button>
                     </div>
                 </div>
             </div>
@@ -25,12 +25,12 @@ export const AddNumbers = (props)=> {
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <h1>The Number Component</h1>
+                        <h1>After Action</h1>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <p>User Number: {props.Addnumbers}</p>
+                        <h4>Number: {props.Addnumbers}</h4>
                     </div>
                 </div>
             </div>
@@ -43,15 +43,18 @@ export const Subtract = (props)=> {
             <div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <h1>The Number Component</h1>
+                        <h1>For Subtract</h1>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-xs-12">
-                        <p>User Number: {props.Addnumbers}</p>
+                        <button
+                            className="btn btn-warning"
+                            onClick={props.mathChange}>Subtract</button>
                     </div>
                 </div>
             </div>
         );
     
 }
+
