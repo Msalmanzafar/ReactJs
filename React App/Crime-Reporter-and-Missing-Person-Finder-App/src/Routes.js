@@ -1,12 +1,16 @@
 
-import React from 'react';
+import React,{Component} from 'react';
 import { Router, Route, browserHistory } from 'react-router';
-// import Home from './components/home.js';
-// import SignIn from './components/signin';
-import Navbar from './components/navbar';
-// import SignUp from './components/signup';
+import App from './container/app';
+import signup from'./components/signup'
+import signin from'./components/signin'
 import * as firebase from 'firebase';
+import Home from './components/home/home';
+import ForComplaint from './components/home/forComplaints';
 
+
+// import {Provider} from 'react-redux';
+// import store from './store';
 var config = {
     apiKey: "AIzaSyArVpiyJ0wPxATriQBnPzvbCqjIBVWSppc",
     authDomain: "sky-auth.firebaseapp.com",
@@ -16,13 +20,19 @@ var config = {
   };
   firebase.initializeApp(config);
 
-module.exports = (
-    <Router history={browserHistory}>
-        <Route path="/" component={Navbar} >
-            {/*<Route path="/signup" component={SignUp} />
-            <Route path="/signin" component={SignIn} />
-            <Route path="/home" component={Home} />*/}
-        </Route>
-
-    </Router>
-)
+export default class Routes extends Component{
+    render(){
+        return(
+            <Router history={browserHistory}>
+                <Route path="/" component={App} >
+                    <Route path="/signup" component={signup}/>
+                    <Route path="/signin" component={signin}/>
+                    <Route path="/home" component={Home}>
+                        <Route path="/forComplaints" component={ForComplaint}/>
+                    </Route>
+                </Route>
+            </Router>
+        )
+    }
+    
+}

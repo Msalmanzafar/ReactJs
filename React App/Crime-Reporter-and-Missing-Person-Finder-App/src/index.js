@@ -1,19 +1,45 @@
+
+// import {createStore, combineReducers, applyMiddleware} from 'redux';
+// import logger from 'redux-logger';
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import App from './App';
-import './index.css';
-import Navbar from './components/navbar';
+import {render} from 'react-dom';
+// import App from './container/app';
+import {Provider} from 'react-redux';
+import store from './store';
+import Routes from './Routes'
+render(
+    <Provider store={store}>
+      <Routes />
+    </Provider>,
+    window.document.getElementById('app')
+)
 
-// import Routes from './Routes.js';
-
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
-// import allReducers from './modules/reducers';
 
 
 
 
-ReactDOM.render(
-    <Navbar/>,
-  document.getElementById('root')
-);
+// store.subscribe(()=>{
+//   console.log("Store Update", store.getState());
+// });
+
+// store.dispatch({
+//     type: 'ADD',
+//     payload: 100
+// });
+// store.dispatch({
+//     type: 'ADD',
+//     payload: 22
+// });
+// store.dispatch({
+//     type: 'SUBTRACT',
+//     payload: 80
+// });
+// store.dispatch({
+//     type: 'SET_NAME',
+//     payload: 'SALMAN ZAFAR'
+// });
+// store.dispatch({
+//     type: 'SET_AGE',
+//     payload: 30
+// });
+

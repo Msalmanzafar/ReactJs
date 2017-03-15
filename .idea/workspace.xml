@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4876f6c8-0525-43d4-937f-c7114edf8e5f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/package.json" afterPath="$PROJECT_DIR$/React App/React-Todo/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/public/style.css" afterPath="$PROJECT_DIR$/React App/React-Todo/public/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/src/App.js" afterPath="$PROJECT_DIR$/React App/React-Todo/src/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/src/index.js" afterPath="$PROJECT_DIR$/React App/React-Todo/src/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/src/list-layout.js" afterPath="$PROJECT_DIR$/React App/React-Todo/src/list-layout.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/src/signup.js" afterPath="$PROJECT_DIR$/React App/React-Todo/src/signup.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/React-Todo/src/todo-list-item.js" afterPath="$PROJECT_DIR$/React App/React-Todo/src/todo-list-item.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/todo-list.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,15 +27,35 @@
       <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="1292">
               <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create-todo.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/React App/React-Todo/src/create-todo.js">
+      <file leaf-file-name="userActions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/userActions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="numberAction.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/numberAction.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="navigation-bar.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/React App/React-redux-blood-app/src/components/navigation-bar.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -114,6 +129,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -156,7 +172,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -272,11 +287,13 @@
       <workItem from="1485512520963" duration="7336000" />
       <workItem from="1486711932610" duration="302000" />
       <workItem from="1487660176400" duration="49000" />
+      <workItem from="1489053550626" duration="10000" />
+      <workItem from="1489560422790" duration="12000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16275000" />
+    <option name="totallyTimeSpent" value="16297000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -320,6 +337,47 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/userActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/numberAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1292">
+          <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/React-Todo/src/create-todo.js" />
+    <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/userActions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -423,13 +481,22 @@
     <entry file="file://$PROJECT_DIR$/react-quickly-master/ch01/hello-world/index.html" />
     <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="1292">
           <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/React App/React-Todo/src/create-todo.js">
+    <entry file="file://$PROJECT_DIR$/React App/React-Todo/src/create-todo.js" />
+    <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/numberAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/React-redux-blood-app/src/components/navigation-bar.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
