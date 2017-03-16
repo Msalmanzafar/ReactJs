@@ -7,6 +7,8 @@ import signin from'./components/signin'
 import * as firebase from 'firebase';
 import Home from './components/home/home';
 import ForComplaint from './components/home/forComplaints';
+import ForCrimes from './components/home/forCrimes';
+import ForMissing from './components/home/forMissing';
 
 
 // import {Provider} from 'react-redux';
@@ -29,6 +31,8 @@ export default class Routes extends Component{
                     <Route path="/signin" component={signin}/>
                     <Route path="/home" component={Home}>
                         <Route path="/forComplaints" component={ForComplaint}/>
+                        <Route path="/forCrimes" component={ForCrimes}/>
+                        <Route path="/forMissing" component={ForMissing}/>
                     </Route>
                 </Route>
             </Router>

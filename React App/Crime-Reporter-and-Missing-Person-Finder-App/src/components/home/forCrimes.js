@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
 const style = {
-  height: 380,
+  height: 'auto',
   width: 500,
   margin: 20,
   padding: 30,
@@ -20,14 +20,14 @@ const style2 = {
   marginTop: 15,
 };
 
-class ForComplaint extends Component{
+class ForCrimes extends Component{
     render(){
         return(
             <div>
                 <center>
                     <Paper style={style} zDepth={3} rounded={true} >
                         <div>
-                            <h3>Register Complaints</h3>
+                            <h3>Register Crime Report</h3>
                         </div>
                         <TextField 
                             hintText="Enter full name.."
@@ -46,12 +46,11 @@ class ForComplaint extends Component{
                         <TextField 
                             hintText="Your complain must be contain 140 or above character.."
                             type="text"
-                            floatingLabelText="Enter your Complain.."
+                            floatingLabelText="Enter your Complain"
                             style={style3}
                             ref="fname"
                             multiLine={true}
                         />
-                        
                         <RaisedButton 
                             label="Submit" 
                             labelColor="#fcfaf6" 
@@ -67,4 +66,4 @@ class ForComplaint extends Component{
     }
 }
 
-export default ForComplaint;
+export default ForCrimes;

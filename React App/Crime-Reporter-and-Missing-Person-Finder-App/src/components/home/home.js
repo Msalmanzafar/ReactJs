@@ -1,42 +1,51 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import {Link} from 'react-router'
+import { Link } from 'react-router'
+import * as firebase from 'firebase';
 
 const style = {
-  margin: 12,
+    margin: 12,
 };
 
 
-class Home extends Component{
-    render(){
-        return(
+
+class Home extends Component {
+    componentWillMount() {
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log(user);
+            }
+        });
+    }
+    render() {
+        return (
             <div>
+                <center>
                     <Link to='/forComplaints'>
-                        <RaisedButton label="Complaints" 
-                            labelColor="#fcfaf6" 
-                            backgroundColor="#b71c1c" 
-                            style={style} 
+                        <RaisedButton label="Complaints"
+                            labelColor="#fcfaf6"
+                            backgroundColor="#b71c1c"
+                            style={style}
                         />
                     </Link>
-                   
-                    <Link to='/for-procurer'>
-                        <RaisedButton label="Crimes" 
-                            labelColor="#fcfaf6" 
-                            backgroundColor="#0288d1" 
-                            style={style} 
+                    <Link to='/forCrimes'>
+                        <RaisedButton label="Crimes"
+                            labelColor="#fcfaf6"
+                            backgroundColor="#0288d1"
+                            style={style}
                         />
                     </Link>
-                    
-                    <Link to='/for-procurer'>
-                        <RaisedButton label="Missing Persons" 
-                            labelColor="#fcfaf6" 
-                            backgroundColor="#0288d1" 
-                            style={style} 
+                    <Link to='/forMissing'>
+                        <RaisedButton label="Missing Persons"
+                            labelColor="#fcfaf6"
+                            backgroundColor="#0288d1"
+                            style={style}
                         />
                     </Link>
-                    <div>
-                        {this.props.children}
-                    </div>
+                </center>
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         );
     }
