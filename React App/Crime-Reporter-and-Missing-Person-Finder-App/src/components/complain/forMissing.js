@@ -2,9 +2,13 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import SelectField from 'material-ui/SelectField';
-import MenuItem from 'material-ui/MenuItem';
-var injectTapEventPlugin = require("react-tap-event-plugin");
+// import SelectField from 'material-ui/SelectField';
+// import MenuItem from 'material-ui/MenuItem';
+// import injectTapEventPlugin from "react-tap-event-plugin";
+import {missingAction} from '../../action/complaint-action';
+import {connect} from 'react-redux';
+
+
 const style = {
     height: 'auto',
     width: 500,
@@ -23,19 +27,23 @@ const style2 = {
 };
 
 class ForMissing extends Component {
+    
     constructor(props){
         super(props);
-        this.state = {
-            value: null,
-        };
-    }
-    
+        this.missing = this.missing.bind(this);
 
-  handleChange = (event, index, value) => {
-      this.setState={
-        value
     }
-  }
+    missing(){
+        let missingDetails={
+            name: this.refs.fname.getValue(),
+            location: this.refs.location.getValue(),
+            missName: this.refs.missName.getValue(),
+            age: this.refs.age.getValue(),
+            // picture: this.refs.picture.getValue(),
+        }
+        console.log('missingDetails',missingDetails)
+        this.props.missingAction(missingDetails);
+    }
 
     render() {
         return (
@@ -64,16 +72,16 @@ class ForMissing extends Component {
                             type="text"
                             floatingLabelText="Person Name"
                             style={style3}
-                            ref="location"
+                            ref="missName"
                         />
                         <TextField
                             hintText="Enter age of missing person"
-                            type="text"
+                            type="number"
                             floatingLabelText="Person Age"
                             style={style3}
-                            ref="fname"
+                            ref="age"
                         />
-                        <SelectField
+                        {/*<SelectField
                             floatingLabelText="Ready?"
                             value={this.state.value}
                             onChange={this.handleChange}
@@ -81,15 +89,15 @@ class ForMissing extends Component {
                             <MenuItem value={null} primaryText="" />
                             <MenuItem value={false} primaryText="No" />
                             <MenuItem value={true} primaryText="Yes" />
-                        </SelectField>
-                        <RaisedButton label="Submit image of missing person if you have" >
-                            <input type="file" />
-                        </RaisedButton><br /><br /><br />
+                        </SelectField>*/}
+                        {/*<RaisedButton label="Submit image of missing person" >
+                            <input type="file" ref="picture"/>
+                        </RaisedButton><br /><br /><br />*/}
                         <RaisedButton
                             label="Submit"
                             labelColor="#fcfaf6"
                             backgroundColor="#00796b"
-                            onClick={this.logOut}
+                            onClick={this.missing}
                             style={style2}
                         />
 
@@ -100,4 +108,16 @@ class ForMissing extends Component {
     }
 }
 
-export default ForMissing;
+const mapStateToProps =(state) =>{
+    return{
+        complain: state.ComplaintReducers
+    };
+}
+const mapDispatchToProps =(dispatch) =>{
+    return{
+        missingAction: (missingDetails) =>{
+            dispatch(missingAction(missingDetails))
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ForMissing);

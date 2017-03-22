@@ -13,7 +13,7 @@ class Home extends Component {
     componentWillMount() {
         firebase.auth().onAuthStateChanged(function (user) {
             if (user) {
-                console.log(user);
+                console.log("firebase current user",user);
             }
         });
     }
@@ -24,7 +24,7 @@ class Home extends Component {
                     <Link to='/forComplaints'>
                         <RaisedButton label="Complaints"
                             labelColor="#fcfaf6"
-                            backgroundColor="#b71c1c"
+                            backgroundColor="#0288d1"
                             style={style}
                         />
                     </Link>

@@ -2,17 +2,16 @@
 import React,{Component} from 'react';
 import { Router, Route, browserHistory } from 'react-router';
 import App from './container/app';
-import signup from'./components/signup'
-import signin from'./components/signin'
+import signup from'./components/authentication/signup'
+import signin from'./components/authentication/signin'
 import * as firebase from 'firebase';
 import Home from './components/home/home';
-import ForComplaint from './components/home/forComplaints';
-import ForCrimes from './components/home/forCrimes';
-import ForMissing from './components/home/forMissing';
+import ForComplaint from './components/complain/forComplaints';
+import ForCrimes from './components/complain/forCrimes';
+import ForMissing from './components/complain/forMissing';
+import myStatus from './components/home/myStatus';
 
 
-// import {Provider} from 'react-redux';
-// import store from './store';
 var config = {
     apiKey: "AIzaSyArVpiyJ0wPxATriQBnPzvbCqjIBVWSppc",
     authDomain: "sky-auth.firebaseapp.com",
@@ -33,6 +32,7 @@ export default class Routes extends Component{
                         <Route path="/forComplaints" component={ForComplaint}/>
                         <Route path="/forCrimes" component={ForCrimes}/>
                         <Route path="/forMissing" component={ForMissing}/>
+                        <Route path="/myStatus" component={myStatus}/>
                     </Route>
                 </Route>
             </Router>

@@ -2,9 +2,11 @@ import React, {Component} from 'react';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
+import {connect} from 'react-redux';
+import {ComplaintsAction} from '../../action/complaint-action';
 
 const style = {
-  height: 380,
+  height: 'auto',
   width: 500,
   margin: 20,
   padding: 30,
@@ -21,7 +23,22 @@ const style2 = {
 };
 
 class ForComplaint extends Component{
+    constructor(props){
+        super(props);
+        this.complaints= this.complaints.bind(this);
+    }
+    complaints(){
+        // console.log('for complain');
+        let complaintObj={
+            name: this.refs.fname.getValue(),
+            address: this.refs.address.getValue(),
+            complain: this.refs.message.getValue()
+        }
+        // console.log(complaint);
+        this.props.ComplaintsAction(complaintObj);
+    }
     render(){
+        console.log('complaints reducer',this.props.complain)
         return(
             <div>
                 <center>
@@ -37,18 +54,18 @@ class ForComplaint extends Component{
                             ref="fname"
                         />
                         <TextField 
-                            hintText="Enter your email.."
+                            hintText="Enter your address.."
                             type="text"
-                            floatingLabelText="Your Email"
+                            floatingLabelText="Your Address"
                             style={style3}
-                            ref="fname"
+                            ref="address"
                         />
                         <TextField 
                             hintText="Your complain must be contain 140 or above character.."
                             type="text"
                             floatingLabelText="Enter your Complain.."
                             style={style3}
-                            ref="fname"
+                            ref="message"
                             multiLine={true}
                         />
                         
@@ -56,7 +73,7 @@ class ForComplaint extends Component{
                             label="Submit" 
                             labelColor="#fcfaf6" 
                             backgroundColor="#00796b" 
-                            onClick={this.logOut}
+                            onClick={this.complaints}
                             style={style2}
                         />
                         
@@ -65,6 +82,19 @@ class ForComplaint extends Component{
             </div>
         );
     }
-}
+};
 
-export default ForComplaint;
+const mapStateToProps =(state) =>{
+    return{
+        complain: state.ComplaintReducers
+    };
+}
+const mapDispatchToProps =(dispatch) =>{
+    return{
+        ComplaintsAction: (complaintObj) =>{
+            dispatch(ComplaintsAction(complaintObj))
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(ForComplaint);
+

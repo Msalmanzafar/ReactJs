@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import {connect} from 'react-redux';
-import {signUp} from '../actions/auth-action';
+import {SignIn} from '../../action/auth-action';
 
 const style = {
   height: 350,
@@ -20,40 +20,40 @@ const style2 = {
 };
 
 const style3 = {
-  width: 400,
+  width: '400px',
 };
 
-class signup extends Component{
+
+class signin extends Component{
     constructor(props){
         super(props);
-        this.signUpUser = this.signUpUser.bind(this);
+        this.signInUser = this.signInUser.bind(this);
     }
-    signUpUser(ev){
+    signInUser(ev){
         ev.preventDefault();
         let email = this.refs.email.getValue();
         let password = this.refs.password.getValue();
-        let userSignUp={
-            email:email,
+        let userSignIn={
+            email: email,
             password: password
         }
-        this.props.signUp(userSignUp);
-        console.log(userSignUp);
+        this.props.SignIn(userSignIn);
+        // console.log(userSignIn); 
     }
     render(){
-    console.log('userSignUp',this.props.auth.authSignUp);
+        console.log('userSignIn',this.props.auth.authSignIn)
         return(
             <div>
                 <center>
                     <Paper style={style} zDepth={3} rounded={true} >
-                        <h2>Sign Up</h2>
-                        <form onSubmit={this.signUpUser}>
+                        <h2>Log In</h2>
+                        <form onSubmit={this.signInUser}>
                             <TextField
                                 hintText="email"
                                 type="email"
                                 floatingLabelText="Enter your email"
                                 style={style3}
                                 ref="email"
-                                /*value={this.props.auth.dummy}*/
                             /><br/>
                             <TextField
                                 hintText="password"
@@ -62,7 +62,7 @@ class signup extends Component{
                                 style={style3}
                                 ref="password"
                             /><br/><br/>
-                            <RaisedButton type="submit"label="Sign Up" primary={true} 
+                            <RaisedButton type="submit" label="Sign In" primary={true} 
                                 style={style2} 
                             />
                         </form>
@@ -71,8 +71,8 @@ class signup extends Component{
             </div>
         )
     }
-  
 };
+
 const mapStateToProps =(state) =>{
     return{
         auth: state.AuthReducer
@@ -80,9 +80,9 @@ const mapStateToProps =(state) =>{
 }
 const mapDispatchToProps =(dispatch) =>{
     return{
-        signUp: (userSignUp) =>{
-            dispatch(signUp(userSignUp));
+        SignIn: (userSignIn) =>{
+            dispatch(SignIn(userSignIn));
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(signup);
+export default connect(mapStateToProps , mapDispatchToProps)(signin);
