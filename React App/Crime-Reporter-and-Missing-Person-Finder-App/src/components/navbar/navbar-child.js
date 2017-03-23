@@ -4,7 +4,8 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-import ActionHome from 'material-ui/svg-icons/action/home';
+// import ActionHome from 'material-ui/svg-icons/action/home';
+import MdMenu from 'react-icons/lib/md/menu';
 import {Link} from 'react-router';
 import {MySatatusAction} from '../../action/firebaseData';
 import {connect} from 'react-redux';
@@ -19,15 +20,13 @@ const styles = {
   smallIcon: {
     width: 36,
     height: 36,
+    color: '#f8fdfa'
   },
   small: {
     width: 40,
     height: 40,
     padding: 5,
   },
-  menuBar:{
-    Color: '#f8fdfa'
-  } 
 };
 
 class DrawerUndockedExample extends React.Component {
@@ -51,14 +50,14 @@ class DrawerUndockedExample extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    console.log(this.props.Status.MyStatus)
+    console.log(this.props.Status)
     return (
       <div>
         <IconButton 
           iconStyle={styles.smallIcon}
           style={styles.small}
         >
-          <ActionHome style={styles.menuBar} onClick={this.handleToggle}/>
+          <MdMenu onClick={this.handleToggle}/>
         </IconButton>
         <Drawer
           docked={false}
@@ -66,9 +65,11 @@ class DrawerUndockedExample extends React.Component {
           open={this.state.open}
           onRequestChange={(open) => this.setState({ open })}
           
-        > <AppBar title="Options" />
-          <MenuItem ><Link to="/myStatus" onClick={this.myStatusFire}>My Complaints</Link></MenuItem>
-          <MenuItem > <Link to="" onClick={this.closed}>All Complaints</Link></MenuItem>
+        > 
+          <AppBar title="Options" />
+          <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
+          <Link to="" onClick={this.closed}><MenuItem > All Complaints</MenuItem></Link>
+
           <RaisedButton
             label="Close"
             onClick={this.handleClose}
