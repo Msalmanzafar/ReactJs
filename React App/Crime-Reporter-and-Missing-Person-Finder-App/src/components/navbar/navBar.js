@@ -6,7 +6,9 @@ import { Link } from 'react-router';
 import * as firebase from 'firebase';
 import { connect } from 'react-redux';
 import { LogOutAction } from '../../action/auth-action';
-import DrawerUndockedExample from './navbar-child'
+import DrawerUndockedExample from './navbar-child';
+import logo from './images/logo.png'
+
 const styles = {
     title: {
         cursor: 'pointer',
@@ -18,6 +20,10 @@ const styles = {
     button: {
         color: '#fafbfc',
         fontFamily: 'Verdana'
+    },
+    logo:{
+        width: '145px',
+        height: '32px'
     }
 };
 
@@ -38,8 +44,18 @@ class NavBar extends Component {
             <div>
                 <MuiThemeProvider>
                     <AppBar
-                        title={<span style={styles.title}>Crime Reporting</span>}
-                        iconElementLeft={<DrawerUndockedExample />}
+                        title={<img src={logo} style={styles.logo} alt="Crime"/>}
+                        iconElementLeft={
+                            <span>
+                                {(auth === true)?(
+                                    <DrawerUndockedExample />
+                                ):(
+                                    <span></span>
+                                )}
+                            </span>
+                              
+                            
+                            }
                         iconElementRight={
                             <div style={styles.headerButton}>
                                 {(auth === false) ? (

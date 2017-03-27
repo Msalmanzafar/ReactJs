@@ -13,18 +13,6 @@ const ComplaintReducers = (state = {
               complaints: action.payload
           };
       }
-      case actionTypes.ForCrimes:{
-          return state={
-              ...state,
-              complaints: action.payload
-          };
-      }
-      case actionTypes.ForMissing:{
-          return state={
-              ...state,
-              complaints: action.payload
-          };
-      }
     }
     return state;
 }

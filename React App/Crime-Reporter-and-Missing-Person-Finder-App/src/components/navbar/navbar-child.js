@@ -7,7 +7,7 @@ import IconButton from 'material-ui/IconButton';
 // import ActionHome from 'material-ui/svg-icons/action/home';
 import MdMenu from 'react-icons/lib/md/menu';
 import {Link} from 'react-router';
-import {MySatatusAction} from '../../action/firebaseData';
+import {MySatatusAction,AllSatatusAction} from '../../action/firebaseData';
 import {connect} from 'react-redux';
 
 
@@ -34,12 +34,17 @@ class DrawerUndockedExample extends React.Component {
   constructor(props) {
     super(props);
     this.myStatusFire = this.myStatusFire.bind(this);
+    this.allStatusFire = this.allStatusFire.bind(this);
     this.state = { open: false };
   }
-
+  allStatusFire(){
+    this.props.AllSatatusAction();
+    this.setState({ open: false });
+  }
   myStatusFire(){
-      this.props.MySatatusAction();
-      this.setState({ open: false })
+      let newStatus =this.props.Status;
+      this.props.MySatatusAction(newStatus);
+      this.setState({ open: false });
   }
 
   handleToggle = () => {
@@ -50,7 +55,7 @@ class DrawerUndockedExample extends React.Component {
   handleClose = () => this.setState({ open: false });
 
   render() {
-    console.log(this.props.Status)
+    console.log('report status',this.props.Status.MyStatus)
     return (
       <div>
         <IconButton 
@@ -68,7 +73,7 @@ class DrawerUndockedExample extends React.Component {
         > 
           <AppBar title="Options" />
           <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
-          <Link to="" onClick={this.closed}><MenuItem > All Complaints</MenuItem></Link>
+          <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
 
           <RaisedButton
             label="Close"
@@ -88,8 +93,11 @@ const mapStateToProps =(state) =>{
 }
 const mapDispatchToProps =(dispatch) =>{
     return{
-        MySatatusAction: () =>{
-            dispatch(MySatatusAction())
+        MySatatusAction: (newStatus) =>{
+            dispatch(MySatatusAction(newStatus))
+        },
+        AllSatatusAction: ()=>{
+          dispatch(AllSatatusAction())
         }
     };
 }

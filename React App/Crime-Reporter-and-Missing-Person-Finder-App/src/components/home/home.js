@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router'
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 
 const style = {
     margin: 12,
@@ -10,13 +10,13 @@ const style = {
 
 
 class Home extends Component {
-    componentWillMount() {
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                console.log("firebase current user",user);
-            }
-        });
-    }
+    // componentWillMount() {
+    //     firebase.auth().onAuthStateChanged(function (user) {
+    //         if (user) {
+    //             console.log("firebase current user",user);
+    //         }
+    //     });
+    // }
     render() {
         return (
             <div>

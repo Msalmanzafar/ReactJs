@@ -3,7 +3,7 @@ import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 // import TimePicker from 'material-ui/TimePicker';
-import {CrimeAction} from  '../../action/complaint-action'
+import {ComplaintsAction} from  '../../action/complaint-action'
 import {connect} from 'react-redux';
 const style = {
   height: 'auto',
@@ -33,10 +33,12 @@ class ForCrimes extends Component{
             name: this.refs.fname.getValue(),
             currentAddress: this.refs.Caddress.getValue(),
             eventLocation: this.refs.event.getValue(),
-            details: this.refs.details.getValue()
+            details: this.refs.details.getValue(),
+            crimeType: 'Crime Report',
+            status: 'Panding',
         }
         // console.log(complaint);
-        this.props.CrimeAction(crimeObj);
+        this.props.ComplaintsAction(crimeObj);
         
     }
     // handleChangeTimePicker12 = (event, date) => {
@@ -81,7 +83,7 @@ class ForCrimes extends Component{
                         <TextField 
                             hintText="Your event must be contain 100 or above character.."
                             type="text"
-                            floatingLabelText="Enter your event"
+                            floatingLabelText="Enter event detail"
                             style={style3}
                             ref="details"
                             multiLine={true}
@@ -107,8 +109,8 @@ const mapStateToProps =(state) =>{
 }
 const mapDispatchToProps =(dispatch) =>{
     return{
-        CrimeAction: (crimeObj) =>{
-            dispatch(CrimeAction(crimeObj))
+        ComplaintsAction: (crimeObj) =>{
+            dispatch(ComplaintsAction(crimeObj))
         }
     };
 }

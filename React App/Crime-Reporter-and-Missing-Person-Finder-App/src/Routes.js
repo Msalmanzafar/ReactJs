@@ -10,7 +10,9 @@ import ForComplaint from './components/complain/forComplaints';
 import ForCrimes from './components/complain/forCrimes';
 import ForMissing from './components/complain/forMissing';
 import myStatus from './components/home/myStatus';
-
+import AllStatus from './components/home/allStatus';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
 
 var config = {
     apiKey: "AIzaSyArVpiyJ0wPxATriQBnPzvbCqjIBVWSppc",
@@ -33,6 +35,7 @@ export default class Routes extends Component{
                         <Route path="/forCrimes" component={ForCrimes}/>
                         <Route path="/forMissing" component={ForMissing}/>
                         <Route path="/myStatus" component={myStatus}/>
+                        <Route path="/allStatus" component={AllStatus}/>
                     </Route>
                 </Route>
             </Router>

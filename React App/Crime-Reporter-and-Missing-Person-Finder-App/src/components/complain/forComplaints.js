@@ -30,9 +30,12 @@ class ForComplaint extends Component{
     complaints(){
         // console.log('for complain');
         let complaintObj={
-            name: this.refs.fname.getValue(),
-            address: this.refs.address.getValue(),
-            complain: this.refs.message.getValue()
+            userName: this.refs.userName.getValue(),
+            againstName: this.refs.againstName.getValue(),
+            email: this.refs.email.getValue(),
+            complain: this.refs.message.getValue(),
+            crimeType: 'Complaint Against',
+            status: 'Panding'
         }
         // console.log(complaint);
         this.props.ComplaintsAction(complaintObj);
@@ -44,21 +47,28 @@ class ForComplaint extends Component{
                 <center>
                     <Paper style={style} zDepth={3} rounded={true} >
                         <div>
-                            <h3>Register Complaints</h3>
+                            <h3>Register Complaint</h3>
                         </div>
+                        <TextField 
+                            hintText="Enter full name.."
+                            type="text"
+                            floatingLabelText="Your name"
+                            style={style3}
+                            ref="userName"
+                        />
+                        <TextField 
+                            hintText="Enter your email or phone number.."
+                            type="text"
+                            floatingLabelText="Your Email"
+                            style={style3}
+                            ref="email"
+                        />
                         <TextField 
                             hintText="Enter full name.."
                             type="text"
                             floatingLabelText="Complain Against"
                             style={style3}
-                            ref="fname"
-                        />
-                        <TextField 
-                            hintText="Enter your address.."
-                            type="text"
-                            floatingLabelText="Your Address"
-                            style={style3}
-                            ref="address"
+                            ref="againstName"
                         />
                         <TextField 
                             hintText="Your complain must be contain 140 or above character.."

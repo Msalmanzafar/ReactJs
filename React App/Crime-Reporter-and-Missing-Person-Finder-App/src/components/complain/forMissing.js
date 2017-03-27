@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 // import SelectField from 'material-ui/SelectField';
 // import MenuItem from 'material-ui/MenuItem';
 // import injectTapEventPlugin from "react-tap-event-plugin";
-import {missingAction} from '../../action/complaint-action';
+import {ComplaintsAction} from '../../action/complaint-action';
 import {connect} from 'react-redux';
 
 
@@ -40,9 +40,11 @@ class ForMissing extends Component {
             missName: this.refs.missName.getValue(),
             age: this.refs.age.getValue(),
             // picture: this.refs.picture.getValue(),
+            crimeType: 'Missing Report',
+            status: 'Panding',
         }
         console.log('missingDetails',missingDetails)
-        this.props.missingAction(missingDetails);
+        this.props.ComplaintsAction(missingDetails);
     }
 
     render() {
@@ -115,8 +117,8 @@ const mapStateToProps =(state) =>{
 }
 const mapDispatchToProps =(dispatch) =>{
     return{
-        missingAction: (missingDetails) =>{
-            dispatch(missingAction(missingDetails))
+        ComplaintsAction: (missingDetails) =>{
+            dispatch(ComplaintsAction(missingDetails))
         }
     };
 }
