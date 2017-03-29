@@ -8,12 +8,7 @@ const AuthReducer = (state = {
 
 } , action) => {
     switch(action.type){
-       case actionTypes.GetUserInfo:{
-          return state={
-              ...state,
-            authSignIn: action.payload   
-          };
-      }  
+        
       case actionTypes.SiginUpadte:{
           return state={
               ...state,

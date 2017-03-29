@@ -34,10 +34,10 @@ export function SignIn(userSignIn){
                 // console.log('userSignIn',user.email);
                 if(user.email === 'admin@gmail.com'){
                     browserHistory.push('/AdminPage');
-                    dispatch(signinAction(user));
+                    dispatch(signInUpdate(user));
                 }else{
                      browserHistory.push('/home');
-                     dispatch(signinAction(user));
+                     dispatch(signInUpdate(user));
                 }
                
             })
@@ -69,10 +69,9 @@ export function LogOutAction(){
 //     }
 // }
 
-function signinAction(payload){
+function signinAction(){
     return{
-        type: actionTypes.GetUserInfo,
-        payload
+        type: actionTypes.GetUserInfo
     }
 }
 function signInUpdate(){
