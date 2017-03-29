@@ -9,7 +9,7 @@ const style = {
 
 
 
-class Home extends Component {
+class adminHome extends Component {
     // componentWillMount() {
     //     firebase.auth().onAuthStateChanged(function (user) {
     //         if (user) {
@@ -19,7 +19,7 @@ class Home extends Component {
     // }
     render() {
         return (
-            <div>
+            <div><span>Admin</span>
                 <center>
                     <Link to='/forComplaints'>
                         <RaisedButton label="Complaints"
@@ -42,6 +42,7 @@ class Home extends Component {
                             style={style}
                         />
                     </Link>
+                    
                 </center>
                 <div>
                     {this.props.children}
@@ -51,4 +52,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default adminHome;

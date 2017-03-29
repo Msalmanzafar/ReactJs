@@ -5,7 +5,7 @@ import {browserHistory} from 'react-router';
 
 export function SignUp(userSignUp){
     return dispatch=>{
-        dispatch(newUserAction());
+        // dispatch(newUserAction());
         // console.log("actiontype userSignUp",userSignUp)
         firebase.auth()
             .createUserWithEmailAndPassword(userSignUp.email, userSignUp.password)
@@ -31,9 +31,15 @@ export function SignIn(userSignIn){
         firebase.auth()
             .signInWithEmailAndPassword(userSignIn.email, userSignIn.password)
             .then((user) => {
-                dispatch(signInUpdate());
-                // console.log(user);
-                browserHistory.push('/home');
+                // console.log('userSignIn',user.email);
+                if(user.email === 'admin@gmail.com'){
+                    browserHistory.push('/AdminPage');
+                    dispatch(signinAction(user));
+                }else{
+                     browserHistory.push('/home');
+                     dispatch(signinAction(user));
+                }
+               
             })
             .catch((error) => {
                 // var errorCode = error.code;
@@ -57,12 +63,18 @@ export function LogOutAction(){
     }   
 }
 
-function newUserAction(){
+// function newUserAction(){
+//     return{
+//         type: actionTypes.GetUserInfo
+//     }
+// }
+
+function signinAction(payload){
     return{
-        type: actionTypes.GetUserInfo
+        type: actionTypes.GetUserInfo,
+        payload
     }
 }
-
 function signInUpdate(){
     return{
         type: actionTypes.SiginUpadte

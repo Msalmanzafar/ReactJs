@@ -11,6 +11,7 @@ import ForCrimes from './components/complain/forCrimes';
 import ForMissing from './components/complain/forMissing';
 import myStatus from './components/home/myStatus';
 import AllStatus from './components/home/allStatus';
+import adminHome from './Admin/adminHome'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -31,6 +32,13 @@ export default class Routes extends Component{
                     <Route path="/signup" component={signup}/>
                     <Route path="/signin" component={signin}/>
                     <Route path="/home" component={Home}>
+                        <Route path="/forComplaints" component={ForComplaint}/>
+                        <Route path="/forCrimes" component={ForCrimes}/>
+                        <Route path="/forMissing" component={ForMissing}/>
+                        <Route path="/myStatus" component={myStatus}/>
+                        <Route path="/allStatus" component={AllStatus}/>
+                    </Route>
+                    <Route path="/AdminPage" component={adminHome}>
                         <Route path="/forComplaints" component={ForComplaint}/>
                         <Route path="/forCrimes" component={ForCrimes}/>
                         <Route path="/forMissing" component={ForMissing}/>

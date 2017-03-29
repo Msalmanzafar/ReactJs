@@ -6,47 +6,67 @@ export function MySatatusAction(newStatus) {
 
     return dispatch => {
         var user = firebase.auth().currentUser;
-        firebase.database().ref('Complaints/' + user.uid).on('child_added', (data) => {
+        firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
             //  obj.id = data.key;
             let complaint = newStatus.ComplaintsStatus;
             let Crime = newStatus.crimeStatus;
             let Missing = newStatus.missingStatus;
 
-            if (obj.crimeType === 'Complaint Against') {
-                complaint = complaint.concat(obj);
-                // console.log('complaintAgainst', complaint);
-                dispatch(MySatatusOfComplaints(complaint))
-            }
-            else if (obj.crimeType === 'Crime Report') {
-                Crime = Crime.concat(obj);
-                dispatch(MySatatusOfCrime(Crime))
-            }
-             else if (obj.crimeType === 'Missing Report') {
-                Crime = Crime.concat(obj);
-                dispatch(MySatatusOfMissing(Crime))
+            if (obj.uId == user.uid) {
+                if (obj.crimeType === 'Complaint Against') {
+                    complaint = complaint.concat(obj);
+                    // console.log('complaintAgainst', complaint);
+                    dispatch(MySatatusOfComplaints(complaint))
+                }
+                else if (obj.crimeType === 'Crime Report') {
+                    Crime = Crime.concat(obj);
+                    dispatch(MySatatusOfCrime(Crime))
+                }
+                else if (obj.crimeType === 'Missing Report') {
+                    Missing = Missing.concat(obj);
+                    dispatch(MySatatusOfMissing(Missing))
+                }
             }
 
+
+            //Last states
+            dispatch(AllSatatusType([]))
         })
     }
 }
-export function AllSatatusAction() {
+export function AllSatatusAction(AllStatus) {
     return dispatch => {
-
-        // var user= firebase.auth().currentUser;
         firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
-            dispatch(AllSatatusType(obj))
-
-            //  obj.id = data.key;
             console.log('my firebase data', obj);
-
+            let Allcomplaint = AllStatus.MyStatus;
+            console.log('all data array', Allcomplaint);
+            Allcomplaint = Allcomplaint.concat(obj)
+            dispatch(AllSatatusType(Allcomplaint))
+            //Last states
+            dispatch(MySatatusOfComplaints([]))
+            dispatch(MySatatusOfCrime([]))
+            dispatch(MySatatusOfMissing([]))
         })
-        // console.log('my status data',user);
     }
 }
 
 
+
+// export function reSetData(arr){
+//     return dispatch=>{
+//         console.log('reSetData');
+//         dispatch(reSetDataForReducer(arr))
+//     }
+// }
+
+// function reSetDataForReducer(payload){
+//     return{
+//         type: actionTypes.ReSetArrays,
+//         payload
+//     }
+// }
 
 function MySatatusOfComplaints(payload) {
     return {
@@ -60,7 +80,7 @@ function MySatatusOfCrime(payload) {
         payload
     }
 }
-function MySatatusOfMissing(payload){
+function MySatatusOfMissing(payload) {
     return {
         type: actionTypes.ObjectOfMissingData,
         payload

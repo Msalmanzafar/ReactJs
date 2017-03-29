@@ -7,7 +7,9 @@ export function ComplaintsAction(complaintObj){
         var user= firebase.auth().currentUser;
         console.log(user.uid, '----------------------')
         
-         firebase.database().ref('Complaints/' + user.uid).push(complaintObj)
+        complaintObj.uId = user.uid;
+        complaintObj.emailId = user.email;
+         firebase.database().ref('Complaints/').push(complaintObj)
                 .then(()=>{
                     dispatch(ForNewComplaints());
                     console.log('comaplaint data set');

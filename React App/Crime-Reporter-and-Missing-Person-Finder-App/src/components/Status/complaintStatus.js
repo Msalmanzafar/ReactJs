@@ -23,8 +23,10 @@ const styles={
     email:{
         color: '#74847c'
     },
-
-
+    status:{
+       float: 'right',
+       color: '#74847c'
+    }
 }
 
 class ComplaintStatus extends Component {
@@ -46,8 +48,9 @@ class ComplaintStatus extends Component {
                                             <Avatar src="" />
                                         }
                                     >   
-                                        <span ><b>{v.userName}</b></span><br/>
-                                        <span style={styles.email}>{v.email}</span>
+                                        <span ><b>{v.userName}</b></span>
+                                        <span style={styles.status}>{v.crimeType}</span><br/>
+                                        <span style={styles.email}>{v.emailId}</span>
                                         <FlatButton
                                         
                                             label="Details"

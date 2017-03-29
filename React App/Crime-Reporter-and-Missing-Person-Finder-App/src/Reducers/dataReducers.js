@@ -5,13 +5,21 @@ const StatusReducer = (state = {
     MyStatus:[],
     ComplaintsStatus:[],
     crimeStatus:[],
-    missingStatus:[]
+    missingStatus:[],
+    // AllStatus:[],
+
 } , action) => {
     switch(action.type){
       case actionTypes.MyStatusFire:{
           return state={
               ...state,
               MyStatus: action.payload
+          };
+      }
+      case actionTypes.AllStatusFire:{
+          return state={
+              ...state,
+              AllStatus: action.payload
           };
       }
       case actionTypes.ObjectOfComplaintsData:{
@@ -32,6 +40,12 @@ const StatusReducer = (state = {
               missingStatus: action.payload
           };
       }
+    //   case actionTypes.ReSetArrays:{
+    //       return state={
+    //           ...state,
+    //           ComplaintsStatus: action.payload
+    //       };
+    //   }
     }
     return state;
 }

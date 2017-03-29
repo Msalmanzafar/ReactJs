@@ -23,8 +23,9 @@ const styles={
     email:{
         color: '#74847c'
     },
-    crime:{
-        
+    status:{
+       float: 'right',
+       color: '#74847c' 
     }
 
 }
@@ -47,10 +48,10 @@ class CrimeStatus extends Component {
                                         leftAvatar={
                                             <Avatar src="" />
                                         }
-                                        
                                     >   
-                                        <span ><b>{v.name}</b></span><br/>
-                                        <span style={styles.email}>{v.eventLocation}</span>
+                                        <span ><b>{v.name}</b></span>
+                                        <span style={styles.status}>{v.crimeType}</span><br/>
+                                        <span style={styles.email}>{v.emailId}</span>
                                         <FlatButton
                                         
                                             label="Details"

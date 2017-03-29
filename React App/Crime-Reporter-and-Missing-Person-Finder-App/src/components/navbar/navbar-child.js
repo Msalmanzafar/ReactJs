@@ -11,7 +11,6 @@ import {MySatatusAction,AllSatatusAction} from '../../action/firebaseData';
 import {connect} from 'react-redux';
 
 
-
 const style={
   float: 'right',
   marginRight: '15px'
@@ -38,7 +37,8 @@ class DrawerUndockedExample extends React.Component {
     this.state = { open: false };
   }
   allStatusFire(){
-    this.props.AllSatatusAction();
+    let AllStatus =this.props.Status;
+    this.props.AllSatatusAction(AllStatus);
     this.setState({ open: false });
   }
   myStatusFire(){
@@ -54,8 +54,9 @@ class DrawerUndockedExample extends React.Component {
 
   handleClose = () => this.setState({ open: false });
 
+  
   render() {
-    console.log('report status',this.props.Status.MyStatus)
+    console.log('report status',this.props.Status)
     return (
       <div>
         <IconButton 
@@ -71,7 +72,7 @@ class DrawerUndockedExample extends React.Component {
           onRequestChange={(open) => this.setState({ open })}
           
         > 
-          <AppBar title="Options" />
+          <AppBar title='' />
           <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
           <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
 
@@ -88,7 +89,7 @@ class DrawerUndockedExample extends React.Component {
 
 const mapStateToProps =(state) =>{
     return{
-        Status: state.StatusReducer
+        Status: state.AuthReducer.authSignIn
     };
 }
 const mapDispatchToProps =(dispatch) =>{
@@ -96,9 +97,9 @@ const mapDispatchToProps =(dispatch) =>{
         MySatatusAction: (newStatus) =>{
             dispatch(MySatatusAction(newStatus))
         },
-        AllSatatusAction: ()=>{
-          dispatch(AllSatatusAction())
-        }
+        AllSatatusAction: (AllStatus)=>{
+          dispatch(AllSatatusAction(AllStatus))
+        },
     };
 }
 export default connect(mapStateToProps,mapDispatchToProps)(DrawerUndockedExample);

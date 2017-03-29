@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import {connect} from 'react-redux';
 import {ComplaintsAction} from '../../action/complaint-action';
-
+import * as firebase from 'firebase'
 const style = {
   height: 'auto',
   width: 500,
@@ -26,13 +26,17 @@ class ForComplaint extends Component{
     constructor(props){
         super(props);
         this.complaints= this.complaints.bind(this);
+        // firebase.auth().onAuthStateChanged(function (user) {
+        //     if (user) {
+        //         console.log("firebase current user",user.email);
+        //     }
+        // });
     }
     complaints(){
         // console.log('for complain');
         let complaintObj={
             userName: this.refs.userName.getValue(),
             againstName: this.refs.againstName.getValue(),
-            email: this.refs.email.getValue(),
             complain: this.refs.message.getValue(),
             crimeType: 'Complaint Against',
             status: 'Panding'
@@ -55,13 +59,6 @@ class ForComplaint extends Component{
                             floatingLabelText="Your name"
                             style={style3}
                             ref="userName"
-                        />
-                        <TextField 
-                            hintText="Enter your email or phone number.."
-                            type="text"
-                            floatingLabelText="Your Email"
-                            style={style3}
-                            ref="email"
                         />
                         <TextField 
                             hintText="Enter full name.."
