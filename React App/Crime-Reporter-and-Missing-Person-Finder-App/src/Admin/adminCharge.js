@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
-
 
 
 const style = {
@@ -29,13 +28,20 @@ const styles={
     }
 
 }
+const heading = {
+    height: '45px',
+    
+}
 
-class CrimeStatus extends Component {
-    render() {
-        // console.log('my status file', this.props.Status)
-        return (
+
+class AllStatusForAdmin extends Component{
+    
+    render(){
+        // console.log('All status',this.props.Status);
+       return (
             <div>
                 <center>
+                    <h3 style={heading}>All Status</h3>
                     {this.props.Status.map((v, i) => {
                         return (
                             <Paper style={style} zDepth={1} key={i} >
@@ -48,9 +54,8 @@ class CrimeStatus extends Component {
                                     >   
                                         <span ><b>{v.name}</b></span>
                                         <span style={styles.status}>{v.crimeType}</span><br/>
-                                        <span style={styles.email}>{v.emailId}</span>
+                                        <span style={styles.email}>{v.email}</span>
                                         <FlatButton
-                                        
                                             label="Details"
                                             onClick={this.handleClose}
                                             style={styles.FlatButton}
@@ -58,7 +63,6 @@ class CrimeStatus extends Component {
                                     </ListItem>
                                 </List>
                             </Paper>
-
                         )
                     }
                     )}
@@ -69,7 +73,7 @@ class CrimeStatus extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        Status: state.StatusReducer.crimeStatus
+        Status: state.StatusReducer.AllStatus
     };
 }
-export default connect(mapStateToProps)(CrimeStatus);
+export default connect(mapStateToProps)(AllStatusForAdmin);

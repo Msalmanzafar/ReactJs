@@ -40,7 +40,7 @@ class signup extends Component{
         // console.log(userSignUp);
     }
     render(){
-    console.log('userSignUp',this.props.auth.authSignUp);
+    // console.log('userSignUp',this.props.auth.authSignUp);
         return(
             <div>
                 <center>

@@ -25,23 +25,19 @@ const styles={
     },
     status:{
        float: 'right',
-       color: '#74847c' 
+       color: '#74847c'
     }
-
 }
 
-class missingStatus extends Component {
-    constructor(props) {
-        super(props);
-    }
+class MissingStatus extends Component {
     render() {
-        // console.log('my status file', this.props.Status)
+        console.log('my status file', this.props.Status)
         return (
             <div>
                 <center>
                     {this.props.Status.map((v, i) => {
                         return (
-                            <Paper style={style} zDepth={1} key={i} >
+                            <Paper style={style} zDepth={1} key={i}>
                                 <List >
                                     <ListItem
                                         disabled={true}
@@ -75,4 +71,4 @@ const mapStateToProps = (state) => {
         Status: state.StatusReducer.missingStatus
     };
 }
-export default connect(mapStateToProps)(missingStatus);
+export default connect(mapStateToProps)(MissingStatus);

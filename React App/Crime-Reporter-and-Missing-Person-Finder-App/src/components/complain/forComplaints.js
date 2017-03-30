@@ -4,7 +4,7 @@ import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 import {connect} from 'react-redux';
 import {ComplaintsAction} from '../../action/complaint-action';
-import * as firebase from 'firebase'
+// import * as firebase from 'firebase'
 const style = {
   height: 'auto',
   width: 500,

@@ -3,7 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router';
-import * as firebase from 'firebase';
+// import * as firebase from 'firebase';
 import { connect } from 'react-redux';
 import { LogOutAction } from '../../action/auth-action';
 import DrawerUndockedExample from './navbar-child';
@@ -39,7 +39,7 @@ class NavBar extends Component {
         const {
             auth,
         } = this.props;
-        console.log('state', this.props.auth);
+        // console.log('state', this.props.auth);
         return (
             <div>
                 <MuiThemeProvider>

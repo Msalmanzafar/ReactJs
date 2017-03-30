@@ -12,7 +12,8 @@ const AuthReducer = (state = {
       case actionTypes.SiginUpadte:{
           return state={
               ...state,
-            authLogOut: !state.authLogOut    
+            authLogOut: !state.authLogOut,
+            authSignIn: action.payload  
           };
       }
     }

@@ -39,7 +39,6 @@ export function SignIn(userSignIn){
                      browserHistory.push('/home');
                      dispatch(signInUpdate(user));
                 }
-               
             })
             .catch((error) => {
                 // var errorCode = error.code;
@@ -69,13 +68,14 @@ export function LogOutAction(){
 //     }
 // }
 
-function signinAction(){
+// function signinAction(){
+//     return{
+//         type: actionTypes.GetUserInfo
+//     }
+// }
+function signInUpdate(payload){
     return{
-        type: actionTypes.GetUserInfo
-    }
-}
-function signInUpdate(){
-    return{
-        type: actionTypes.SiginUpadte
+        type: actionTypes.SiginUpadte,
+        payload
     }
 }

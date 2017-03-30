@@ -34,14 +34,10 @@ const heading = {
 }
 
 
-class AllStatus extends Component{
-    constructor(props){
-        super(props);
-
-    }
+class AllStatusComponent extends Component{
     
     render(){
-        console.log('All status',this.props.Status);
+        // console.log('All status',this.props.Status);
        return (
             <div>
                 <center>
@@ -80,4 +76,4 @@ const mapStateToProps = (state) => {
         Status: state.StatusReducer.AllStatus
     };
 }
-export default connect(mapStateToProps)(AllStatus);
+export default connect(mapStateToProps)(AllStatusComponent);

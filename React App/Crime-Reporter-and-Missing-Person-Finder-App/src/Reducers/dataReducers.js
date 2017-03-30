@@ -6,7 +6,7 @@ const StatusReducer = (state = {
     ComplaintsStatus:[],
     crimeStatus:[],
     missingStatus:[],
-    // AllStatus:[],
+    AllStatus:[],
 
 } , action) => {
     switch(action.type){

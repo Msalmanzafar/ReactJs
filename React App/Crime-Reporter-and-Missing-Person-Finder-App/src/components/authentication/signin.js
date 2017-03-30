@@ -41,7 +41,7 @@ class signin extends Component{
         // console.log(userSignIn); 
     }
     render(){
-        console.log('userSignIn',this.props.auth.authSignIn)
+        // console.log('userSignIn',this.props.auth.authSignIn)
         return(
             <div>
                 <center>

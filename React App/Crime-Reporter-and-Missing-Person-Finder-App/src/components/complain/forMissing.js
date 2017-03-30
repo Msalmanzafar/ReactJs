@@ -27,11 +27,9 @@ const style2 = {
 };
 
 class ForMissing extends Component {
-    
     constructor(props){
         super(props);
         this.missing = this.missing.bind(this);
-
     }
     missing(){
         let missingDetails={

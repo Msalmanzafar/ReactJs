@@ -5,6 +5,9 @@ import * as firebase from 'firebase';
 export function MySatatusAction(newStatus) {
 
     return dispatch => {
+        dispatch(MySatatusOfComplaints([]))
+        dispatch(MySatatusOfCrime([]))
+        dispatch(MySatatusOfMissing([]))
         var user = firebase.auth().currentUser;
         firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
@@ -13,7 +16,7 @@ export function MySatatusAction(newStatus) {
             let Crime = newStatus.crimeStatus;
             let Missing = newStatus.missingStatus;
 
-            if (obj.uId == user.uid) {
+            if (obj.uId === user.uid) {
                 if (obj.crimeType === 'Complaint Against') {
                     complaint = complaint.concat(obj);
                     // console.log('complaintAgainst', complaint);
@@ -25,6 +28,7 @@ export function MySatatusAction(newStatus) {
                 }
                 else if (obj.crimeType === 'Missing Report') {
                     Missing = Missing.concat(obj);
+                    console.log('Missing', Missing)
                     dispatch(MySatatusOfMissing(Missing))
                 }
             }
@@ -35,14 +39,17 @@ export function MySatatusAction(newStatus) {
         })
     }
 }
-export function AllSatatusAction(AllStatus) {
+export function AllSatatusAction(AllData) {
     return dispatch => {
+        dispatch(AllSatatusType([]))
         firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
-            console.log('my firebase data', obj);
-            let Allcomplaint = AllStatus.MyStatus;
-            console.log('all data array', Allcomplaint);
+            // console.log('my firebase data', obj);
+            let Allcomplaint = AllData.AllStatus;
+
+            // console.log('all data array', Allcomplaint);
             Allcomplaint = Allcomplaint.concat(obj)
+            console.log('all data array', Allcomplaint);
             dispatch(AllSatatusType(Allcomplaint))
             //Last states
             dispatch(MySatatusOfComplaints([]))

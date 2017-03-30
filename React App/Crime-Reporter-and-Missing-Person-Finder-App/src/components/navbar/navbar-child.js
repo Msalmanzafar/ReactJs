@@ -26,6 +26,9 @@ const styles = {
     height: 40,
     padding: 5,
   },
+  email:{
+    fontSize:'18px'
+  }
 };
 
 class DrawerUndockedExample extends React.Component {
@@ -37,8 +40,8 @@ class DrawerUndockedExample extends React.Component {
     this.state = { open: false };
   }
   allStatusFire(){
-    let AllStatus =this.props.Status;
-    this.props.AllSatatusAction(AllStatus);
+    let AllData =this.props.Status;
+    this.props.AllSatatusAction(AllData);
     this.setState({ open: false });
   }
   myStatusFire(){
@@ -56,7 +59,7 @@ class DrawerUndockedExample extends React.Component {
 
   
   render() {
-    console.log('report status',this.props.Status)
+    // console.log('report status',this.props.Status)
     return (
       <div>
         <IconButton 
@@ -72,7 +75,7 @@ class DrawerUndockedExample extends React.Component {
           onRequestChange={(open) => this.setState({ open })}
           
         > 
-          <AppBar title='' />
+          <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
           <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
           <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
 
@@ -89,7 +92,8 @@ class DrawerUndockedExample extends React.Component {
 
 const mapStateToProps =(state) =>{
     return{
-        Status: state.AuthReducer.authSignIn
+        Status: state.StatusReducer,
+        auth: state.AuthReducer.authSignIn
     };
 }
 const mapDispatchToProps =(dispatch) =>{
@@ -97,8 +101,8 @@ const mapDispatchToProps =(dispatch) =>{
         MySatatusAction: (newStatus) =>{
             dispatch(MySatatusAction(newStatus))
         },
-        AllSatatusAction: (AllStatus)=>{
-          dispatch(AllSatatusAction(AllStatus))
+        AllSatatusAction: (AllData)=>{
+          dispatch(AllSatatusAction(AllData))
         },
     };
 }

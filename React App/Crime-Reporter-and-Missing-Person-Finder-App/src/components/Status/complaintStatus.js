@@ -30,9 +30,6 @@ const styles={
 }
 
 class ComplaintStatus extends Component {
-    constructor(props) {
-        super(props);
-    }
     render() {
         // console.log('my status file', this.props.Status)
         return (
