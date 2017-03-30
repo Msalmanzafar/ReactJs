@@ -6,12 +6,12 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 // import ActionHome from 'material-ui/svg-icons/action/home';
 import MdMenu from 'react-icons/lib/md/menu';
-import {Link} from 'react-router';
-import {MySatatusAction,AllSatatusAction} from '../../action/firebaseData';
-import {connect} from 'react-redux';
+import { Link } from 'react-router';
+import { MySatatusAction, AllSatatusAction } from '../../action/firebaseData';
+import { connect } from 'react-redux';
 
 
-const style={
+const style = {
   float: 'right',
   marginRight: '15px'
 }
@@ -26,8 +26,8 @@ const styles = {
     height: 40,
     padding: 5,
   },
-  email:{
-    fontSize:'18px'
+  email: {
+    fontSize: '18px'
   }
 };
 
@@ -39,15 +39,15 @@ class DrawerUndockedExample extends React.Component {
     this.allStatusFire = this.allStatusFire.bind(this);
     this.state = { open: false };
   }
-  allStatusFire(){
-    let AllData =this.props.Status;
+  allStatusFire() {
+    let AllData = this.props.Status;
     this.props.AllSatatusAction(AllData);
     this.setState({ open: false });
   }
-  myStatusFire(){
-      let newStatus =this.props.Status;
-      this.props.MySatatusAction(newStatus);
-      this.setState({ open: false });
+  myStatusFire() {
+    let newStatus = this.props.Status;
+    this.props.MySatatusAction(newStatus);
+    this.setState({ open: false });
   }
 
   handleToggle = () => {
@@ -57,28 +57,36 @@ class DrawerUndockedExample extends React.Component {
 
   handleClose = () => this.setState({ open: false });
 
-  
+
   render() {
+    const {
+        auth,
+    } = this.props;
     // console.log('report status',this.props.Status)
     return (
       <div>
-        <IconButton 
+        <IconButton
           iconStyle={styles.smallIcon}
           style={styles.small}
         >
-          <MdMenu onClick={this.handleToggle}/>
+          <MdMenu onClick={this.handleToggle} />
         </IconButton>
         <Drawer
           docked={false}
           width={250}
           open={this.state.open}
           onRequestChange={(open) => this.setState({ open })}
-          
-        > 
-          <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
-          <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
-          <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
 
+        >
+          <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
+          {(auth.email !== 'admin@gmail.com') ? (
+            <div>
+              <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >My Complaints</MenuItem></Link>
+              <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
+            </div>
+          ) : (
+              <Link to="/AllStatusAdmin" onClick={this.allStatusFire}><MenuItem > All Complaints</MenuItem></Link>
+            )}
           <RaisedButton
             label="Close"
             onClick={this.handleClose}
@@ -90,20 +98,20 @@ class DrawerUndockedExample extends React.Component {
   }
 }
 
-const mapStateToProps =(state) =>{
-    return{
-        Status: state.StatusReducer,
-        auth: state.AuthReducer.authSignIn
-    };
+const mapStateToProps = (state) => {
+  return {
+    Status: state.StatusReducer,
+    auth: state.AuthReducer.authSignIn
+  };
 }
-const mapDispatchToProps =(dispatch) =>{
-    return{
-        MySatatusAction: (newStatus) =>{
-            dispatch(MySatatusAction(newStatus))
-        },
-        AllSatatusAction: (AllData)=>{
-          dispatch(AllSatatusAction(AllData))
-        },
-    };
+const mapDispatchToProps = (dispatch) => {
+  return {
+    MySatatusAction: (newStatus) => {
+      dispatch(MySatatusAction(newStatus))
+    },
+    AllSatatusAction: (AllData) => {
+      dispatch(AllSatatusAction(AllData))
+    },
+  };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(DrawerUndockedExample);
+export default connect(mapStateToProps, mapDispatchToProps)(DrawerUndockedExample);
