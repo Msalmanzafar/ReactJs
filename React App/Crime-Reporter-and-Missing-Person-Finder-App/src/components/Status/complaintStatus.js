@@ -9,7 +9,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 const style = {
-  height: 80,
+  height: 120,
   width: 450,
   margin: 20,
   textAlign: 'left',
@@ -45,9 +45,11 @@ class ComplaintStatus extends Component {
                                             <Avatar src="" />
                                         }
                                     >   
-                                        <span ><b>{v.userName}</b></span>
-                                        <span style={styles.status}>{v.crimeType}</span><br/>
-                                        <span style={styles.email}>{v.emailId}</span>
+                                            <span ><b>{v.userName}</b></span>
+                                            <span style={styles.status}>{v.crimeType}</span><br/>
+                                            <span style={styles.email}>{v.emailId}</span>
+                                            <span style={styles.status}>{v.status}</span><br/>
+                                        
                                         <FlatButton
                                         
                                             label="Details"

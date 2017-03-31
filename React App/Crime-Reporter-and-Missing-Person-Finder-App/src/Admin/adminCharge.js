@@ -18,7 +18,7 @@ const style = {
 };
 const styles = {
     FlatButton: {
-        float: 'right',
+        float: 'right'
     },
     email: {
         color: '#74847c'
@@ -28,7 +28,7 @@ const styles = {
         color: '#74847c'
     },
     customWidth: {
-    width: 135,
+    width: 150,
   },
 
 }

@@ -5,9 +5,7 @@ import * as firebase from 'firebase';
 export function MySatatusAction(newStatus) {
 
     return dispatch => {
-        dispatch(MySatatusOfComplaints([]))
-        dispatch(MySatatusOfCrime([]))
-        dispatch(MySatatusOfMissing([]))
+       
         var user = firebase.auth().currentUser;
         firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
@@ -39,13 +37,12 @@ export function MySatatusAction(newStatus) {
         })
     }
 }
-
 export function AllSatatusAction(AllData) {
     return dispatch => {
         // dispatch(AllSatatusType([]))
         firebase.database().ref('Complaints/').on('child_added', (data) => {
             let obj = data.val();
-            console.log('my firebase data', obj);
+            // console.log('my firebase data', obj);
             let Allcomplaint = AllData.AllStatus;
 
             // console.log('all data array', Allcomplaint);
