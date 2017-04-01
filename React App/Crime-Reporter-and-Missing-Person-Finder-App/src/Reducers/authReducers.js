@@ -2,7 +2,7 @@
 import actionTypes from './actionTypes';
 
 const AuthReducer = (state = {
-    dummy: 'example@domain.com',
+    // dummy: 'example@domain.com',
     authLogOut: false,
     authSignIn:[]
 

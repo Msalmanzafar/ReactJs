@@ -39,16 +39,15 @@ export function MySatatusAction(newStatus) {
 }
 export function AllSatatusAction(AllData) {
     return dispatch => {
-        // dispatch(AllSatatusType([]))
-        firebase.database().ref('Complaints/').on('child_added', (data) => {
+        firebase.database().ref('Complaints/').once('value', (data) => {
             let obj = data.val();
             // console.log('my firebase data', obj);
-            let Allcomplaint = AllData.AllStatus;
+            // let Allcomplaint = AllData.AllStatus;
 
             // console.log('all data array', Allcomplaint);
-            Allcomplaint = Allcomplaint.concat(obj)
-            console.log('all data array', Allcomplaint);
-            dispatch(AllSatatusType(Allcomplaint))
+            // Allcomplaint = Allcomplaint.concat(obj)
+            // console.log('all data array', Allcomplaint);
+            dispatch(AllSatatusType(obj))
             //Last states
             dispatch(MySatatusOfComplaints([]))
             dispatch(MySatatusOfCrime([]))

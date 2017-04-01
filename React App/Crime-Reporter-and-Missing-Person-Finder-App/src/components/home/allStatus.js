@@ -37,14 +37,10 @@ const heading = {
 class AllStatusComponent extends Component{
     
     render(){
-        // console.log('All status',this.props.Status);
-       return (
-            <div>
-                <center>
-                    <h3 style={heading}>All Status</h3>
-                    {this.props.Status.map((v, i) => {
-                        return (
-                            <Paper style={style} zDepth={1} key={i} >
+        let todoList = Object.keys(this.props.Status).map((key, index) => {
+            let val = this.props.Status[key];
+            return (
+                    <Paper style={style} zDepth={1} key={index} >
                                 <List >
                                     <ListItem
                                         disabled={true}
@@ -52,9 +48,9 @@ class AllStatusComponent extends Component{
                                             <Avatar src="" />
                                         }
                                     >   
-                                        <span ><b>{v.name}</b></span>
-                                        <span style={styles.status}>{v.crimeType}</span><br/>
-                                        <span style={styles.email}>{v.email}</span>
+                                        <span ><b>{val.name}</b></span>
+                                        <span style={styles.status}>{val.crimeType}</span><br/>
+                                        <span style={styles.email}>{val.email}</span>
                                         <FlatButton
                                             label="Details"
                                             onClick={this.handleClose}
@@ -63,9 +59,14 @@ class AllStatusComponent extends Component{
                                     </ListItem>
                                 </List>
                             </Paper>
-                        )
-                    }
-                    )}
+            )
+        })
+        // console.log('All status',todoList);
+       return (
+            <div>
+                <center>
+                    <h3 style={heading}>All Status</h3>
+                    {todoList}
                 </center>
             </div>
         );

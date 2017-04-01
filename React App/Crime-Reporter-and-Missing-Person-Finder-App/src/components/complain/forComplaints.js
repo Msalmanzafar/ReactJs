@@ -35,7 +35,7 @@ class ForComplaint extends Component{
     complaints(){
         // console.log('for complain');
         let complaintObj={
-            userName: this.refs.userName.getValue(),
+            name: this.refs.userName.getValue(),
             againstName: this.refs.againstName.getValue(),
             complain: this.refs.message.getValue(),
             crimeType: 'Complaint Against',

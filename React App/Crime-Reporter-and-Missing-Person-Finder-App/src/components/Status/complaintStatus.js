@@ -45,7 +45,7 @@ class ComplaintStatus extends Component {
                                             <Avatar src="" />
                                         }
                                     >   
-                                            <span ><b>{v.userName}</b></span>
+                                            <span ><b>{v.name}</b></span>
                                             <span style={styles.status}>{v.crimeType}</span><br/>
                                             <span style={styles.email}>{v.emailId}</span>
                                             <span style={styles.status}>{v.status}</span><br/>
