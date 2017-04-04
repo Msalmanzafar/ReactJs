@@ -13,6 +13,7 @@ class Product extends React.Component {
     this.props.route.addToCart(this.props.params.id)
   }
   render() {
+    console.log('90909',this.props.params)
     return (
       <div>
         <img alt="" src={this.props.route.products[this.props.params.id].src} style={{ height: '80%' }} />
@@ -23,8 +24,9 @@ class Product extends React.Component {
             state: { productId: this.props.params.id}
           }}
           onClick={this.handleBuy}
-          className="btn btn-primary">
-          Buy
+          className="btn btn-primary"
+          >
+            Buy
         </Link>
       </div>
     )

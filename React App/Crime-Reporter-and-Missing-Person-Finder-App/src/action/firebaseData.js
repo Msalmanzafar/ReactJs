@@ -47,6 +47,7 @@ export function AllSatatusAction(AllData) {
             // console.log('all data array', Allcomplaint);
             // Allcomplaint = Allcomplaint.concat(obj)
             // console.log('all data array', Allcomplaint);
+            
             dispatch(AllSatatusType(obj))
             //Last states
             dispatch(MySatatusOfComplaints([]))

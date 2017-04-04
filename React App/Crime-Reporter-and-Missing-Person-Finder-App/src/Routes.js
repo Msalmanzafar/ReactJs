@@ -12,7 +12,8 @@ import ForMissing from './components/complain/forMissing';
 import myStatus from './components/home/myStatus';
 import AllStatusComponent from './components/home/allStatus';
 import AllStatusForAdmin from './Admin/adminCharge';
-import adminHome from './Admin/adminHome'
+import adminHome from './Admin/adminHome';
+import AllDeatilsReport from './Admin/detailBox';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -24,6 +25,17 @@ var config = {
     messagingSenderId: "936918632809"
   };
   firebase.initializeApp(config);
+
+// let cartItems = {}
+// const addToCart = (id) => {
+//   if (cartItems[id])
+//   {
+//     cartItems[id] += 1
+//   }
+//   else{
+//     cartItems[id] = 1
+//   }
+// }
 
 export default class Routes extends Component{
     render(){
@@ -45,6 +57,7 @@ export default class Routes extends Component{
                         <Route path="/forMissing" component={ForMissing}/>
                         <Route path="/myStatus" component={myStatus}/>
                         <Route path="/AllStatusAdmin" component={AllStatusForAdmin}/>
+                        <Route path="/ReportDetails" component={AllDeatilsReport}/>
                     </Route>
                 </Route>
             </Router>

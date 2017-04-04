@@ -9,23 +9,25 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 const style = {
-  height: 120,
-  width: 450,
-  margin: 20,
-  textAlign: 'left',
-  display: 'inline-block',
-  marginTop: '-15px'
+    height: 110,
+    width: 450,
+    margin: 20,
+    textAlign: 'left',
+    display: 'inline-block',
+    marginTop: '-15px'
 };
-const styles={
-    FlatButton:{
+const styles = {
+    FlatButton: {
         float: 'right'
     },
-    email:{
+    email: {
         color: '#74847c'
     },
-    status:{
-       float: 'right',
-       color: '#74847c'
+    status: {
+        float: 'right',
+        color: '#74847c',
+        fontSize: '13px',
+
     }
 }
 
@@ -44,14 +46,14 @@ class ComplaintStatus extends Component {
                                         leftAvatar={
                                             <Avatar src="" />
                                         }
-                                    >   
-                                            <span ><b>{v.name}</b></span>
-                                            <span style={styles.status}>{v.crimeType}</span><br/>
-                                            <span style={styles.email}>{v.emailId}</span>
-                                            <span style={styles.status}>{v.status}</span><br/>
-                                        
+                                    >
+                                        <span ><b>{v.name}</b></span>
+                                        <span style={styles.status}>{v.crimeType}</span><br />
+                                        <span style={styles.email}>{v.emailId}</span>
+                                        <span style={styles.status}>{v.status}</span><br />
+
                                         <FlatButton
-                                        
+
                                             label="Details"
                                             onClick={this.handleClose}
                                             style={styles.FlatButton}
