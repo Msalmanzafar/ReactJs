@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4876f6c8-0525-43d4-937f-c7114edf8e5f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/Reducers/authReducers.js" afterPath="$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/Reducers/authReducers.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -63,13 +64,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="doners.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="doners.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/React App/React-redux-blood-app/src/components/doners.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="store.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/Store/store.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="2" />
+              <folding>
+                <element signature="e#0#66#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="auth-action.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/action/auth-action.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="28" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#49#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -116,6 +141,14 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
+  <component name="NodeModulesDirectoryManager">
+    <handled-path value="$PROJECT_DIR$/React App/Book-shop/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React App/Inventory-Management-System/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React App/React-Todo/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React App/React-routing/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React App/Sky-App/node_modules" />
+    <handled-path value="$PROJECT_DIR$/React App/password/node_modules" />
+  </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
@@ -140,8 +173,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -184,6 +215,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -302,11 +335,14 @@
       <workItem from="1489560422790" duration="12000" />
       <workItem from="1489994326896" duration="4000" />
       <workItem from="1490249106575" duration="142000" />
+      <workItem from="1491375547462" duration="62000" />
+      <workItem from="1491389309178" duration="6000" />
+      <workItem from="1491392193492" duration="324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16443000" />
+    <option name="totallyTimeSpent" value="16835000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -318,7 +354,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1376" height="744" extended-state="7" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2125" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -350,30 +386,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/numberAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/React App/React-redux-blood-app/src/components/navigation-bar.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/react-quickly-master/ch10/tooltip/script.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="76" column="22" lean-forward="false" selection-start-line="76" selection-start-column="22" selection-end-line="76" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/React App/Redux-middleware/src/actions/userActions.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -571,6 +583,27 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/Inventory-Management-System/src/App.css" />
+    <entry file="file://$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/Store/store.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="13" selection-end-column="2" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/React App/Crime-Reporter-and-Missing-Person-Finder-App/src/action/auth-action.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#49#0" expanded="true" />
           </folding>
         </state>
       </provider>
