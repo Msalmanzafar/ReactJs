@@ -7,7 +7,7 @@ class Home extends Component{
         console.log('user info',this.props.auth)
         return(
             <div>
-                <h2>Home {this.props.auth.email}</h2>
+                <h2>Home </h2>
             </div>
         )
     }

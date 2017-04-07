@@ -3,27 +3,27 @@ import * as firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
 
-export function SignUpAction(userSignUp) {
-    return dispatch => {
-        firebase.auth()
-            .createUserWithEmailAndPassword(userSignUp.email, userSignUp.password)
-            .then((user) => {
-                let firebaseData = {
-                    email: userSignUp.email
-                };
-                firebase.database().ref('BusinessStoreUsers/' + user.uid).set(firebaseData)
-                    .then(() => {
-                        console.log("SignUp Completed")
-                        // console.log(userUth);
-                    });
-            })
-            .catch((error) => {
-                // var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log(errorMessage);
-            });
-    }
-}
+// export function SignUpAction(userSignUp) {
+//     return dispatch => {
+//         firebase.auth()
+//             .createUserWithEmailAndPassword(userSignUp.email, userSignUp.password)
+//             .then((user) => {
+//                 let firebaseData = {
+//                     email: userSignUp.email
+//                 };
+//                 firebase.database().ref('BusinessStoreUsers/' + user.uid).set(firebaseData)
+//                     .then(() => {
+//                         console.log("SignUp Completed")
+//                         // console.log(userUth);
+//                     });
+//             })
+//             .catch((error) => {
+//                 // var errorCode = error.code;
+//                 var errorMessage = error.message;
+//                 console.log(errorMessage);
+//             });
+//     }
+// }
 
 export function SignInAction(userLogin) {
     return dispatch => {
@@ -32,15 +32,6 @@ export function SignInAction(userLogin) {
             .then((user) => {
                 dispatch(userSignInUpdate(user));
                 browserHistory.push('/home');
-
-                // console.log('userSignIn',user.email);
-                // if(user.email === 'admin@gmail.com'){
-                //     browserHistory.push('/AdminPage');
-                //     dispatch(signInUpdate(user));
-                // }else{
-                //      browserHistory.push('/home');
-                //      dispatch(signInUpdate(user));
-                // }
             })
             .catch((error) => {
                 // var errorCode = error.code;
@@ -55,7 +46,7 @@ export function LogOutAction() {
     return dispatch => {
        firebase.auth().signOut()
         .then(()=> {
-            browserHistory.push('/SignUp');
+            browserHistory.push('/LogIn');
             console.log('success');
             dispatch(userSignInUpdate());
         }).catch((error)=> {

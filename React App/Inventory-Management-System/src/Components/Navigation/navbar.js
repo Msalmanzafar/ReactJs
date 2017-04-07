@@ -1,19 +1,37 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
+import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 import { LogOutAction } from '../../Actions/AuthActions';
+import DrawerUndockedExample from './navbar-child'
 
-const style={
-  log:{
-    cursor:'pointer'
+const styles = {
+  appBar: {
+
+  },
+  title: {
+    cursor: 'pointer',
+  },
+  headerButton: {
+    // border: '2px solid red',
+    marginTop: '5px',
+  },
+  button: {
+    color: '#fafbfc',
+    fontFamily: 'Verdana'
+  },
+  logo: {
+    width: '145px',
+    height: '32px'
   }
-}
+};
+
 class NavBar extends Component {
-  constructor(props){
-      super(props);
-      this.logOut = this.logOut.bind(this);
+  constructor(props) {
+    super(props);
+    this.logOut = this.logOut.bind(this);
   }
-  logOut(){
+  logOut() {
     this.props.LogOutAction();
   }
   render() {
@@ -22,27 +40,36 @@ class NavBar extends Component {
     } = this.props;
     return (
       <div>
-        <nav className="navbar navbar-inverse">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" >Business Store</a>
-            </div>
-            {/*<ul className="nav navbar-nav">
-              <li className="active"><a href="#"></a></li>
-              <li><a href="#">Page 1</a></li>
-              <li><a href="#">Page 2</a></li>
-            </ul>*/}
-            
-              {(auth === false) ? (
-                <span></span>
+        <mat.AppBar
+          title="Inventory Store"
+          iconElementLeft={
+            <span>
+              {(auth === true) ? (
+                <DrawerUndockedExample />
               ) : (
-                <ul className="nav navbar-nav navbar-right">
-                    <li><a style={style.log} onClick={this.logOut}><h4>Log Out</h4></a></li>
-                 </ul>
+                  <span></span>
                 )}
+            </span>
+          }
+          iconElementRight={
+            <div style={styles.headerButton}>
+              {(auth === false) ? (
+                <span>
+                  <Link to='/LogIn'>
+                    <mat.FlatButton style={styles.button} label="Log In" />
+                  </Link>
+                </span>
+              ) : (
+                  <div>
+                    <mat.FlatButton style={styles.button}
+                      onClick={this.logOut} label="Log Out"
+                    />
+                  </div>
 
-          </div>
-        </nav>
+                )}
+            </div>
+          }
+        />
         {this.props.children}
       </div>
     );
@@ -54,15 +81,10 @@ const mapStateToProps = (state) => {
   };
 }
 const mapDispatchToProps = (dispatch) => {
-    return {
-        LogOutAction: () => {
-            dispatch(LogOutAction());
-        }
-    };
+  return {
+    LogOutAction: () => {
+      dispatch(LogOutAction());
+    }
+  };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(NavBar);
-// export default NavBar;
- /*<ul className="nav navbar-nav navbar-right">
-                  <li><Link to='/SignUp'><span>Sign Up</span></Link></li>
-                  <li><Link to='/Login'><span>Log In</span></Link></li>
-               </ul>*/
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar);

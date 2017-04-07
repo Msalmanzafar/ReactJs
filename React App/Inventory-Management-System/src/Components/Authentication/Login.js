@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
 import { SignInAction } from '../../Actions/AuthActions';
 import { connect } from 'react-redux';
-// import shops from '../../images/store.jpg'
-import { Link } from 'react-router';
+import * as mat from 'material-ui';
+// import { Link } from 'react-router';
 
-// const styles = {
-//     img: {
-//         width: '450px',
-//         height: 'auto'
-//     }
-// }
+const styles = {
+    card: {
+        width: '80%',
+        height: 'auto',
+        position: 'relative',
+        top: '50px'
+    },
+    login:{
+        textAlign: 'left'
+    }
+}
 
 class LogIn extends Component {
     constructor(props) {
@@ -34,29 +39,28 @@ class LogIn extends Component {
     }
     render() {
         return (
-            <div className="container">
-
-                <div className="text-center col-md-12">
-                    <h2>Log In</h2>
-                </div>
-                <form onSubmit={this.SignIn}>
-                    <div className="form-group col-md-10 col-md-offset-1">
-                        <label htmlFor="email">Email address</label>
-                        <input type="email" className="form-control" ref="email" placeholder="Enter email" />
-                    </div>
-                    <div className="form-group col-md-10 col-md-offset-1">
-                        <label htmlFor="password">Enter Password</label>
-                        <input type="password" className="form-control" ref="password" placeholder="Enter password" />
-                    </div>
-                    <div className="form-group col-md-10 col-md-offset-1">
-                        <button type="submit" className="btn btn-success custom-button">Log In</button>
-                    </div>
-                    <div className="form-group col-md-10 col-md-offset-1">
-                        <p>Don't have an account! <Link to="/SignUp">Sign Up Here</Link></p>
-                    </div>
-                </form>
-
-
+            <div >
+                <center>
+                    <mat.Card style={styles.card} zDepth={2}>
+                        <mat.AppBar style={styles.login} title="Log In" showMenuIconButton={false} />
+                        <mat.CardText>
+                            <form onSubmit={this.SignIn} style={styles.login}>
+                                <div className="form-group " >
+                                    <label htmlFor="email">Email address</label>
+                                    <input type="email" className="form-control" ref="email" placeholder="Enter email" />
+                                </div>
+                                <div className="form-group ">
+                                    <label htmlFor="password">Enter Password</label>
+                                    <input type="password" className="form-control" ref="password" placeholder="Enter password" />
+                                </div>
+                                <div className="form-group ">
+                                    <button type="submit" className="btn btn-success custom-button">Log In</button>
+                                </div>
+                               
+                            </form>
+                        </mat.CardText>
+                    </mat.Card>
+                </center>
             </div>
         )
     }
