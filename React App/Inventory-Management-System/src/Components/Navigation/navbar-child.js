@@ -9,7 +9,7 @@ import MdMenu from 'react-icons/lib/md/menu';
 import { Link } from 'react-router';
 // import { MySatatusAction, AllSatatusAction } from '../../action/firebaseData';
 import { connect } from 'react-redux';
-
+import {browserHistory} from 'react-router';
 
 const style = {
   float: 'right',
@@ -35,18 +35,15 @@ class DrawerUndockedExample extends React.Component {
 
   constructor(props) {
     super(props);
-    this.myStatusFire = this.myStatusFire.bind(this);
-    this.allStatusFire = this.allStatusFire.bind(this);
+    this.CreateStore = this.CreateStore.bind(this);
+    // this.allStatusFire = this.allStatusFire.bind(this);
     this.state = { open: false };
   }
-  allStatusFire() {
-    let AllData = this.props.Status;
-    // this.props.AllSatatusAction(AllData);
-    this.setState({ open: false });
-  }
-  myStatusFire() {
-    let newStatus = this.props.Status;
-    // this.props.MySatatusAction(newStatus);
+  // allStatusFire() {
+
+  // }
+  CreateStore() {
+    browserHistory.push('/newstore')
     this.setState({ open: false });
   }
 
@@ -80,8 +77,8 @@ class DrawerUndockedExample extends React.Component {
         >
           <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
             <div>
-              <Link to="/myStatus" onClick={this.myStatusFire}><MenuItem >Create Store</MenuItem></Link>
-              <Link to="/allStatus" onClick={this.allStatusFire}><MenuItem >New Products</MenuItem></Link>
+              <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
+              <MenuItem >New Products</MenuItem>
             </div>
 
           <RaisedButton

@@ -6,7 +6,7 @@ import * as mat from 'material-ui';
 
 const styles = {
     card: {
-        width: '80%',
+        width: '65%',
         height: 'auto',
         position: 'relative',
         top: '50px'

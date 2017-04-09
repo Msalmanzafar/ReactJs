@@ -47,25 +47,19 @@ const heading = {
 class AllStatusForAdmin extends Component {
     state = {
         open: false,
-    };
-
-    handleOpen = (e) => {
+    };    
+    constructor(props) {
+        super(props);
+    }
+    handleOpen = () => {
         this.setState({ open: true });
-         console.log('adsdasdas',e.target.dataset.Dummy);
-
+        //  console.log('adsdasdas',e.target.nodeName);
+        // console.log('Id')
     };
 
     handleClose = () => {
         this.setState({ open: false });
     };
-    constructor(props) {
-        super(props);
-        // this.ReportDetails = this.ReportDetails.bind(this);
-
-    }
-    ReportDetails() {
-        // browserHistory.push('/ReportDetails');
-    }
 
     render() {
         const actions = [
@@ -82,6 +76,7 @@ class AllStatusForAdmin extends Component {
             />,
         ];
         // let keys = Object.keys(this.props.Status);
+        
         let adminAlldata = Object.keys(this.props.Status).map((key, index) => {
             let val = this.props.Status[key];
             // console.log('All key', index);
@@ -101,16 +96,16 @@ class AllStatusForAdmin extends Component {
                             <FlatButton
                                 label="Details"
                                 style={styles.FlatButton}
-                                onTouchTap={this.handleOpen}
-                                data-Dummy={index}
-                            >{console.log(index)}</FlatButton>
+                                onClick={this.handleOpen}
+
+                            />
                         </ListItem>
                     </List>
                 </Paper>
             )
         })
         // console.log('All status',this.props.Status);
-        console.log('All status', this.props.keys);
+        // console.log('All status', this.props.keys);
         return (
             <div>
                 <center>

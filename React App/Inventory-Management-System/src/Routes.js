@@ -6,7 +6,9 @@ import NavBar from './Components/Navigation/navbar'
 import LogIn from './Components/Authentication/Login';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Home from './Components/Home/home';
-import LogoPage from './Components/Home/LogoPage'
+import LogoPage from './Components/Home/LogoPage';
+import FrontLogo from './Components/Home/frontLogo'
+import CreateNewStore from './Components/CreateStore/newStore'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -30,6 +32,8 @@ export default class Routes extends Component {
                         <IndexRoute component={LogoPage}/>
                         <Route path="/LogIn" component={LogIn} />
                         <Route path="/home" component={Home}>
+                            <IndexRoute component={FrontLogo}/>
+                            <Route path="/newstore" component={CreateNewStore} />
                         </Route>
                     </Route>
                 </Router>

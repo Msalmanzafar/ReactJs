@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import logo from '../../images/inventory.png'
+import store from '../../images/store.jpg'
 
 const styles = {
     logo: {
-        width: '60vw',
+        width: '45vw',
         height: 'auto',
-        top: '50px',
+        top: '30px',
         position:'relative'
     }
 }
 
-class LogoPage extends Component {
+class FrontLogo extends Component {
     render() {
         return (
             <div>
                 <center>
-                    <img src={logo} style={styles.logo} alt="inventory-management" />
+                    <img src={store} style={styles.logo} alt="inventory-management" />
                 </center>
             </div>
         );
     }
 }
 
-export default LogoPage;
+export default FrontLogo;

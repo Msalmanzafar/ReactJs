@@ -3,28 +3,6 @@ import * as firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
 
-// export function SignUpAction(userSignUp) {
-//     return dispatch => {
-//         firebase.auth()
-//             .createUserWithEmailAndPassword(userSignUp.email, userSignUp.password)
-//             .then((user) => {
-//                 let firebaseData = {
-//                     email: userSignUp.email
-//                 };
-//                 firebase.database().ref('BusinessStoreUsers/' + user.uid).set(firebaseData)
-//                     .then(() => {
-//                         console.log("SignUp Completed")
-//                         // console.log(userUth);
-//                     });
-//             })
-//             .catch((error) => {
-//                 // var errorCode = error.code;
-//                 var errorMessage = error.message;
-//                 console.log(errorMessage);
-//             });
-//     }
-// }
-
 export function SignInAction(userLogin) {
     return dispatch => {
         firebase.auth()
