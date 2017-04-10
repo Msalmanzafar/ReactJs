@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import NewStoreAction from '../../Actions/newStoreAction';
+import {connect} from 'react-redux';
 
 const styles = {
     card: {
@@ -13,12 +14,6 @@ const styles = {
         textAlign: 'left'
     }
 }
-const style3 = {
-    width: "100%",
-};
-const style2 = {
-    margin: 12,
-};
 
 class CreateNewStore extends Component {
     constructor(props) {
@@ -27,12 +22,12 @@ class CreateNewStore extends Component {
     }
     NewStores(ev) {
         ev.preventDefault();
-        let Store = {
+        let Stores = {
             storeName: this.refs.storeName.value,
             location: this.refs.location.value,
         }
         //  console.log(Store);
-        this.props.NewStoreAction(Store);
+        this.props.NewStoreAction(Stores);
     }
     render() {
         return (
@@ -42,26 +37,6 @@ class CreateNewStore extends Component {
                         <mat.AppBar style={styles.store} title="Create Store" showMenuIconButton={false} />
                         <mat.CardText>
                             <form onSubmit={this.NewStores} style={styles.store}>
-                                {/*<mat.TextField
-                                    hintText="Store Name"
-                                    type="text"
-                                    floatingLabelText="Your Store Name"
-                                    style={style3}
-                                    ref="storeName"
-                                /><br />
-                                <mat.TextField
-                                    hintText="Location"
-                                    type="text"
-                                    floatingLabelText="Store Location"
-                                    style={style3}
-                                    ref="location"
-                                /><br /><br />
-                                <mat.RaisedButton 
-                                    type="submit" 
-                                    label="Create Store" 
-                                    primary={true}
-                                    style={style2}
-                                />*/}
                                 <div className="form-group " >
                                     <label htmlFor="store">Store name</label>
                                     <input type="text" className="form-control" ref="storeName" placeholder="Create new store" />
@@ -71,7 +46,7 @@ class CreateNewStore extends Component {
                                     <input type="text" className="form-control" ref="location" placeholder="Store location" />
                                 </div>
                                 <div className="form-group ">
-                                    <button type="submit" className="btn btn-info custom-button">Create Store</button>
+                                    <button type="submit" className="btn btn-info custom-button col-md-12">Create Store</button>
                                 </div>
                             </form>
                         </mat.CardText>
@@ -90,8 +65,8 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        NewStoreAction: (Store) => {
-            dispatch(NewStoreAction(Store));
+        NewStoreAction: (Stores) => {
+            dispatch(NewStoreAction(Stores));
         }
     };
 }

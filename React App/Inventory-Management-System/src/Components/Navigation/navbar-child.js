@@ -6,10 +6,10 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 // import ActionHome from 'material-ui/svg-icons/action/home';
 import MdMenu from 'react-icons/lib/md/menu';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 // import { MySatatusAction, AllSatatusAction } from '../../action/firebaseData';
 import { connect } from 'react-redux';
-import {browserHistory} from 'react-router';
+import { browserHistory } from 'react-router';
 
 const style = {
   float: 'right',
@@ -36,12 +36,13 @@ class DrawerUndockedExample extends React.Component {
   constructor(props) {
     super(props);
     this.CreateStore = this.CreateStore.bind(this);
-    // this.allStatusFire = this.allStatusFire.bind(this);
+    this.NewProducts = this.NewProducts.bind(this);
     this.state = { open: false };
   }
-  // allStatusFire() {
-
-  // }
+  NewProducts() {
+    browserHistory.push('./')
+    this.setState({ open: false });
+  }
   CreateStore() {
     browserHistory.push('/newstore')
     this.setState({ open: false });
@@ -56,9 +57,9 @@ class DrawerUndockedExample extends React.Component {
 
 
   render() {
-    const {
-        auth,
-    } = this.props;
+    // const {
+    //     auth,
+    // } = this.props;
     // console.log('report status',this.props.Status)
     return (
       <div>
@@ -76,10 +77,10 @@ class DrawerUndockedExample extends React.Component {
 
         >
           <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
-            <div>
-              <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
-              <MenuItem >New Products</MenuItem>
-            </div>
+          <div>
+            <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
+            <MenuItem onClick={this.NewProducts}>New Products</MenuItem>
+          </div>
 
           <RaisedButton
             label="Close"
@@ -94,7 +95,6 @@ class DrawerUndockedExample extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    Status: state.StatusReducer,
     auth: state.AuthReducer.authSignIn
   };
 }

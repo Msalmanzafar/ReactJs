@@ -1,15 +1,15 @@
 import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
 
-export function NewStoreAction(Store) {
+export function NewStoreAction(Stores) {
     return dispatch => {
         var user = firebase.auth().currentUser;
         // console.log(user.uid, '----------------------')
-        Store.uId = user.uid;
-        Store.emailId = user.email;
-        firebase.database().ref('InventoryStore/').push(Store)
+        Stores.uId = user.uid;
+        Stores.emailId = user.email;
+        firebase.database().ref('InventoryStore/').push(Stores)
             .then(() => {
-                dispatch(ForNewStore(Store));
+                dispatch(ForNewStore(Stores));
                 alert('Store Created');
                 console.log('Store Created');
                 // browserHistory.push('/home')
