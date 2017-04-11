@@ -40,7 +40,7 @@ class DrawerUndockedExample extends React.Component {
     this.state = { open: false };
   }
   NewProducts() {
-    browserHistory.push('./')
+    browserHistory.push('/newproducts')
     this.setState({ open: false });
   }
   CreateStore() {

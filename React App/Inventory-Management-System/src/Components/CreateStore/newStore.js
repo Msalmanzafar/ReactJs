@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
-import NewStoreAction from '../../Actions/newStoreAction';
-import {connect} from 'react-redux';
+import { NewStoreAction } from '../../Actions/newStoreAction';
+import { connect } from 'react-redux';
 
 const styles = {
     card: {
@@ -22,12 +22,16 @@ class CreateNewStore extends Component {
     }
     NewStores(ev) {
         ev.preventDefault();
-        let Stores = {
-            storeName: this.refs.storeName.value,
-            location: this.refs.location.value,
+        let storeName = this.refs.storeName.value;
+        let location = this.refs.location.valu;
+        let NewStores = {
+            storeName: storeName,
+            location: location,
         }
         //  console.log(Store);
-        this.props.NewStoreAction(Stores);
+        this.props.NewStoreAction(NewStores);
+         storeName = this.refs.storeName.value=" ";
+         location = this.refs.location.value=" ";
     }
     render() {
         return (
@@ -60,13 +64,13 @@ class CreateNewStore extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.AuthReducer.authSignIn
+        newStores: state.StoreReducers.newStore
     };
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        NewStoreAction: (Stores) => {
-            dispatch(NewStoreAction(Stores));
+        NewStoreAction: (NewStores) => {
+            dispatch(NewStoreAction(NewStores));
         }
     };
 }

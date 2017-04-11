@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
-// import NewStoreAction from '../../Actions/newStoreAction';
-// import {connect} from 'react-redux';
+import { AddProdutsAction } from '../../Actions/newStoreAction';
+import {connect} from 'react-redux';
 
 const styles = {
     card: {
@@ -14,12 +14,7 @@ const styles = {
         textAlign: 'left'
     }
 }
-// const style3 = {
-//     width: "100%",
-// };
-// const style2 = {
-//     margin: 12,
-// };
+
 
 class newProductsStore extends Component {
     constructor(props) {
@@ -28,12 +23,24 @@ class newProductsStore extends Component {
     }
     NewProduct(ev) {
         ev.preventDefault();
-        let Store = {
-            storeName: this.refs.storeName.value,
-            location: this.refs.location.value,
-        }
-        //  console.log(Store);
-        this.props.NewStoreAction(Store);
+        let productName = this.refs.productName.value;
+        let manufacturer = this.refs.manufacturer.value;
+        let description = this.refs.description.value;
+        let quantity = this.refs.quantity.value;
+
+        let addProducts = {
+            productName: productName,
+            manufacturer: manufacturer,
+            description: description,
+            quantity: quantity
+        };
+         console.log(addProducts);
+        // this.props.AddProdutsAction(addProducts);
+
+        productName = this.refs.productName.value="";
+        manufacturer = this.refs.manufacturer.value="";
+        description = this.refs.description.value="";
+        quantity = this.refs.quantity.value="";
     }
     render() {
         return (
@@ -57,7 +64,7 @@ class newProductsStore extends Component {
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Product Quantity</label>
-                                    <input type="number" className="form-control" ref="quantity"  />
+                                    <input type="number" className="form-control" ref="quantity" />
                                 </div>
                                 <div className="form-group ">
                                     <button type="submit" className="btn btn-info custom-button">Add Product</button>
@@ -72,17 +79,17 @@ class newProductsStore extends Component {
 }
 
 
-// const mapStateToProps = (state) => {
-//     return {
-//         auth: state.AuthReducer.authSignIn
-//     };
-// }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         NewStoreAction: (Store) => {
-//             dispatch(NewStoreAction(Store));
-//         }
-//     };
-// }
-// export default connect(mapStateToProps, mapDispatchToProps)(CreateNewStore);
-export default newProductsStore;
+const mapStateToProps = (state) => {
+    return {
+        productState: state.StoreReducers
+    };
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ProdutsAction: (addProducts) => {
+            dispatch(AddProdutsAction(addProducts));
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(newProductsStore);
+// export default newProductsStore;
