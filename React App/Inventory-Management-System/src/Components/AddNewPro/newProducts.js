@@ -35,7 +35,7 @@ class newProductsStore extends Component {
             quantity: quantity
         };
          console.log(addProducts);
-        // this.props.AddProdutsAction(addProducts);
+        this.props.AddProdutsAction(addProducts);
 
         productName = this.refs.productName.value="";
         manufacturer = this.refs.manufacturer.value="";
@@ -47,7 +47,7 @@ class newProductsStore extends Component {
             <div>
                 <center>
                     <mat.Card style={styles.card} zDepth={2}>
-                        <mat.AppBar style={styles.store} title="Create Store" showMenuIconButton={false} />
+                        <mat.AppBar style={styles.store} title="Add New Products" showMenuIconButton={false} />
                         <mat.CardText>
                             <form onSubmit={this.NewProduct} style={styles.store}>
                                 <div className="form-group " >
@@ -81,12 +81,12 @@ class newProductsStore extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        productState: state.StoreReducers
+        productState: state.StoreReducers.addNewProducts
     };
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        ProdutsAction: (addProducts) => {
+        AddProdutsAction: (addProducts) => {
             dispatch(AddProdutsAction(addProducts));
         }
     };

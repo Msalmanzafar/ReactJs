@@ -1,15 +1,14 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
-// import ActionHome from 'material-ui/svg-icons/action/home';
 import MdMenu from 'react-icons/lib/md/menu';
-// import { Link } from 'react-router';
-// import { MySatatusAction, AllSatatusAction } from '../../action/firebaseData';
-import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import {AvailibaleActions} from '../../Actions/newStoreAction'
+
 
 const style = {
   float: 'right',
@@ -36,11 +35,12 @@ class DrawerUndockedExample extends React.Component {
   constructor(props) {
     super(props);
     this.CreateStore = this.CreateStore.bind(this);
-    this.NewProducts = this.NewProducts.bind(this);
+    this.AvailibaleStores = this.AvailibaleStores.bind(this);
     this.state = { open: false };
   }
-  NewProducts() {
-    browserHistory.push('/newproducts')
+  AvailibaleStores() {
+    this.props.AvailibaleActions()
+    browserHistory.push('/availstores')
     this.setState({ open: false });
   }
   CreateStore() {
@@ -55,12 +55,7 @@ class DrawerUndockedExample extends React.Component {
 
   handleClose = () => this.setState({ open: false });
 
-
   render() {
-    // const {
-    //     auth,
-    // } = this.props;
-    // console.log('report status',this.props.Status)
     return (
       <div>
         <IconButton
@@ -74,12 +69,11 @@ class DrawerUndockedExample extends React.Component {
           width={250}
           open={this.state.open}
           onRequestChange={(open) => this.setState({ open })}
-
         >
           <AppBar iconElementLeft={<span></span>} title={<span style={styles.email}>{this.props.auth.email}</span>} />
           <div>
             <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
-            <MenuItem onClick={this.NewProducts}>New Products</MenuItem>
+            <MenuItem onClick={this.AvailibaleStores}>Availibale Stores</MenuItem>
           </div>
 
           <RaisedButton
@@ -100,12 +94,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
-    // MySatatusAction: (newStatus) => {
-    //   dispatch(MySatatusAction(newStatus))
-    // },
-    // AllSatatusAction: (AllData) => {
-    //   dispatch(AllSatatusAction(AllData))
-    // },
+    AvailibaleActions: () => {
+      dispatch(AvailibaleActions())
+    },
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerUndockedExample);
