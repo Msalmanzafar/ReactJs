@@ -59,19 +59,25 @@ export function AllSatatusAction(AllData) {
 
 
 
-// export function reSetData(arr){
-//     return dispatch=>{
-//         console.log('reSetData');
-//         dispatch(reSetDataForReducer(arr))
-//     }
-// }
+export function tempDataAction(tempData){
+    return dispatch=>{
+        console.log('reSetData',tempData);
+        dispatch(TempDataForDispatch(tempData))
+    }
+}
 
-// function reSetDataForReducer(payload){
-//     return{
-//         type: actionTypes.ReSetArrays,
-//         payload
-//     }
-// }
+
+
+
+
+
+
+function TempDataForDispatch(payload){
+    return{
+        type: actionTypes.TempDataForDetails,
+        payload
+    }
+}
 
 function MySatatusOfComplaints(payload) {
     return {

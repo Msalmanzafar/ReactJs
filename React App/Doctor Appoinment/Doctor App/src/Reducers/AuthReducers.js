@@ -1,22 +1,18 @@
-// import {handleActions} from 'redux-actions';
-import actionTypes from './actionTypes';
+import ActionTypes from '../Actions/ActionTypes';
 
 const AuthReducer = (state = {
-    // dummy: 'example@domain.com',
     authLogOut: false,
     authSignIn: []
-	
 } , action) => {
     switch(action.type){
-		
-      case actionTypes.SiginUpadte:{
+      case ActionTypes.SiginUpadte:{
           return state={
               ...state,
             authLogOut: !state.authLogOut,
             authSignIn: action.payload  
           };
       }
-      default:{}
+        default:{}
     }
     return state;
 }

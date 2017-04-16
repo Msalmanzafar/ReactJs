@@ -9,7 +9,7 @@ const actionTypes ={
     ObjectOfCrimeData: 'ObjectOfCrimeData',
     ObjectOfMissingData: 'ObjectOfMissingData',
     ObjectOfComplaintsData: 'ObjectOfComplaintsData',
-    ReSetArrays: 'ReSetArrays',
+    TempDataForDetails: 'TempDataForDetails',
 }
 
 export default actionTypes;

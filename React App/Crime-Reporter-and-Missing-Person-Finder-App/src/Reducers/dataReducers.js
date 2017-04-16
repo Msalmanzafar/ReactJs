@@ -3,11 +3,10 @@ import actionTypes from './actionTypes';
 
 const StatusReducer = (state = {
     MyStatus:[],
-    ComplaintsStatus:[],
     crimeStatus:[],
     missingStatus:[],
     AllStatus:[],
-
+    tempDetails:[]
 } , action) => {
     switch(action.type){
       case actionTypes.MyStatusFire:{
@@ -40,12 +39,13 @@ const StatusReducer = (state = {
               missingStatus: action.payload
           };
       }
-    //   case actionTypes.ReSetArrays:{
-    //       return state={
-    //           ...state,
-    //           ComplaintsStatus: action.payload
-    //       };
-    //   }
+      case actionTypes.TempDataForDetails:{
+          return state={
+              ...state,
+              tempDetails: action.payload
+          };
+      }
+    default:{}
     }
     return state;
 }

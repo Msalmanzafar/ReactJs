@@ -3,16 +3,12 @@ import { connect } from 'react-redux';
 import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
-// import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import AllDeatilsReport from './detailBox'
-// import SelectField from 'material-ui/SelectField';
-// import MenuItem from 'material-ui/MenuItem';
-// import {browserHistory} from 'react-router'
 import Dialog from 'material-ui/Dialog';
-// import FlatButton from 'material-ui/FlatButton';
-// import RaisedButton from 'material-ui/RaisedButton';
+// import {tempDataAction} from '../action/firebaseData'
+
 
 const style = {
     height: 100,
@@ -51,10 +47,15 @@ class AllStatusForAdmin extends Component {
     constructor(props) {
         super(props);
     }
-    handleOpen = () => {
+    Details(val){
         this.setState({ open: true });
-        //  console.log('adsdasdas',e.target.nodeName);
-        // console.log('Id')
+         console.log('adsdasdas',val);
+         let tempData={
+             email: val.email,
+             type: val.crimeType
+         }
+        //  this.props.tempDataAction(tempData);
+        //  console.log('temp obj', tempData)
     };
 
     handleClose = () => {
@@ -96,8 +97,7 @@ class AllStatusForAdmin extends Component {
                             <FlatButton
                                 label="Details"
                                 style={styles.FlatButton}
-                                onClick={this.handleOpen}
-
+                                onClick={this.Details.bind(this,val)}
                             />
                         </ListItem>
                     </List>
@@ -119,7 +119,7 @@ class AllStatusForAdmin extends Component {
                             open={this.state.open}
                             onRequestClose={this.handleClose}
                         >
-                            <AllDeatilsReport />
+                            <AllDeatilsReport/>
                         </Dialog>
                     </div>
                 </center>
@@ -132,4 +132,11 @@ const mapStateToProps = (state) => {
         Status: state.StatusReducer.AllStatus
     };
 }
+// const mapDispatchToProps =(dispatch) =>{
+//     return{
+//         tempDataAction: (tempData) =>{
+//             dispatch(tempDataAction(tempData));
+//         }
+//     };
+// }
 export default connect(mapStateToProps)(AllStatusForAdmin);

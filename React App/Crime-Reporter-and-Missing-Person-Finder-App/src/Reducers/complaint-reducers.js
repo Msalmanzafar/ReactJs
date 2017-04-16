@@ -13,6 +13,7 @@ const ComplaintReducers = (state = {
               complaints: action.payload
           };
       }
+      default:{}
     }
     return state;
 }
