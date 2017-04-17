@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import AllDeatilsReport from './detailBox'
 import Dialog from 'material-ui/Dialog';
-// import {tempDataAction} from '../action/firebaseData'
+import {tempDataAction,AllSatatusActionForComperison} from '../action/firebaseData'
 
 
 const style = {
@@ -43,19 +43,15 @@ const heading = {
 class AllStatusForAdmin extends Component {
     state = {
         open: false,
-    };    
+    };
     constructor(props) {
         super(props);
     }
-    Details(val){
+    Details(keys) {
         this.setState({ open: true });
-         console.log('adsdasdas',val);
-         let tempData={
-             email: val.email,
-             type: val.crimeType
-         }
-        //  this.props.tempDataAction(tempData);
-        //  console.log('temp obj', tempData)
+        // console.log('adsdasdas', keys);
+         this.props.AllSatatusActionForComperison(keys);
+        // console.log('temp obj', tempData)
     };
 
     handleClose = () => {
@@ -69,18 +65,13 @@ class AllStatusForAdmin extends Component {
                 primary={true}
                 onTouchTap={this.handleClose}
             />,
-            <FlatButton
-                label="Save"
-                primary={true}
-                keyboardFocused={true}
-                onTouchTap={this.handleClose}
-            />,
         ];
         // let keys = Object.keys(this.props.Status);
-        
+
         let adminAlldata = Object.keys(this.props.Status).map((key, index) => {
             let val = this.props.Status[key];
-            // console.log('All key', index);
+            let keys = key;
+            // console.log('All key', keys);
             return (
                 <Paper style={style} zDepth={1} key={index} >
                     <List >
@@ -97,14 +88,15 @@ class AllStatusForAdmin extends Component {
                             <FlatButton
                                 label="Details"
                                 style={styles.FlatButton}
-                                onClick={this.Details.bind(this,val)}
+                                onClick={this.Details.bind(this,keys)}
                             />
                         </ListItem>
                     </List>
                 </Paper>
             )
         })
-        // console.log('All status',this.props.Status);
+        
+        // console.log('All status', this.props.Status);
         // console.log('All status', this.props.keys);
         return (
             <div>
@@ -119,7 +111,7 @@ class AllStatusForAdmin extends Component {
                             open={this.state.open}
                             onRequestClose={this.handleClose}
                         >
-                            <AllDeatilsReport/>
+                            <AllDeatilsReport />
                         </Dialog>
                     </div>
                 </center>
@@ -129,14 +121,15 @@ class AllStatusForAdmin extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        Status: state.StatusReducer.AllStatus
+        Status: state.StatusReducer.AllStatus,
     };
 }
-// const mapDispatchToProps =(dispatch) =>{
-//     return{
-//         tempDataAction: (tempData) =>{
-//             dispatch(tempDataAction(tempData));
-//         }
-//     };
-// }
-export default connect(mapStateToProps)(AllStatusForAdmin);
+const mapDispatchToProps =(dispatch) =>{
+    return{
+       
+        AllSatatusActionForComperison: (keys) =>{
+            dispatch(AllSatatusActionForComperison(keys));
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(AllStatusForAdmin);

@@ -10,6 +10,10 @@ const actionTypes ={
     ObjectOfMissingData: 'ObjectOfMissingData',
     ObjectOfComplaintsData: 'ObjectOfComplaintsData',
     TempDataForDetails: 'TempDataForDetails',
+
+    DisplayAllData: 'DisplayAllData',
+
+    AdminStatusSet: 'AdminStatusSet'
 }
 
 export default actionTypes;

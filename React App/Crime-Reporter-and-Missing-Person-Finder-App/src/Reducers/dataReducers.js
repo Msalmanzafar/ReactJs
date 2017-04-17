@@ -6,7 +6,8 @@ const StatusReducer = (state = {
     crimeStatus:[],
     missingStatus:[],
     AllStatus:[],
-    tempDetails:[]
+    tempDetails:[],
+    
 } , action) => {
     switch(action.type){
       case actionTypes.MyStatusFire:{
@@ -39,7 +40,7 @@ const StatusReducer = (state = {
               missingStatus: action.payload
           };
       }
-      case actionTypes.TempDataForDetails:{
+      case actionTypes.DisplayAllData:{
           return state={
               ...state,
               tempDetails: action.payload

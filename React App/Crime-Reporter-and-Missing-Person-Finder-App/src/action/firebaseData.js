@@ -26,7 +26,7 @@ export function MySatatusAction(newStatus) {
                 }
                 else if (obj.crimeType === 'Missing Report') {
                     Missing = Missing.concat(obj);
-                    console.log('Missing', Missing)
+                    // console.log('Missing', Missing)
                     dispatch(MySatatusOfMissing(Missing))
                 }
             }
@@ -42,9 +42,10 @@ export function AllSatatusAction(AllData) {
         firebase.database().ref('Complaints/').once('value', (data) => {
             let obj = data.val();
             // console.log('my firebase data', obj);
+            
             // let Allcomplaint = AllData.AllStatus;
 
-            // console.log('all data array', Allcomplaint);
+            // // console.log('all data array', Allcomplaint);
             // Allcomplaint = Allcomplaint.concat(obj)
             // console.log('all data array', Allcomplaint);
             
@@ -57,24 +58,37 @@ export function AllSatatusAction(AllData) {
     }
 }
 
+export function AllSatatusActionForComperison(keys) {
+    return dispatch => {
+        firebase.database().ref('Complaints/').on('child_added', (data) => {
+            let obj = data.val();
+            obj.objKey = data.key;
+            // console.log('my firebase data --------', obj);
+            let specificData = [];
+            if(keys === obj.objKey && obj.crimeType === 'Complaint Against'){
+                console.log("find it00000000", obj);
+                dispatch(DisplayAllDataDispatch(obj))
+            }
+            if(keys === obj.objKey && obj.crimeType === 'Crime Report'){
+                console.log("find it00000000", obj);
+                dispatch(DisplayAllDataDispatch(obj))
+            }
+            if(keys === obj.objKey && obj.crimeType === 'Missing Report'){
+                console.log("find it00000000", obj);
+                dispatch(DisplayAllDataDispatch(obj))
+            }
 
-
-export function tempDataAction(tempData){
-    return dispatch=>{
-        console.log('reSetData',tempData);
-        dispatch(TempDataForDispatch(tempData))
+        })
     }
 }
 
 
 
 
-
-
-
-function TempDataForDispatch(payload){
+// for DisplayAllData
+function DisplayAllDataDispatch(payload){
     return{
-        type: actionTypes.TempDataForDetails,
+        type: actionTypes.DisplayAllData,
         payload
     }
 }

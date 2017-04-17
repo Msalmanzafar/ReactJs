@@ -19,7 +19,7 @@ class adminHome extends Component {
     // }
     render() {
         return (
-            <div><span>Admin</span>
+            <div>
                 <center>
                     <Link to='/forComplaints'>
                         <RaisedButton label="Complaints"
