@@ -7,14 +7,14 @@ import { ComplaintsAction } from '../../action/complaint-action';
 // import * as firebase from 'firebase'
 const style = {
     height: 'auto',
-    width: '60%',
+    width: '80%',
     margin: 20,
     padding: 30,
     textAlign: 'center',
     display: 'inline-block',
 };
 const style3 = {
-    width: '90%',
+    width: '95%',
     textAlign: 'left',
     fontSize: 15
 };
@@ -71,7 +71,7 @@ class ForComplaint extends Component {
                             ref="message"
                             multiLine={true}
                         />
-
+                        <br/>
                         <RaisedButton
                             label="Submit"
                             labelColor="#fcfaf6"

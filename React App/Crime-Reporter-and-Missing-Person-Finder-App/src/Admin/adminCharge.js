@@ -11,8 +11,8 @@ import {AllSatatusActionForComperison} from '../action/firebaseData'
 
 
 const style = {
-    height: 100,
-    width: 450,
+    height: 'auto',
+    width: '80%',
     margin: 20,
     textAlign: 'left',
     display: 'inline-block',
@@ -32,6 +32,10 @@ const styles = {
     customWidth: {
         width: 90,
     },
+    dialog: {
+        width:'99%',
+        height: 'auto'
+    }
 
 }
 const heading = {
@@ -108,6 +112,7 @@ class AllStatusForAdmin extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
+                            style={styles.dialog}
                         >
                             <AllDeatilsReport />
                         </Dialog>

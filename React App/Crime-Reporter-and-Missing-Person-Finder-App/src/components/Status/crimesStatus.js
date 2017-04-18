@@ -9,8 +9,8 @@ import Paper from 'material-ui/Paper';
 
 
 const style = {
-    height: 110,
-    width: 450,
+    height: 'auto',
+    width: '80%',
     margin: 20,
     textAlign: 'left',
     display: 'inline-block',

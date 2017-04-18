@@ -6,12 +6,12 @@ import ListItem from 'material-ui/List/ListItem';
 import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import {AllSatatusActionForComperison} from '../../action/firebaseData'
+import { AllSatatusActionForComperison } from '../../action/firebaseData'
 import AllDeatilsComponents from './allDetails'
 
 const style = {
-    height: 110,
-    width: 450,
+    height: 'auto',
+    width: '80%',
     margin: 20,
     textAlign: 'left',
     display: 'inline-block',
@@ -29,6 +29,10 @@ const styles = {
         color: '#74847c',
         fontSize: '13px',
 
+    },
+    dialog: {
+        width:'99%',
+        height: 'auto'
     }
 
 }
@@ -40,11 +44,11 @@ class AllStatusComponent extends Component {
     state = {
         open: false,
     };
-    
+
     Details(keys) {
         this.setState({ open: true });
         // console.log('adsdasdas', keys);
-         this.props.AllSatatusActionForComperison(keys);
+        this.props.AllSatatusActionForComperison(keys);
         // console.log('temp obj', tempData)
     };
 
@@ -61,7 +65,7 @@ class AllStatusComponent extends Component {
         ];
         let AllStatusDispay = Object.keys(this.props.Status).map((key, index) => {
             let val = this.props.Status[key];
-             let keys = key;
+            let keys = key;
             return (
                 <Paper style={style} zDepth={1} key={index} >
                     <List >
@@ -78,7 +82,7 @@ class AllStatusComponent extends Component {
 
                             <FlatButton
                                 label="Details"
-                                onClick={this.Details.bind(this,keys)}
+                                onClick={this.Details.bind(this, keys)}
                                 style={styles.FlatButton}
                             />
                         </ListItem>
@@ -99,6 +103,7 @@ class AllStatusComponent extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
+                            style={styles.dialog}
                         >
                             <AllDeatilsComponents />
                         </Dialog>
@@ -113,12 +118,12 @@ const mapStateToProps = (state) => {
         Status: state.StatusReducer.AllStatus
     };
 }
-const mapDispatchToProps =(dispatch) =>{
-    return{
-       
-        AllSatatusActionForComperison: (keys) =>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+        AllSatatusActionForComperison: (keys) => {
             dispatch(AllSatatusActionForComperison(keys));
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(AllStatusComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(AllStatusComponent);

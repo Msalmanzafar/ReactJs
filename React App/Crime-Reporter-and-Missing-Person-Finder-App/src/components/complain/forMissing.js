@@ -11,14 +11,14 @@ import {connect} from 'react-redux';
 
 const style = {
     height: 'auto',
-    width: '60%',
+    width: '80%',
     margin: 20,
     padding: 30,
     textAlign: 'center',
     display: 'inline-block',
 };
 const style3 = {
-    width: '90%',
+    width: '95%',
     textAlign: 'left',
     fontSize: 15
 };
@@ -93,6 +93,7 @@ class ForMissing extends Component {
                         {/*<RaisedButton label="Submit image of missing person" >
                             <input type="file" ref="picture"/>
                         </RaisedButton><br /><br /><br />*/}
+                        <br/>
                         <RaisedButton
                             label="Submit"
                             labelColor="#fcfaf6"

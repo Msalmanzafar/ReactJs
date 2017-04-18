@@ -8,7 +8,7 @@ import { SignUp } from '../../action/auth-action';
 
 const style = {
     height: "auto",
-    width: '60%',
+    width: '80%',
     margin: 20,
     padding: 30,
     textAlign: 'center',
@@ -20,7 +20,7 @@ const style2 = {
 };
 
 const style3 = {
-    width: '90%',
+    width: '95%',
 };
 
 class signup extends Component {
