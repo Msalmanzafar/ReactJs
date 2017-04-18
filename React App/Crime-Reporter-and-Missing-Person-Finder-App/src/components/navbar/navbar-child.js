@@ -51,7 +51,7 @@ class DrawerUndockedExample extends React.Component {
   }
 
   handleToggle = () => {
-    console.log('working');
+    // console.log('working');
     this.setState({ open: !this.state.open });
   }
 

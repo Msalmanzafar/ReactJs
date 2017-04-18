@@ -11,13 +11,7 @@ const style = {
 
 
 class Home extends Component {
-    // componentWillMount() {
-    //     firebase.auth().onAuthStateChanged(function (user) {
-    //         if (user) {
-    //             console.log("firebase current user",user);
-    //         }
-    //     });
-    // }
+    
     render() {
         // console.log("firebase current user",this.props.user);
         return (

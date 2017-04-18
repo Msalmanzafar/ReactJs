@@ -12,7 +12,7 @@ const actionTypes ={
     TempDataForDetails: 'TempDataForDetails',
 
     DisplayAllData: 'DisplayAllData',
-
+    ErrorMessages: 'ErrorMessages',
     AdminStatusSet: 'AdminStatusSet'
 }
 

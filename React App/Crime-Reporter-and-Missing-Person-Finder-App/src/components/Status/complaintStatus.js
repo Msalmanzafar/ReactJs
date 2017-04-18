@@ -4,7 +4,7 @@ import Avatar from 'material-ui/Avatar';
 import List from 'material-ui/List/List';
 import ListItem from 'material-ui/List/ListItem';
 import Paper from 'material-ui/Paper';
-import FlatButton from 'material-ui/FlatButton';
+// import FlatButton from 'material-ui/FlatButton';
 
 
 
@@ -52,12 +52,7 @@ class ComplaintStatus extends Component {
                                         <span style={styles.email}>{v.emailId}</span>
                                         <span style={styles.status}>{v.status}</span><br />
 
-                                        <FlatButton
-
-                                            label="Details"
-                                            onClick={this.handleClose}
-                                            style={styles.FlatButton}
-                                        />
+                                       
                                     </ListItem>
                                 </List>
                             </Paper>

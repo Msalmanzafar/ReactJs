@@ -5,22 +5,24 @@ import RaisedButton from 'material-ui/RaisedButton';
 // import TimePicker from 'material-ui/TimePicker';
 import {ComplaintsAction} from  '../../action/complaint-action'
 import {connect} from 'react-redux';
+
 const style = {
-  height: 'auto',
-  width: 500,
-  margin: 20,
-  padding: 30,
-  textAlign: 'center',
-  display: 'inline-block',
+    height: 'auto',
+    width: '60%',
+    margin: 20,
+    padding: 30,
+    textAlign: 'center',
+    display: 'inline-block',
 };
 const style3 = {
-  width: 400,
-  textAlign: 'left',
-  fontSize: 15
+    width: '90%',
+    textAlign: 'left',
+    fontSize: 15
 };
 const style2 = {
-  marginTop: 15,
+    marginTop: 15,
 };
+
 
 class ForCrimes extends Component{
     constructor(props) {
@@ -45,7 +47,7 @@ class ForCrimes extends Component{
     //     this.setState({value12: date});
     // };
     render(){
-        console.log('complaints reducer',this.props.complain)
+        // console.log('complaints reducer',this.props.complain)
         return(
             <div>
                 <center>
@@ -68,9 +70,9 @@ class ForCrimes extends Component{
                             ref="Caddress"
                         />
                         <TextField 
-                            hintText="Enter address where event accur.."
+                            hintText="Enter address where Crime accur.."
                             type="text"
-                            floatingLabelText="Event occur at.!"
+                            floatingLabelText="Crime occur at.!"
                             style={style3}
                             ref="event"
                         />

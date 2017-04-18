@@ -7,7 +7,7 @@ import Paper from 'material-ui/Paper';
 import FlatButton from 'material-ui/FlatButton';
 import AllDeatilsReport from './detailBox'
 import Dialog from 'material-ui/Dialog';
-import {tempDataAction,AllSatatusActionForComperison} from '../action/firebaseData'
+import {AllSatatusActionForComperison} from '../action/firebaseData'
 
 
 const style = {
@@ -44,9 +44,7 @@ class AllStatusForAdmin extends Component {
     state = {
         open: false,
     };
-    constructor(props) {
-        super(props);
-    }
+    
     Details(keys) {
         this.setState({ open: true });
         // console.log('adsdasdas', keys);

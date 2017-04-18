@@ -7,7 +7,7 @@ const StatusReducer = (state = {
     missingStatus:[],
     AllStatus:[],
     tempDetails:[],
-    
+    ComplaintsStatus:[],
 } , action) => {
     switch(action.type){
       case actionTypes.MyStatusFire:{

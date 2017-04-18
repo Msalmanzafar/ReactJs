@@ -9,11 +9,11 @@ export function StatusSetForAdmin(data) {
         
         firebase.database().ref('Complaints/' + clickKey + '/' ).set(data)
             .then(() => {
-                console.log("data status set")
+                alert("data status set");
             })
             .catch((error) => {
                 var errorMessage = error.message;
-                console.log(errorMessage);
+                alert(errorMessage);
             });
 
     }

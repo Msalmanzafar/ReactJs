@@ -1,40 +1,36 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import {connect} from 'react-redux';
-import {ComplaintsAction} from '../../action/complaint-action';
+import { connect } from 'react-redux';
+import { ComplaintsAction } from '../../action/complaint-action';
 // import * as firebase from 'firebase'
 const style = {
-  height: 'auto',
-  width: 500,
-  margin: 20,
-  padding: 30,
-  textAlign: 'center',
-  display: 'inline-block',
+    height: 'auto',
+    width: '60%',
+    margin: 20,
+    padding: 30,
+    textAlign: 'center',
+    display: 'inline-block',
 };
 const style3 = {
-  width: 400,
-  textAlign: 'left',
-  fontSize: 15
+    width: '90%',
+    textAlign: 'left',
+    fontSize: 15
 };
 const style2 = {
-  marginTop: 15,
+    marginTop: 15,
 };
 
-class ForComplaint extends Component{
-    constructor(props){
+class ForComplaint extends Component {
+    constructor(props) {
         super(props);
-        this.complaints= this.complaints.bind(this);
-        // firebase.auth().onAuthStateChanged(function (user) {
-        //     if (user) {
-        //         console.log("firebase current user",user.email);
-        //     }
-        // });
+        this.complaints = this.complaints.bind(this);
+
     }
-    complaints(){
+    complaints() {
         // console.log('for complain');
-        let complaintObj={
+        let complaintObj = {
             name: this.refs.userName.getValue(),
             againstName: this.refs.againstName.getValue(),
             complain: this.refs.message.getValue(),
@@ -44,30 +40,30 @@ class ForComplaint extends Component{
         // console.log(complaint);
         this.props.ComplaintsAction(complaintObj);
     }
-    render(){
-        console.log('complaints reducer',this.props.complain)
-        return(
+    render() {
+        // console.log('complaints reducer',this.props.complain)
+        return (
             <div>
                 <center>
                     <Paper style={style} zDepth={3} rounded={true} >
                         <div>
                             <h3>Register Complaint</h3>
                         </div>
-                        <TextField 
+                        <TextField
                             hintText="Enter full name.."
                             type="text"
                             floatingLabelText="Your name"
                             style={style3}
                             ref="userName"
                         />
-                        <TextField 
+                        <TextField
                             hintText="Enter full name.."
                             type="text"
                             floatingLabelText="Complain Against"
                             style={style3}
                             ref="againstName"
                         />
-                        <TextField 
+                        <TextField
                             hintText="Your complain must be contain 140 or above character.."
                             type="text"
                             floatingLabelText="Enter your Complain.."
@@ -75,15 +71,15 @@ class ForComplaint extends Component{
                             ref="message"
                             multiLine={true}
                         />
-                        
-                        <RaisedButton 
-                            label="Submit" 
-                            labelColor="#fcfaf6" 
-                            backgroundColor="#00796b" 
+
+                        <RaisedButton
+                            label="Submit"
+                            labelColor="#fcfaf6"
+                            backgroundColor="#00796b"
                             onClick={this.complaints}
                             style={style2}
                         />
-                        
+
                     </Paper>
                 </center>
             </div>
@@ -91,17 +87,17 @@ class ForComplaint extends Component{
     }
 };
 
-const mapStateToProps =(state) =>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         complain: state.ComplaintReducers
     };
 }
-const mapDispatchToProps =(dispatch) =>{
-    return{
-        ComplaintsAction: (complaintObj) =>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ComplaintsAction: (complaintObj) => {
             dispatch(ComplaintsAction(complaintObj))
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ForComplaint);
+export default connect(mapStateToProps, mapDispatchToProps)(ForComplaint);
 

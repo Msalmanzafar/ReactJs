@@ -41,7 +41,7 @@ export function AllSatatusAction(AllData) {
     return dispatch => {
         firebase.database().ref('Complaints/').once('value', (data) => {
             let obj = data.val();
-            // console.log('my firebase data', obj);
+            // console.log('All firebase data', obj.crimeType);
             
             // let Allcomplaint = AllData.AllStatus;
 
@@ -64,24 +64,22 @@ export function AllSatatusActionForComperison(keys) {
             let obj = data.val();
             obj.objKey = data.key;
             // console.log('my firebase data --------', obj);
-            let specificData = [];
             if(keys === obj.objKey && obj.crimeType === 'Complaint Against'){
-                console.log("find it00000000", obj);
+                // console.log("find it00000000", obj);
                 dispatch(DisplayAllDataDispatch(obj))
             }
             if(keys === obj.objKey && obj.crimeType === 'Crime Report'){
-                console.log("find it00000000", obj);
+                // console.log("find it00000000", obj);
                 dispatch(DisplayAllDataDispatch(obj))
             }
             if(keys === obj.objKey && obj.crimeType === 'Missing Report'){
-                console.log("find it00000000", obj);
+                // console.log("find it00000000", obj);
                 dispatch(DisplayAllDataDispatch(obj))
             }
 
         })
     }
 }
-
 
 
 

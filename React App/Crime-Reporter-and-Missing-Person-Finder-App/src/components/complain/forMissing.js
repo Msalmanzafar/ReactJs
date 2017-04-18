@@ -11,14 +11,14 @@ import {connect} from 'react-redux';
 
 const style = {
     height: 'auto',
-    width: 500,
+    width: '60%',
     margin: 20,
     padding: 30,
     textAlign: 'center',
     display: 'inline-block',
 };
 const style3 = {
-    width: 400,
+    width: '90%',
     textAlign: 'left',
     fontSize: 15
 };
@@ -41,7 +41,7 @@ class ForMissing extends Component {
             crimeType: 'Missing Report',
             status: 'Panding',
         }
-        console.log('missingDetails',missingDetails)
+        // console.log('missingDetails',missingDetails)
         this.props.ComplaintsAction(missingDetails);
     }
 

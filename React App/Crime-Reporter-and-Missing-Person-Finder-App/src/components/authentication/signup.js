@@ -1,47 +1,50 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 // import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import TextField from 'material-ui/TextField';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
-import {connect} from 'react-redux';
-import {SignUp} from '../../action/auth-action';
+import { connect } from 'react-redux';
+import { SignUp } from '../../action/auth-action';
 
 const style = {
-  height: 350,
-  width: 500,
-  margin: 20,
-  padding: 30,
-  textAlign: 'center',
-  display: 'inline-block',
+    height: "auto",
+    width: '60%',
+    margin: 20,
+    padding: 30,
+    textAlign: 'center',
+    display: 'inline-block',
 };
 
 const style2 = {
-  margin: 12,
+    margin: 12,
 };
 
 const style3 = {
-  width: 400,
+    width: '90%',
 };
 
-class signup extends Component{
-    constructor(props){
+class signup extends Component {
+    constructor(props) {
         super(props);
         this.signUpUser = this.signUpUser.bind(this);
     }
-    signUpUser(ev){
+    signUpUser(ev) {
         ev.preventDefault();
         let email = this.refs.email.getValue();
         let password = this.refs.password.getValue();
-        let userSignUp={
-            email:email,
+        let userSignUp = {
+            email: email,
             password: password
         }
         this.props.SignUp(userSignUp);
         // console.log(userSignUp);
     }
-    render(){
-    // console.log('userSignUp',this.props.auth.authSignUp);
-        return(
+    render() {
+        const {
+            ErrorMessage,
+        } = this.props;
+        // console.log('userSignUp',this.props.auth.authSignUp);
+        return (
             <div>
                 <center>
                     <Paper style={style} zDepth={3} rounded={true} >
@@ -53,17 +56,25 @@ class signup extends Component{
                                 floatingLabelText="Enter your email"
                                 style={style3}
                                 ref="email"
-                                /*value={this.props.auth.dummy}*/
-                            /><br/>
+                            /*value={this.props.auth.dummy}*/
+                            /><br />
                             <TextField
                                 hintText="password"
                                 type="password"
                                 floatingLabelText="Enter your password"
                                 style={style3}
                                 ref="password"
-                            /><br/><br/>
-                            <RaisedButton type="submit"label="Sign Up" primary={true} 
-                                style={style2} 
+                            />
+                            {(ErrorMessage) ? (
+                                <div>
+                                    <p className="alert alert-danger">{ErrorMessage}</p>
+                                </div>
+                            ) : (
+                                    <span></span>
+                                )}
+                                
+                            <RaisedButton type="submit" label="Sign Up" primary={true}
+                                style={style2}
                             />
                         </form>
                     </Paper>
@@ -71,18 +82,19 @@ class signup extends Component{
             </div>
         )
     }
-  
+
 };
-const mapStateToProps =(state) =>{
-    return{
-        auth: state.AuthReducer
+const mapStateToProps = (state) => {
+    return {
+        auth: state.AuthReducer,
+        ErrorMessage: state.AuthReducer.ErrorMess
     };
 }
-const mapDispatchToProps =(dispatch) =>{
-    return{
-        SignUp: (userSignUp) =>{
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SignUp: (userSignUp) => {
             dispatch(SignUp(userSignUp));
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(signup);
+export default connect(mapStateToProps, mapDispatchToProps)(signup);

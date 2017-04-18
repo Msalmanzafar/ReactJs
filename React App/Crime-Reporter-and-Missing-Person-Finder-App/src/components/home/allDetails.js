@@ -1,23 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as mat from 'material-ui';
-import { StatusSetForAdmin } from '../action/dataSetAction'
+// import * as mat from 'material-ui';
+import { StatusSetForAdmin } from '../../action/dataSetAction'
 
 
 
 
-class AllDeatilsReport extends Component {
-    // constructor(props) {
-    //     super(props)
-    // }
-    StatusChange(data) {
-        data.status = this.refs.status.value;
-        // console.log("status", status,keys);
-        this.props.StatusSetForAdmin(data);
-    }
+class AllDeatilsComponents extends Component {
+   
+    
     render() {
-        // console.log('filter--', this.props.tempD);
-        let data = this.props.tempD;
+        // console.log('filter--', this.props.tempDet);
+        let data = this.props.tempDet;
         // let keys = data.objKey;
         return (
             <div>
@@ -46,19 +40,7 @@ class AllDeatilsReport extends Component {
                             </tr>
                             <tr>
                                 <th>Status</th>
-                                <td>
-                                    <input
-                                        type="text"
-                                        defaultValue={data.status}
-                                        ref="status"
-                                    />
-                                    <mat.FlatButton
-                                        label="Save"
-                                        primary={true}
-                                        keyboardFocused={true}
-                                        onClick={this.StatusChange.bind(this, data)}
-                                    />
-                                </td>
+                                <td>{data.status}</td>
                             </tr>
                         </thead>
                     </table>
@@ -93,20 +75,9 @@ class AllDeatilsReport extends Component {
                                         </tr>
                                         <tr>
                                             <th>Status</th>
-                                            <td>
-                                                <input
-                                                    type="text"
-                                                    defaultValue={data.status}
-                                                    ref="status"
-                                                />
-                                                <mat.FlatButton
-                                                    label="Save"
-                                                    primary={true}
-                                                    keyboardFocused={true}
-                                                    onClick={this.StatusChange.bind(this, data)}
-                                                />
-                                            </td>
+                                            <td>{data.status}</td>
                                         </tr>
+                                        
                                     </thead>
                                 </table>
                             ) : (
@@ -138,20 +109,9 @@ class AllDeatilsReport extends Component {
                                             </tr>
                                             <tr>
                                                 <th>Status</th>
-                                                <td>
-                                                    <input
-                                                        type="text"
-                                                        defaultValue={data.status}
-                                                        ref="status"
-                                                    />
-                                                    <mat.FlatButton
-                                                        label="Save"
-                                                        primary={true}
-                                                        keyboardFocused={true}
-                                                        onClick={this.StatusChange.bind(this, data)}
-                                                    />
-                                                </td>
+                                                <td>{data.status}</td>
                                             </tr>
+                                            
                                         </thead>
                                     </table>
                                 )
@@ -168,7 +128,7 @@ class AllDeatilsReport extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        tempD: state.StatusReducer.tempDetails,
+        tempDet: state.StatusReducer.tempDetails,
     };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -178,5 +138,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AllDeatilsReport);
+export default connect(mapStateToProps, mapDispatchToProps)(AllDeatilsComponents);
 // export default AllDeatilsReport;

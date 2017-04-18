@@ -5,18 +5,19 @@ import * as firebase from 'firebase';
 export function ComplaintsAction(complaintObj){
     return dispatch =>{
         var user= firebase.auth().currentUser;
-        console.log(user.uid, '----------------------')
+        // console.log(user.uid, '----------------------')
         
         complaintObj.uId = user.uid;
         complaintObj.emailId = user.email;
          firebase.database().ref('Complaints/').push(complaintObj)
                 .then(()=>{
                     dispatch(ForNewComplaints());
-                    console.log('comaplaint data set');
+                    alert("Complaint has been Rigisterd")
+                    // console.log('comaplaint data set');
                     browserHistory.push('/home')
                 })
                 .catch(()=>{
-                    console.log('check user email and password')
+                    alert('check user email and password')
                 })
     }   
 }
