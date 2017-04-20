@@ -10,7 +10,7 @@ import LogoPage from './Components/Home/LogoPage';
 import FrontLogo from './Components/Home/frontLogo'
 import CreateNewStore from './Components/CreateStore/newStore'
 import AvailibaleStores from './Components/CreateStore/availibaleStores'
-
+import MyStore from './Components/AddNewPro/StoreHome'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -37,6 +37,7 @@ export default class Routes extends Component {
                             <IndexRoute component={FrontLogo}/>
                             <Route path="/newstore" component={CreateNewStore} />
                             <Route path="/availstores" component={AvailibaleStores} />
+                            <Route path="/mystore" component={MyStore} />
                         </Route>
                     </Route>
                 </Router>

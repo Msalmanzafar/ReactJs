@@ -23,12 +23,12 @@ class CreateNewStore extends Component {
     NewStores(ev) {
         ev.preventDefault();
         let storeName = this.refs.storeName.value;
-        let location = this.refs.location.valu;
+        let location = this.refs.location.value;
         let NewStores = {
             storeName: storeName,
             location: location,
         }
-        //  console.log(Store);
+        //  console.log(NewStores);
         this.props.NewStoreAction(NewStores);
          storeName = this.refs.storeName.value=" ";
          location = this.refs.location.value=" ";

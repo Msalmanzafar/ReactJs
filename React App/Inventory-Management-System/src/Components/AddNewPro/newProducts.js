@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import * as mat from 'material-ui';
 import { AddProdutsAction } from '../../Actions/newStoreAction';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 const styles = {
     card: {
@@ -34,44 +33,41 @@ class newProductsStore extends Component {
             description: description,
             quantity: quantity
         };
-         console.log(addProducts);
+        // console.log(addProducts);
         this.props.AddProdutsAction(addProducts);
 
-        productName = this.refs.productName.value="";
-        manufacturer = this.refs.manufacturer.value="";
-        description = this.refs.description.value="";
-        quantity = this.refs.quantity.value="";
+        productName = this.refs.productName.value = "";
+        manufacturer = this.refs.manufacturer.value = "";
+        description = this.refs.description.value = "";
+        quantity = this.refs.quantity.value = "";
     }
     render() {
         return (
             <div>
                 <center>
-                    <mat.Card style={styles.card} zDepth={2}>
-                        <mat.AppBar style={styles.store} title="Add New Products" showMenuIconButton={false} />
-                        <mat.CardText>
-                            <form onSubmit={this.NewProduct} style={styles.store}>
-                                <div className="form-group " >
-                                    <label htmlFor="product">Product name</label>
-                                    <input type="text" className="form-control" ref="productName" placeholder="Write Product Name" />
-                                </div>
-                                <div className="form-group ">
-                                    <label htmlFor="manufacturer">Manufacture By</label>
-                                    <input type="text" className="form-control" ref="manufacturer" placeholder="Write Manufacture compnay" />
-                                </div>
-                                <div className="form-group ">
-                                    <label htmlFor="description">Description</label>
-                                    <input type="text" className="form-control" ref="description" placeholder="Write description about product" />
-                                </div>
-                                <div className="form-group ">
-                                    <label htmlFor="quantity">Product Quantity</label>
-                                    <input type="number" className="form-control" ref="quantity" />
-                                </div>
-                                <div className="form-group ">
-                                    <button type="submit" className="btn btn-info custom-button">Add Product</button>
-                                </div>
-                            </form>
-                        </mat.CardText>
-                    </mat.Card>
+
+                    <form onSubmit={this.NewProduct} style={styles.store}>
+                        <div className="form-group " >
+                            <label htmlFor="product">Product name</label>
+                            <input type="text" className="form-control" ref="productName" placeholder="Write Product Name" />
+                        </div>
+                        <div className="form-group ">
+                            <label htmlFor="manufacturer">Manufacture By</label>
+                            <input type="text" className="form-control" ref="manufacturer" placeholder="Write Manufacture compnay" />
+                        </div>
+                        <div className="form-group ">
+                            <label htmlFor="description">Description</label>
+                            <input type="text" className="form-control" ref="description" placeholder="Write description about product" />
+                        </div>
+                        <div className="form-group ">
+                            <label htmlFor="quantity">Product Quantity</label>
+                            <input type="number" className="form-control" ref="quantity" />
+                        </div>
+                        <div className="form-group ">
+                            <button type="submit" className="btn btn-info custom-button">Add Product</button>
+                        </div>
+                    </form>
+
                 </center>
             </div>
         )
@@ -91,5 +87,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(newProductsStore);
+export default connect(mapStateToProps, mapDispatchToProps)(newProductsStore);
 // export default newProductsStore;
