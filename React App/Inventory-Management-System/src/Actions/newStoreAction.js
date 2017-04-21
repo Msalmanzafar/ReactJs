@@ -53,22 +53,25 @@ export function OpenStore(keys) {
 
 export function AddProdutsAction(addProducts) {
     return dispatch => {
-        console.log("addProducts---------",addProducts)
+        // console.log("addProducts---------", addProducts)
         // dispatch(ForNewProduts())
         var user = firebase.auth().currentUser;
         // console.log(user.uid, '----------------------')
         addProducts.uId = user.uid;
+        if (user !== null) {
+            firebase.database().ref('StoresProducts/').push(addProducts)
+                .then(() => {
+                    alert('Product Created');
+                    console.log('Store Created');
+                })
+                .catch(() => {
+                    alert('check user email and password');
+                    console.log('check user email and password')
+                })
+        } else {
+            alert('check user email and password');
+        }
 
-        firebase.database().ref('InventoryStore/').push()
-            .then(() => {
-                // dispatch(ForNewStore());
-                alert('Store Created');
-                console.log('Store Created');
-                // browserHistory.push('/home')
-            })
-            .catch(() => {
-                console.log('check user email and password')
-            })
     }
 }
 
@@ -88,9 +91,9 @@ function AvailibaleAction(payload) {
 
 
 
-function ForNewProduts(payload) {
-    return {
-        type: ActionTypes.NewProdutsAction,
-        payload
-    }
-}
+// function ForNewProduts(payload) {
+//     return {
+//         type: ActionTypes.NewProdutsAction,
+//         payload
+//     }
+// }

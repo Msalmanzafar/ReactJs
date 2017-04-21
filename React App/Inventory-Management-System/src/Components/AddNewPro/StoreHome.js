@@ -3,11 +3,14 @@ import { connect } from 'react-redux';
 import * as mat from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { AddProdutsAction } from '../../Actions/newStoreAction';
+import AvailibaleProducts from '../Products/availibalePro';
 
-// import { Link } from 'react-router';
-// import newProductsStore from './newProducts'
 
 const styles = {
+    dialog:{
+        width: '100%',
+        height: 'auto'
+    },
     FlatButton: {
         float: 'right'
     },
@@ -23,7 +26,7 @@ const styles = {
         backgroundColor: 'blue'
     },
     card: {
-        width: '65%',
+        width: '90%',
         height: 'auto',
         position: 'relative',
         top: '50px'
@@ -52,12 +55,15 @@ class MyStore extends Component {
         let manufacturer = this.refs.manufacturer.value;
         let description = this.refs.description.value;
         let quantity = this.refs.quantity.value;
+        let dates = this.refs.dates.value;
         let StoreKey = this.props.StoreDash.objKey;
+        
         let addProducts = {
             productName: productName,
             manufacturer: manufacturer,
             description: description,
             quantity: quantity,
+            dates: dates,
             StoreKey: StoreKey
         };
         // console.log(addProducts);
@@ -67,6 +73,9 @@ class MyStore extends Component {
         manufacturer = this.refs.manufacturer.value = "";
         description = this.refs.description.value = "";
         quantity = this.refs.quantity.value = "";
+        setInterval(()=>{
+            this.setState({ open: false });
+        },2000);
     }
     newProduct(keys) {
         this.setState({ open: true });
@@ -101,7 +110,8 @@ class MyStore extends Component {
                             }
                         />
                         <mat.CardText>
-                            {/*{AllStatusDispay}*/}
+                            {/*AvailibaleProducts*/}
+                            <AvailibaleProducts/>
                         </mat.CardText>
                     </mat.Card>
                     <div>
@@ -112,6 +122,7 @@ class MyStore extends Component {
                             open={this.state.open}
                             onRequestClose={this.handleClose}
                             style={styles.dialog}
+                            autoScrollBodyContent={true}
                         >
                             <form onSubmit={this.NewProduct} style={styles.store}>
                                 <div className="form-group " >
@@ -131,8 +142,11 @@ class MyStore extends Component {
                                     <input type="number" className="form-control" ref="quantity" />
                                 </div>
                                 <div className="form-group ">
-                                    {/*<button type="submit" className="btn btn-info custom-button">Add Product</button>*/}
-                                     <mat.RaisedButton type="submit" label="Primary" primary={true}  />
+                                    <label htmlFor="quantity">Purchasing Data</label>
+                                    <input type="date" className="form-control" ref="dates" />
+                                </div>
+                                <div className="form-group ">
+                                     <mat.RaisedButton type="submit" label="Add Product" primary={true}  />
                                 </div>
                             </form>
                         </mat.Dialog>

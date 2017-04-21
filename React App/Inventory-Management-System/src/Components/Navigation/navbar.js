@@ -7,7 +7,7 @@ import DrawerUndockedExample from './navbar-child'
 
 const styles = {
   appBar: {
-
+    // backgroundColor: '#8b4513'
   },
   title: {
     cursor: 'pointer',
@@ -42,6 +42,7 @@ class NavBar extends Component {
       <div>
         <mat.AppBar
           title="Inventory Store"
+          style={styles.appBar}
           iconElementLeft={
             <span>
               {(auth === true) ? (

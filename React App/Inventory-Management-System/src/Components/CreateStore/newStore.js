@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 const styles = {
     card: {
-        width: '65%',
+        width: '90%',
         height: 'auto',
         position: 'relative',
         top: '50px'
@@ -30,8 +30,8 @@ class CreateNewStore extends Component {
         }
         //  console.log(NewStores);
         this.props.NewStoreAction(NewStores);
-         storeName = this.refs.storeName.value=" ";
-         location = this.refs.location.value=" ";
+        storeName = this.refs.storeName.value = " ";
+        location = this.refs.location.value = " ";
     }
     render() {
         return (
@@ -50,7 +50,9 @@ class CreateNewStore extends Component {
                                     <input type="text" className="form-control" ref="location" placeholder="Store location" />
                                 </div>
                                 <div className="form-group ">
-                                    <button type="submit" className="btn btn-info custom-button col-md-12">Create Store</button>
+                                    <mat.RaisedButton type="submit" label="Create Store" primary={true} />
+
+                                    {/*<button type="submit" className="btn btn-info custom-button ">Create Store</button>*/}
                                 </div>
                             </form>
                         </mat.CardText>

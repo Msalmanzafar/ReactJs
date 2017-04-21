@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 import * as mat from 'material-ui';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import {OpenStore} from '../../Actions/newStoreAction';
+import {ProductsAction} from '../../Actions/ProductsActions'
 
 const style = {
-    height: 110,
-    width: 450,
-    margin: 20,
+    height: 'auto',
+    width: '90%',
+    margin: '20px',
     textAlign: 'left',
     display: 'inline-block',
     marginTop: '-15px'
@@ -28,7 +29,7 @@ const styles = {
         backgroundColor: 'blue'
     },
     card: {
-        width: '65%',
+        width: '90%',
         height: 'auto',
         position: 'relative',
         top: '50px'
@@ -47,6 +48,7 @@ class AvailibaleStores extends Component {
     OpenStore(keys) {
         // console.log("open store val", keys)
         this.props.OpenStore(keys);
+        this.props.ProductsAction(keys);
     }
     render() {
         let AllStatusDispay = Object.keys(this.props.AvailStatus).map((key, index) => {
@@ -99,6 +101,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     OpenStore: (keys) => {
       dispatch(OpenStore(keys))
+    },
+    ProductsAction: (keys) => {
+      dispatch(ProductsAction(keys))
     },
   };
 }

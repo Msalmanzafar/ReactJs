@@ -12,9 +12,8 @@ export function SignInAction(userLogin) {
                 browserHistory.push('/home');
             })
             .catch((error) => {
-                // var errorCode = error.code;
                 var errorMessage = error.message;
-                // var errorMessage = "The email address or password you entered is not valid";
+                dispatch(AuthErrors(errorMessage))
                 console.log(errorMessage);
             });
     }
@@ -24,9 +23,9 @@ export function LogOutAction() {
     return dispatch => {
        firebase.auth().signOut()
         .then(()=> {
+            dispatch(userSignInUpdate())
             browserHistory.push('/LogIn');
             console.log('success');
-            dispatch(userSignInUpdate());
         }).catch((error)=> {
             console.log(error);
         });
@@ -36,6 +35,13 @@ export function LogOutAction() {
 function userSignInUpdate(payload) {
     return {
         type: ActionTypes.SiginUpadte,
+        payload
+    }
+}
+
+function AuthErrors(payload){
+    return {
+        type: ActionTypes.AuthErrors,
         payload
     }
 }

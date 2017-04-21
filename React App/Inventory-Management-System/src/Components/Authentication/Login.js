@@ -6,14 +6,22 @@ import * as mat from 'material-ui';
 
 const styles = {
     card: {
-        width: '65%',
+        width: '90%',
         height: 'auto',
         position: 'relative',
-        top: '50px'
+        top: '50px',
+        // backgroundColor: '#d2b48c'
     },
-    login:{
-        textAlign: 'left'
-    }
+    login: {
+        textAlign: 'left',
+    },
+    title: {
+        textAlign: 'left',
+        // backgroundColor: '#8b4513'
+    },
+    // input: {
+    //     backgroundColor: '#f4a460'
+    // }
 }
 
 class LogIn extends Component {
@@ -25,24 +33,26 @@ class LogIn extends Component {
         ev.preventDefault();
         let email = this.refs.email.value;
         let password = this.refs.password.value;
-        if (email === '' || email === ' ' || password === '' || password === ' ') {
-            alert("Please Write your email and password");
-        } else {
-            let userLogin = {
-                email: email,
-                password: password
-            }
-            this.props.SignInAction(userLogin);
-            email = this.refs.email.value = '';
-            password = this.refs.password.value = '';
+
+        let userLogin = {
+            email: email,
+            password: password
         }
+        this.props.SignInAction(userLogin);
+        email = this.refs.email.value = '';
+        password = this.refs.password.value = '';
+
     }
     render() {
+        const {
+            Errors,
+        } = this.props;
+        // console.log("Erors", this.props.Errors);
         return (
             <div >
                 <center>
                     <mat.Card style={styles.card} zDepth={2}>
-                        <mat.AppBar style={styles.login} title="Log In" showMenuIconButton={false} />
+                        <mat.AppBar style={styles.title} title="Log In" showMenuIconButton={false} />
                         <mat.CardText>
                             <form onSubmit={this.SignIn} style={styles.login}>
                                 <div className="form-group " >
@@ -53,10 +63,19 @@ class LogIn extends Component {
                                     <label htmlFor="password">Enter Password</label>
                                     <input type="password" className="form-control" ref="password" placeholder="Enter password" />
                                 </div>
+                                {(Errors) ? (
+                                    <div>
+                                        <p className="alert alert-danger">{Errors}</p>
+                                    </div>
+                                ) : (
+                                        <span></span>
+                                    )}
                                 <div className="form-group ">
-                                    <button type="submit" className="btn btn-success custom-button">Log In</button>
+                                    <mat.RaisedButton type="submit" label="Log In" primary={true} />
+
+                                    {/*<button type="submit" className="btn btn-success custom-button">Log In</button>*/}
                                 </div>
-                               
+
                             </form>
                         </mat.CardText>
                     </mat.Card>
@@ -68,7 +87,8 @@ class LogIn extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        auth: state.AuthReducer
+        auth: state.AuthReducer,
+        Errors: state.AuthReducer.authErrors
     };
 }
 const mapDispatchToProps = (dispatch) => {
