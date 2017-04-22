@@ -4,16 +4,21 @@ import * as firebase from 'firebase';
 
 export function ProductsAction(keys) {
     return dispatch => {
-        // console.log("keys",keys)
-        firebase.database().ref('StoresProducts/').on('child_added', (data) => {
+        console.log("keys", keys)
+        firebase.database().ref('StoresProducts/').on('value', (data) => {
             let obj = data.val();
-            obj.objKeys = data.key;
-            // console.log("All products data", obj);
-
-            if (keys === obj.StoreKey) {
-                console.log("Store products data", obj);
-                dispatch(ProductsDispatch(obj));
+            let SuposeArray = [];
+            let localArray = [];
+            for (var prop in obj) {
+                SuposeArray.push(obj[prop])
             }
+            for (var i = 0; i < SuposeArray.length; i++) {
+                if (SuposeArray[i].StoreKey === keys) {
+                    localArray.push(SuposeArray[i])
+                }
+            }
+            console.log('out side===',localArray)
+                dispatch(ProductsDispatch(localArray));
 
         })
     }

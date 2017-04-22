@@ -2,106 +2,61 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 
-
-const styles = {
-    propContainer: {
-        width: 200,
-        overflow: 'hidden',
-        margin: '20px auto 0',
-    },
-    propToggleHeader: {
-        margin: '20px auto 10px',
-    },
+const style = {
+    height: 'auto',
+    width: '90%',
+    margin: '20px',
+    textAlign: 'left',
+    display: 'inline-block',
+    marginTop: '-15px'
 };
-
-const tableData = [
-    {
-        name: 'John Smith',
-        status: 'Employed',
-        selected: true,
+const styles = {
+    FlatButton: {
+        float: 'right'
     },
-    {
-        name: 'Randal White',
-        status: 'Unemployed',
+    email: {
+        color: '#74847c'
     },
-    {
-        name: 'Stephanie Sanders',
-        status: 'Employed',
-        selected: true,
+    status: {
+        float: 'right',
+        color: '#74847c',
+        fontSize: '13px',
     },
-    {
-        name: 'Steve Brown',
-        status: 'Employed',
+    Assignment: {
+        backgroundColor: 'blue'
     },
-    {
-        name: 'Joyce Whitten',
-        status: 'Employed',
+    card: {
+        width: '90%',
+        height: 'auto',
+        position: 'relative',
+        top: '50px'
     },
-    {
-        name: 'Samuel Roberts',
-        status: 'Employed',
-    },
-    {
-        name: 'Adam Moore',
-        status: 'Employed',
-    },
-];
-class AvailibaleProducts extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            fixedHeader: true,
-            fixedFooter: true,
-            stripedRows: false,
-            showRowHover: false,
-            selectable: true,
-            multiSelectable: false,
-            enableSelectAll: false,
-            deselectOnClickaway: true,
-            showCheckboxes: true,
-            height: '300px',
-        };
+    store: {
+        textAlign: 'left'
     }
-    handleToggle = (event, toggled) => {
-        this.setState({
-            [event.target.name]: toggled,
-        });
-    };
 
-    handleChange = (event) => {
-        this.setState({ height: event.target.value });
-    };
+}
+class AvailibaleProducts extends Component {
+
     render() {
-        /*let AvailProducts = Object.keys(this.props.Products).map((key, index) => {
-            let val = this.props.Products[key];
-            let keys = key;
-            return (
-                <mat.Paper style={style} zDepth={1} key={index} >
-                    <mat.List >
-                        <mat.ListItem
-                            disabled={true}
-                            leftAvatar={
-                                <mat.Avatar src="" />
-                            }
-                        >
-                            <span ><b>{val.name}</b></span>
-                            <span >{val.crimeType}</span><br />
-                            <span >{val.emailId}</span>
-                            <span style={styles.status}>{val.status}</span><br />
 
-                            <mat.FlatButton
-                                label="Details"
-                                style={styles.FlatButton}
-                            />
-                        </mat.ListItem>
-                    </mat.List>
-                </mat.Paper>
-            )
-        })*/
+        console.log("AllAvailibale", this.props.Products)
         return (
             <div>
                 <p>something</p>
+                {this.props.Products.map((v, i) => {
+                    return (
+                        <tbody key={i}>
+                            <tr>
+                                <td>{v.productName}</td>
+                                <td>{v.quantity}</td>
+                                <td>{v.dates}</td>
+
+                            </tr>
+                        </tbody>
+                    )
+                }
+                )}
             </div>
         );
     }
