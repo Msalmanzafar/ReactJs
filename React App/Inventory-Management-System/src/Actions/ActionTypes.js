@@ -7,6 +7,6 @@ const ActionTypes={
     OpenStoreData: 'OpenStoreData',
 
     AvailbaleProducts: 'AvailbaleProducts',
-    
+    SalesAction: 'SalesAction',
 }
 export default ActionTypes;

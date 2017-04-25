@@ -4,7 +4,7 @@ import * as firebase from 'firebase';
 
 export function ProductsAction(keys) {
     return dispatch => {
-        console.log("keys", keys)
+        // console.log("keys", keys)
         firebase.database().ref('StoresProducts/').on('value', (data) => {
             let obj = data.val();
             let SuposeArray = [];

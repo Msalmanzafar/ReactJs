@@ -142,7 +142,7 @@ class MyStore extends Component {
                                     <input type="number" className="form-control" ref="quantity" />
                                 </div>
                                 <div className="form-group ">
-                                    <label htmlFor="quantity">Purchasing Data</label>
+                                    <label htmlFor="quantity">Purchasing Date</label>
                                     <input type="date" className="form-control" ref="dates" />
                                 </div>
                                 <div className="form-group ">

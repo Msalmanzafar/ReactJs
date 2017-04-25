@@ -8,6 +8,8 @@ import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MdMenu from 'react-icons/lib/md/menu';
 import {AvailibaleActions} from '../../Actions/newStoreAction'
+import {SalesProductsAction} from '../../Actions/SalesActions'
+
 
 
 const style = {
@@ -36,7 +38,13 @@ class DrawerUndockedExample extends React.Component {
     super(props);
     this.CreateStore = this.CreateStore.bind(this);
     this.AvailibaleStores = this.AvailibaleStores.bind(this);
+    this.SaleProduct = this.SaleProduct.bind(this);
     this.state = { open: false };
+  }
+  SaleProduct(){
+    this.props.SalesProductsAction();
+    browserHistory.push('/saleproduct');
+    this.setState({ open: false });
   }
   AvailibaleStores() {
     this.props.AvailibaleActions()
@@ -74,6 +82,7 @@ class DrawerUndockedExample extends React.Component {
           <div>
             <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
             <MenuItem onClick={this.AvailibaleStores}>Availibale Stores</MenuItem>
+            <MenuItem onClick={this.SaleProduct}>Sale Product</MenuItem>
           </div>
 
           <RaisedButton
@@ -96,6 +105,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     AvailibaleActions: () => {
       dispatch(AvailibaleActions())
+    },
+    SalesProductsAction: () => {
+      dispatch(SalesProductsAction())
     },
   };
 }
