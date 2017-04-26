@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
-
+import { SaledProducts, ProductPrice } from '../../Actions/SalesActions';
 
 const styles = {
     card: {
@@ -9,30 +9,76 @@ const styles = {
         height: 'auto',
         position: 'relative',
         top: '50px',
-        // backgroundColor: '#d2b48c'
     },
     login: {
         textAlign: 'left',
     },
     title: {
         textAlign: 'left',
-        // backgroundColor: '#8b4513'
     },
-    // input: {
-    //     backgroundColor: '#f4a460'
-    // }
 }
 class SaleProducts extends Component {
+    constructor(props) {
+        super(props);
+        this.SaleProduct = this.SaleProduct.bind(this);
+        this.ProductCheck = this.ProductCheck.bind(this);
+        this.QunatityCheck = this.QunatityCheck.bind(this);
+
+        this.state = {
+            QunatityChecks: "",
+
+        }
+    }
+
+    ProductCheck() {
+        var SelectedProduct = this.refs.store.value;
+        // console.log("productName",product);
+        this.props.ProductPrice(SelectedProduct);
+    }
+    QunatityCheck() {
+        var quantity = this.refs.quantity.value;
+        console.log("Your Quantity", quantity);
+        // let Dprice = this.props.SelectPrice.quantity
+        // if (Dprice > quantity) {
+        //     this.setState({
+        //         QunatityChecks: '',
+        //     })
+        // }
+        // else {
+        //      this.setState({
+        //         QunatityChecks: 'Requaired Quantity not Available in Stock',
+        //     })
+        //     quantity = this.refs.quantity.value='';
+        // }
+    }
+    SaleProduct(ev) {
+        ev.preventDefault()
+        let productName = this.refs.store.value;
+        let quantity = this.refs.quantity.value;
+        let SaleDates = this.refs.dates.value;
+        let unitPrice = this.refs.price.value;
+        let TotalPrice = this.refs.Tprice.value;
+
+        let SalePro = {
+            productName: productName,
+            quantity: quantity,
+            SaleDates: SaleDates,
+            unitPrice: unitPrice,
+            TotalPrice: TotalPrice
+        };
+        // console.log("sales Data", SalePro);
+        this.props.SaledProducts(SalePro);
+        
+    }
     render() {
-        // let array = [1, 2, 31, 21, 21];
-        let Options = Object.keys(this.props.AllStores).map((key, index) => {
+        let productNames = Object.keys(this.props.AllStores).map((key, index) => {
             let val = this.props.AllStores[key];
-            // let keys = key;
             return (
                 <option key={index}>{val.productName}</option>
             )
         })
-        console.log("Sales", this.props.AllStores)
+        let unitPrice = this.props.SelectPrice.price;
+        console.log("Sales", this.props.SelectPrice.quantity)
         return (
             <div >
                 <center>
@@ -43,14 +89,21 @@ class SaleProducts extends Component {
                                 <div className="form-group " >
                                     <div className="form-group">
                                         <label htmlFor="store">Select Product</label>
-                                        <select className="form-control" ref='store' >
-                                            {Options}
+                                        <select className="form-control" ref='store' onChange={this.ProductCheck} >
+                                            {productNames}
                                         </select>
                                     </div>
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Enter Quantity</label>
-                                    <input type="number" className="form-control" ref="quantity" placeholder="Enter quantity" />
+                                    <input type="number" className="form-control" onChange={this.QunatityCheck} ref="quantity" placeholder="Enter quantity" />
+                                    {(this.state.QunatityChecks) ? (
+                                        <div>
+                                            <p className="alert alert-danger text-center">{this.state.QunatityChecks}</p>
+                                        </div>
+                                    ) : (
+                                            <span></span>
+                                        )}
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Sale Date</label>
@@ -58,11 +111,13 @@ class SaleProducts extends Component {
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="price">Unit Price</label>
-                                    <input type="number" className="form-control" ref="price" placeholder="Enter piece price"/>
+                                    <select className="form-control" ref='price' >
+                                        <option value="">{unitPrice}</option>
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <label htmlFor="Tprice">Total Price</label>
-                                    <input type="number" className="form-control" ref="Tprice" placeholder="Enter total price"/>
+                                    <input type="number" className="form-control" ref="Tprice" placeholder="Enter total price" />
                                 </div>
                                 <div className="form-group ">
                                     <mat.RaisedButton type="submit" label="Sale Now" primary={true} />
@@ -80,14 +135,18 @@ class SaleProducts extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        AllStores: state.SalesReducers.SalesArray
+        AllStores: state.SalesReducers.SalesArray,
+        SelectPrice: state.SalesReducers.SelectedArray
     };
 }
-// const mapDispatchToProps = (dispatch) => {
-//   return {
-//     AvailibaleActions: () => {
-//       dispatch(AvailibaleActions())
-//     },
-//   };
-// }
-export default connect(mapStateToProps)(SaleProducts);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        SaledProducts: (SalePro) => {
+            dispatch(SaledProducts(SalePro));
+        },
+        ProductPrice: (SelectedProduct) => {
+            dispatch(ProductPrice(SelectedProduct));
+        }
+    };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SaleProducts);

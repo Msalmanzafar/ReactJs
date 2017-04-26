@@ -7,7 +7,7 @@ import AvailibaleProducts from '../Products/availibalePro';
 
 
 const styles = {
-    dialog:{
+    dialog: {
         width: '100%',
         height: 'auto'
     },
@@ -45,6 +45,7 @@ class MyStore extends Component {
     state = {
         open: false,
     };
+    
     constructor(props) {
         super(props);
         this.NewProduct = this.NewProduct.bind(this);
@@ -56,26 +57,22 @@ class MyStore extends Component {
         let description = this.refs.description.value;
         let quantity = this.refs.quantity.value;
         let dates = this.refs.dates.value;
+        let price = this.refs.price.value;
         let StoreKey = this.props.StoreDash.objKey;
-        
+
         let addProducts = {
             productName: productName,
             manufacturer: manufacturer,
             description: description,
             quantity: quantity,
             dates: dates,
+            price: price,
             StoreKey: StoreKey
         };
         // console.log(addProducts);
         this.props.AddProdutsAction(addProducts);
 
-        productName = this.refs.productName.value = "";
-        manufacturer = this.refs.manufacturer.value = "";
-        description = this.refs.description.value = "";
-        quantity = this.refs.quantity.value = "";
-        setInterval(()=>{
-            this.setState({ open: false });
-        },2000);
+        this.setState({ open: false });
     }
     newProduct(keys) {
         this.setState({ open: true });
@@ -111,7 +108,7 @@ class MyStore extends Component {
                         />
                         <mat.CardText>
                             {/*AvailibaleProducts*/}
-                            <AvailibaleProducts/>
+                            <AvailibaleProducts />
                         </mat.CardText>
                     </mat.Card>
                     <div>
@@ -146,7 +143,11 @@ class MyStore extends Component {
                                     <input type="date" className="form-control" ref="dates" />
                                 </div>
                                 <div className="form-group ">
-                                     <mat.RaisedButton type="submit" label="Add Product" primary={true}  />
+                                    <label htmlFor="price">Unit Price</label>
+                                    <input type="number" className="form-control" ref="price" />
+                                </div>
+                                <div className="form-group ">
+                                    <mat.RaisedButton type="submit" label="Add Product" primary={true} />
                                 </div>
                             </form>
                         </mat.Dialog>

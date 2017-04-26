@@ -57,11 +57,11 @@ class LogIn extends Component {
                             <form onSubmit={this.SignIn} style={styles.login}>
                                 <div className="form-group " >
                                     <label htmlFor="email">Email address</label>
-                                    <input type="email" className="form-control" ref="email" placeholder="Enter email" />
+                                    <input defaultValue="salmanzafar@gmail.com" type="email" className="form-control" ref="email" placeholder="Enter email" />
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="password">Enter Password</label>
-                                    <input type="password" className="form-control" ref="password" placeholder="Enter password" />
+                                    <input defaultValue="123456" type="password" className="form-control" ref="password" placeholder="Enter password" />
                                 </div>
                                 {(Errors) ? (
                                     <div>

@@ -8,5 +8,6 @@ const ActionTypes={
 
     AvailbaleProducts: 'AvailbaleProducts',
     SalesAction: 'SalesAction',
+    SelectedProducts: 'SelectedProducts',
 }
 export default ActionTypes;
