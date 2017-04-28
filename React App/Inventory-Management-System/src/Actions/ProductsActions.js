@@ -7,9 +7,11 @@ export function ProductsAction(keys) {
         // console.log("keys", keys)
         firebase.database().ref('StoresProducts/').on('value', (data) => {
             let obj = data.val();
+
             let SuposeArray = [];
             let localArray = [];
             for (var prop in obj) {
+                obj[prop].prokey = prop;
                 SuposeArray.push(obj[prop])
             }
             for (var i = 0; i < SuposeArray.length; i++) {
@@ -17,8 +19,8 @@ export function ProductsAction(keys) {
                     localArray.push(SuposeArray[i])
                 }
             }
-            console.log('out side===',localArray)
-                dispatch(ProductsDispatch(localArray));
+            console.log('out side===', localArray)
+            dispatch(ProductsDispatch(localArray));
 
         })
     }

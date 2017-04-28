@@ -7,8 +7,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MdMenu from 'react-icons/lib/md/menu';
-import {AvailibaleActions} from '../../Actions/newStoreAction'
-import {SalesProductsAction} from '../../Actions/SalesActions'
+import { AvailibaleActions } from '../../Actions/newStoreAction'
+import { SalesProductsAction, SaledListActions } from '../../Actions/SalesActions'
 
 
 
@@ -39,9 +39,15 @@ class DrawerUndockedExample extends React.Component {
     this.CreateStore = this.CreateStore.bind(this);
     this.AvailibaleStores = this.AvailibaleStores.bind(this);
     this.SaleProduct = this.SaleProduct.bind(this);
+    this.SalesDetails = this.SalesDetails.bind(this);
     this.state = { open: false };
   }
-  SaleProduct(){
+  SalesDetails() {
+    this.props.SaledListActions();
+    browserHistory.push('/salesdetails');
+    this.setState({ open: false });
+  }
+  SaleProduct() {
     this.props.SalesProductsAction();
     browserHistory.push('/saleproduct');
     this.setState({ open: false });
@@ -83,6 +89,7 @@ class DrawerUndockedExample extends React.Component {
             <MenuItem onClick={this.CreateStore}>Create Store</MenuItem>
             <MenuItem onClick={this.AvailibaleStores}>Availibale Stores</MenuItem>
             <MenuItem onClick={this.SaleProduct}>Sale Product</MenuItem>
+            <MenuItem onClick={this.SalesDetails}>Sales Details</MenuItem>
           </div>
 
           <RaisedButton
@@ -109,6 +116,9 @@ const mapDispatchToProps = (dispatch) => {
     SalesProductsAction: () => {
       dispatch(SalesProductsAction())
     },
+    SaledListActions: () => {
+      dispatch(SaledListActions());
+    }
   };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerUndockedExample);

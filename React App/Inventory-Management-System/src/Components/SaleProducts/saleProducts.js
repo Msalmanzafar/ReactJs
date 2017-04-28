@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
-import { SaledProducts, ProductPrice } from '../../Actions/SalesActions';
+import { SaledProducts, ProductPrice, UpgradeProducts } from '../../Actions/SalesActions';
 
 const styles = {
     card: {
@@ -38,18 +38,8 @@ class SaleProducts extends Component {
     QunatityCheck() {
         var quantity = this.refs.quantity.value;
         console.log("Your Quantity", quantity);
-        // let Dprice = this.props.SelectPrice.quantity
-        // if (Dprice > quantity) {
-        //     this.setState({
-        //         QunatityChecks: '',
-        //     })
-        // }
-        // else {
-        //      this.setState({
-        //         QunatityChecks: 'Requaired Quantity not Available in Stock',
-        //     })
-        //     quantity = this.refs.quantity.value='';
-        // }
+        // lest Dprice = this.props.SelectPrice.quantity;
+
     }
     SaleProduct(ev) {
         ev.preventDefault()
@@ -68,17 +58,20 @@ class SaleProducts extends Component {
         };
         // console.log("sales Data", SalePro);
         this.props.SaledProducts(SalePro);
-        
+        let Objects = this.props.SelectPrice;
+        this.props.UpgradeProducts(Objects,SalePro);
     }
     render() {
         let productNames = Object.keys(this.props.AllStores).map((key, index) => {
             let val = this.props.AllStores[key];
+            // let IdKeys = key;
+            // console.log(IdKeys);
             return (
                 <option key={index}>{val.productName}</option>
             )
         })
         let unitPrice = this.props.SelectPrice.price;
-        console.log("Sales", this.props.SelectPrice.quantity)
+        console.log("Quantity--------------", this.props.SelectPrice.quantity)
         return (
             <div >
                 <center>
@@ -96,14 +89,9 @@ class SaleProducts extends Component {
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Enter Quantity</label>
-                                    <input type="number" className="form-control" onChange={this.QunatityCheck} ref="quantity" placeholder="Enter quantity" />
-                                    {(this.state.QunatityChecks) ? (
-                                        <div>
-                                            <p className="alert alert-danger text-center">{this.state.QunatityChecks}</p>
-                                        </div>
-                                    ) : (
-                                            <span></span>
-                                        )}
+                                    <input type="number" className="form-control"
+                                        onChange={this.QunatityCheck} ref="quantity" placeholder="Enter quantity"
+                                    />
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Sale Date</label>
@@ -112,7 +100,7 @@ class SaleProducts extends Component {
                                 <div className="form-group">
                                     <label htmlFor="price">Unit Price</label>
                                     <select className="form-control" ref='price' >
-                                        <option value="">{unitPrice}</option>
+                                        <option >{unitPrice}</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
@@ -146,6 +134,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         ProductPrice: (SelectedProduct) => {
             dispatch(ProductPrice(SelectedProduct));
+        },
+        UpgradeProducts: (Objects,SalePro) => {
+            dispatch(UpgradeProducts(Objects,SalePro));
         }
     };
 }

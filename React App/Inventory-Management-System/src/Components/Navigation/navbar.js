@@ -7,17 +7,16 @@ import DrawerUndockedExample from './navbar-child'
 
 const styles = {
   appBar: {
-    // backgroundColor: '#8b4513'
+    // backgroundColor: '#00b5a4',
   },
   title: {
     cursor: 'pointer',
   },
   headerButton: {
-    // border: '2px solid red',
     marginTop: '5px',
   },
   button: {
-    color: '#fafbfc',
+    color: 'white',
     fontFamily: 'Verdana'
   },
   logo: {
@@ -39,10 +38,11 @@ class NavBar extends Component {
         auth,
     } = this.props;
     return (
-      <div>
+          
+      <div >
         <mat.AppBar
-          title="Inventory Store"
           style={styles.appBar}
+          title={<span className="colors">Inventory Store</span>}
           iconElementLeft={
             <span>
               {(auth === true) ? (

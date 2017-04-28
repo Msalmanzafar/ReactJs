@@ -4,7 +4,7 @@ import * as mat from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { AddProdutsAction } from '../../Actions/newStoreAction';
 import AvailibaleProducts from '../Products/availibalePro';
-
+import FaRepeat from 'react-icons/lib/fa/repeat';
 
 const styles = {
     dialog: {
@@ -22,9 +22,9 @@ const styles = {
         color: '#74847c',
         fontSize: '13px',
     },
-    Assignment: {
-        backgroundColor: 'blue'
-    },
+    // Assignment: {
+    //     backgroundColor: '#e5d6b3'
+    // },
     card: {
         width: '90%',
         height: 'auto',
@@ -32,7 +32,13 @@ const styles = {
         top: '50px'
     },
     store: {
-        textAlign: 'left'
+        textAlign: 'left',
+        // backgroundColor: '#00d084',
+    },
+    refresh: {
+        // backgroundColor: '#ff6900',
+        marginRight: 10,
+        marginTop: 5,
     }
 
 }
@@ -45,7 +51,7 @@ class MyStore extends Component {
     state = {
         open: false,
     };
-    
+
     constructor(props) {
         super(props);
         this.NewProduct = this.NewProduct.bind(this);
@@ -103,11 +109,13 @@ class MyStore extends Component {
                                     <mat.FloatingActionButton onClick={this.newProduct.bind(this)} mini={true} secondary={true} style={style}>
                                         <ContentAdd />
                                     </mat.FloatingActionButton>
+                                    <mat.FloatingActionButton id="demo"  mini={true} style={styles.refresh}>
+                                        <FaRepeat />
+                                    </mat.FloatingActionButton>
                                 </div>
                             }
                         />
-                        <mat.CardText>
-                            {/*AvailibaleProducts*/}
+                        <mat.CardText style={styles.Assignment}>
                             <AvailibaleProducts />
                         </mat.CardText>
                     </mat.Card>
@@ -121,7 +129,7 @@ class MyStore extends Component {
                             style={styles.dialog}
                             autoScrollBodyContent={true}
                         >
-                            <form onSubmit={this.NewProduct} style={styles.store}>
+                            <form onSubmit={this.NewProduct} >
                                 <div className="form-group " >
                                     <label htmlFor="product">Product name</label>
                                     <input type="text" className="form-control" ref="productName" placeholder="Write Product Name" />

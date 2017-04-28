@@ -3,6 +3,7 @@ import ActionTypes from '../Actions/ActionTypes';
 const SalesReducers = (state = {
     SalesArray :[],
     SelectedArray: [],
+    SaledList: [],
 } , action) => {
     switch(action.type){
       case ActionTypes.SalesAction:{
@@ -15,6 +16,12 @@ const SalesReducers = (state = {
           return state={
               ...state,
             SelectedArray: action.payload  
+          };
+      }
+      case ActionTypes.SaledListAction:{
+          return state={
+              ...state,
+            SaledList: action.payload  
           };
       }
         default:{}

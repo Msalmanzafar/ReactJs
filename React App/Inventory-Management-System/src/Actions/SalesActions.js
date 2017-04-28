@@ -14,7 +14,7 @@ export function SalesProductsAction() {
 
 export function SaledProducts(SalePro) {
     return dispatch => {
-        // console.log("Sales Product", SalePro);
+        console.log("Sales Product---", SalePro);
         firebase.database().ref('SaledProducts/').push(SalePro)
             .then(() => {
                 alert('Product Saled');
@@ -27,11 +27,29 @@ export function SaledProducts(SalePro) {
     }
 }
 
+export function UpgradeProducts(Objects, SalePro) {
+    return dispatch => {
+        // console.log("Objects=======",Objects)
+        // console.log("SalePro=======",SalePro)
+        
+        Objects.quantity = Objects.quantity - SalePro.quantity;
+        let updateKey = Objects.prokey;
+        firebase.database().ref('/StoresProducts/' + updateKey + '/').set(Objects)
+            .then(() => {
+                alert("data status set");
+            })
+            .catch((error) => {
+                var errorMessage = error.message;
+                alert(errorMessage);
+            });
+    }
+}
+
 export function ProductPrice(SelectedProduct) {
     return dispatch => {
         firebase.database().ref('/StoresProducts/').on('child_added', (data) => {
             let obj = data.val();
-            // console.log("Sales obj---", obj);
+            obj.prokey = data.key;
             if (SelectedProduct === obj.productName) {
                 // console.log("selected Product ", obj)
                 dispatch(SelectedPriceProduct(obj))
@@ -41,8 +59,24 @@ export function ProductPrice(SelectedProduct) {
 }
 
 
-function SelectedPriceProduct(payload){
-    return{
+export function SaledListActions() {
+    return dispatch => {
+        firebase.database().ref('SaledProducts/').on('value', (data) => {
+            let obj = data.val();
+            dispatch(SaledList(obj));
+        })
+    }
+}
+
+
+function SaledList(payload) {
+    return {
+        type: ActionTypes.SaledListAction,
+        payload
+    }
+}
+function SelectedPriceProduct(payload) {
+    return {
         type: ActionTypes.SelectedProducts,
         payload
     }

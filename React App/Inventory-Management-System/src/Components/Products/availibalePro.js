@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 
+const styles = {
+    Assignment: {
+        color: '#ff5722',
+        backgroundColor: '#d9d9d9',
+    },
+    heading: {
+        color: '#ff5722',
+        fontSize: '1.2em'
+    },
+
+}
 
 class AvailibaleProducts extends Component {
 
@@ -11,13 +22,13 @@ class AvailibaleProducts extends Component {
         let Header = () => {
             return (
                 <div>
-                    <mat.Table>
+                    <mat.Table style={styles.Assignment}>
                         <mat.TableHeader>
                             <mat.TableRow>
-                                <mat.TableHeaderColumn>Product Name</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn>Quantity</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn>Purchase Date</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn>Manufactur</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Product Name</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Quantity</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Purchase Date</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Manufactur</mat.TableHeaderColumn>
                             </mat.TableRow>
                         </mat.TableHeader>
                     </mat.Table>
@@ -30,13 +41,13 @@ class AvailibaleProducts extends Component {
                 <Header />
                 {this.props.Products.map((v, i) => {
                     return (
-                        <mat.Table key={i}>
+                        <mat.Table style={styles.Assignment} key={i}>
                             <mat.TableBody >
                                 <mat.TableRow>
-                                    <mat.TableRowColumn>{v.productName}</mat.TableRowColumn>
-                                    <mat.TableRowColumn>{v.quantity}</mat.TableRowColumn>
-                                    <mat.TableRowColumn>{v.dates}</mat.TableRowColumn>
-                                    <mat.TableRowColumn>{v.manufacturer}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.productName}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.quantity}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.dates}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.manufacturer}</mat.TableRowColumn>
                                 </mat.TableRow>
                             </mat.TableBody>
                         </mat.Table>
