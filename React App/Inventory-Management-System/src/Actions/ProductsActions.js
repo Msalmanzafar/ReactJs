@@ -19,7 +19,7 @@ export function ProductsAction(keys) {
                     localArray.push(SuposeArray[i])
                 }
             }
-            console.log('out side===', localArray)
+            // console.log('out side===', localArray)
             dispatch(ProductsDispatch(localArray));
 
         })

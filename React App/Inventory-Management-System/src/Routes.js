@@ -12,7 +12,8 @@ import CreateNewStore from './Components/CreateStore/newStore';
 import AvailibaleStores from './Components/CreateStore/availibaleStores';
 import MyStore from './Components/AddNewPro/StoreHome';
 import SaleProducts from './Components/SaleProducts/saleProducts';
-import SaledDetails from './Components/SaleProducts/saledData'
+import SaledDetails from './Components/SaleProducts/saledData';
+import AppTheme from "./Apptheme";
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
@@ -30,7 +31,7 @@ firebase.initializeApp(config);
 export default class Routes extends Component {
     render() {
         return (
-            <MuiThemeProvider >
+            <MuiThemeProvider muiTheme={AppTheme}>
                 <Router history={browserHistory}>
                     <Route path="/" component={NavBar}>
                         <IndexRoute component={LogoPage}/>

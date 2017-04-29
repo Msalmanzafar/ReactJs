@@ -5,7 +5,7 @@ const styles = {
     logo: {
         width: '60vw',
         height: 'auto',
-        top: '50px',
+        top: '35px',
         position:'relative'
     }
 }

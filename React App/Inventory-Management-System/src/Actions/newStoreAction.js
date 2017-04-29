@@ -33,7 +33,7 @@ export function AvailibaleActions() {
 }
 export function OpenStore(keys) {
     return dispatch => {
-        console.log("open store", keys);
+        // console.log("open store", keys);
         firebase.database().ref('InventoryStore/').on('child_added', (data) => {
             let obj = data.val();
             obj.objKey = data.key;

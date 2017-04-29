@@ -4,7 +4,7 @@ import * as mat from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { AddProdutsAction } from '../../Actions/newStoreAction';
 import AvailibaleProducts from '../Products/availibalePro';
-import FaRepeat from 'react-icons/lib/fa/repeat';
+// import FaRepeat from 'react-icons/lib/fa/repeat';
 
 const styles = {
     dialog: {
@@ -109,9 +109,9 @@ class MyStore extends Component {
                                     <mat.FloatingActionButton onClick={this.newProduct.bind(this)} mini={true} secondary={true} style={style}>
                                         <ContentAdd />
                                     </mat.FloatingActionButton>
-                                    <mat.FloatingActionButton id="demo"  mini={true} style={styles.refresh}>
+                                    {/*<mat.FloatingActionButton id="demo"  mini={true} style={styles.refresh}>
                                         <FaRepeat />
-                                    </mat.FloatingActionButton>
+                                    </mat.FloatingActionButton>*/}
                                 </div>
                             }
                         />

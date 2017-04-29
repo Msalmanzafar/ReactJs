@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 
 const styles = {
     Assignment: {
-        color: '#ff5722',
-        backgroundColor: '#d9d9d9',
+        // color: '#ff5722',
+        // backgroundColor: '#d9d9d9',
     },
     heading: {
-        color: '#ff5722',
-        fontSize: '1.2em'
+        // color: '#ff5722',
+        fontSize: '1em'
     },
 
 }

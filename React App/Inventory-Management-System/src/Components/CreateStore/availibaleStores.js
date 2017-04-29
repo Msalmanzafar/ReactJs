@@ -26,7 +26,7 @@ const styles = {
         fontSize: '13px',
     },
     Assignment: {
-        backgroundColor: 'blue'
+        // backgroundColor: 'blue'
     },
     card: {
         width: '90%',

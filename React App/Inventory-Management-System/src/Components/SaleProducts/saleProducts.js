@@ -71,7 +71,7 @@ class SaleProducts extends Component {
             )
         })
         let unitPrice = this.props.SelectPrice.price;
-        console.log("Quantity--------------", this.props.SelectPrice.quantity)
+        // console.log("Quantity--------------", this.props.SelectPrice.quantity)
         return (
             <div >
                 <center>
