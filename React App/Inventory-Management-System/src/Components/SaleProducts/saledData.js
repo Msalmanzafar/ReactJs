@@ -1,17 +1,10 @@
 
-
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
+import FaTrashO from 'react-icons/lib/fa/trash-o';
+import {DeleteSalesProduct} from '../../Actions/deleteActions'
 
-// const style = {
-//     height: 'auto',
-//     width: '90%',
-//     margin: '20px',
-//     textAlign: 'left',
-//     display: 'inline-block',
-//     marginTop: '-15px'
-// };
 const styles = {
     FlatButton: {
         float: 'right'
@@ -41,14 +34,17 @@ const styles = {
         // color: '#ff5722',
         fontSize: '1em'
     },
-    //  Assignment: {
-    //     color: '#ff5722',
-    //     backgroundColor: '#d9d9d9',
-    // },
+     delete:{
+        fontSize: '1.7em',
+        cursor: 'pointer',
+    },
 }
 
 class SaledDetails extends Component {
-
+    Delete(keys) {
+        // console.log("==========", keys)
+        this.props.DeleteSalesProduct(keys);
+    }
     render() {
         let Header = () => {
             return (
@@ -59,7 +55,8 @@ class SaledDetails extends Component {
                                 <mat.TableHeaderColumn style={styles.heading}>Product Name</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Quantity</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Sales Date</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn style={styles.heading}>Manufactur</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Total Price</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Delete</mat.TableHeaderColumn>
                             </mat.TableRow>
                         </mat.TableHeader>
                     </mat.Table>
@@ -69,6 +66,7 @@ class SaledDetails extends Component {
         // console.log("AllAvailibale", this.props.Products)
         let SalesDetails = Object.keys(this.props.List).map((key, index) => {
             let val = this.props.List[key];
+            let keys = key;
             return (
                 <mat.Table style={styles.Assignment} key={index}>
                     <mat.TableBody >
@@ -77,6 +75,9 @@ class SaledDetails extends Component {
                             <mat.TableRowColumn style={styles.heading}>{val.quantity}</mat.TableRowColumn>
                             <mat.TableRowColumn style={styles.heading}>{val.SaleDates}</mat.TableRowColumn>
                             <mat.TableRowColumn style={styles.heading}>{val.TotalPrice}</mat.TableRowColumn>
+                            <mat.TableRowColumn style={styles.heading}>
+                                <FaTrashO style={styles.delete} onClick={this.Delete.bind(this, keys)} />
+                            </mat.TableRowColumn>
                         </mat.TableRow>
                     </mat.TableBody>
                 </mat.Table>
@@ -89,7 +90,7 @@ class SaledDetails extends Component {
                     <mat.Card style={styles.card} zDepth={2}>
                         <mat.AppBar style={styles.store} title="Sales Products" showMenuIconButton={false} />
                         <mat.CardText>
-                            <Header/>
+                            <Header />
                             {SalesDetails}
                         </mat.CardText>
                     </mat.Card>
@@ -103,11 +104,11 @@ const mapStateToProps = (state) => {
         List: state.SalesReducers.SaledList
     };
 }
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         AddProdutsAction: (addProducts) => {
-//             dispatch(AddProdutsAction(addProducts));
-//         }
-//     };
-// }
-export default connect(mapStateToProps)(SaledDetails);
+const mapDispatchToProps = (dispatch) => {
+    return {
+        DeleteSalesProduct: (keys) => {
+            dispatch(DeleteSalesProduct(keys));
+        }
+    };
+}
+export default connect(mapStateToProps,mapDispatchToProps)(SaledDetails);

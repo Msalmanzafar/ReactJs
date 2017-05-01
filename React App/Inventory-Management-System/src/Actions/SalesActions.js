@@ -1,5 +1,6 @@
 import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
+// import { browserHistory } from 'react-router';
 
 
 export function SalesProductsAction() {
@@ -31,16 +32,19 @@ export function UpgradeProducts(Objects, SalePro) {
     return dispatch => {
         // console.log("Objects=======",Objects)
         // console.log("SalePro=======",SalePro)
-        
+
         Objects.quantity = Objects.quantity - SalePro.quantity;
         let updateKey = Objects.prokey;
         firebase.database().ref('/StoresProducts/' + updateKey + '/').set(Objects)
             .then(() => {
-                alert("data status set");
+                // alert("data status set");
+                // browserHistory.push('/salesdetails')
+
             })
             .catch((error) => {
-                var errorMessage = error.message;
-                alert(errorMessage);
+                // var errorMessage = error.message;
+                // alert(errorMessage);
+                console.log('Server Erorr')
             });
     }
 }

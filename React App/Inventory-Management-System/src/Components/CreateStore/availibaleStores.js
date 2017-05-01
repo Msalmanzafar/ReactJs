@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as mat from 'material-ui';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
-import {OpenStore} from '../../Actions/newStoreAction';
-import {ProductsAction} from '../../Actions/ProductsActions'
+import { OpenStore } from '../../Actions/newStoreAction';
+import { ProductsAction } from '../../Actions/ProductsActions'
 
 const style = {
     height: 'auto',
     width: '90%',
     margin: '20px',
+    paddingBottom: '15px',
     textAlign: 'left',
-    display: 'inline-block',
+    display: 'block',
     marginTop: '-15px'
 };
 const styles = {
@@ -26,7 +27,7 @@ const styles = {
         fontSize: '13px',
     },
     Assignment: {
-        // backgroundColor: 'blue'
+        backgroundColor: '#1273de'
     },
     card: {
         width: '90%',
@@ -44,11 +45,15 @@ const styles = {
 
 // }
 class AvailibaleStores extends Component {
-    
+
     OpenStore(keys) {
         // console.log("open store val", keys)
         this.props.OpenStore(keys);
         this.props.ProductsAction(keys);
+    }
+    deleteStore(keys) {
+        console.log("Delete store ", keys)
+
     }
     render() {
         let AllStatusDispay = Object.keys(this.props.AvailStatus).map((key, index) => {
@@ -63,14 +68,19 @@ class AvailibaleStores extends Component {
                                 <mat.Avatar icon={<ActionAssignment />} style={styles.Assignment} />
                             }
                         >
-                            <span ><b>{val.storeName}</b></span><br /><br />
-                            <span >{val.location}</span>
-
+                            <span ><b>{val.storeName}</b></span><br />
+                            <span >{val.location}</span><br /><br />
+                            <mat.FlatButton
+                                label="Delete"
+                                onClick={this.deleteStore.bind(this, keys)}
+                                style={styles.FlatButton}
+                            />
                             <mat.FlatButton
                                 label="Open"
                                 onClick={this.OpenStore.bind(this, keys)}
                                 style={styles.FlatButton}
                             />
+
                         </mat.ListItem>
                     </mat.List>
                 </mat.Paper>
@@ -98,13 +108,13 @@ const mapStateToProps = (state) => {
     };
 }
 const mapDispatchToProps = (dispatch) => {
-  return {
-    OpenStore: (keys) => {
-      dispatch(OpenStore(keys))
-    },
-    ProductsAction: (keys) => {
-      dispatch(ProductsAction(keys))
-    },
-  };
+    return {
+        OpenStore: (keys) => {
+            dispatch(OpenStore(keys))
+        },
+        ProductsAction: (keys) => {
+            dispatch(ProductsAction(keys))
+        },
+    };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(AvailibaleStores);
+export default connect(mapStateToProps, mapDispatchToProps)(AvailibaleStores);
