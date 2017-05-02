@@ -36,7 +36,7 @@ class SaleProducts extends Component {
         this.props.ProductPrice(SelectedProduct);
     }
     QunatityCheck() {
-        var quantity = this.refs.quantity.value;
+        // var quantity = this.refs.quantity.value;
         // console.log("Your Quantity", quantity);
         // lest Dprice = this.props.SelectPrice.quantity;
 

@@ -4,6 +4,8 @@ import * as mat from 'material-ui';
 import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import { OpenStore } from '../../Actions/newStoreAction';
 import { ProductsAction } from '../../Actions/ProductsActions'
+import { DeleteStores, DeleteKeys } from '../../Actions/deleteActions';
+import {AvailibaleActions} from '../../Actions/newStoreAction';
 
 const style = {
     height: 'auto',
@@ -12,7 +14,8 @@ const style = {
     paddingBottom: '15px',
     textAlign: 'left',
     display: 'block',
-    marginTop: '-15px'
+    marginTop: '-10px',
+    backgroundColor: '#d9d9d9',
 };
 const styles = {
     FlatButton: {
@@ -45,17 +48,46 @@ const styles = {
 
 // }
 class AvailibaleStores extends Component {
+    state = {
+        open: false,
+    };
 
+    handleOpen = (keys) => {
+        this.setState({ open: true });
+        // console.log("Delete store ", keys)
+        this.props.DeleteKeys(keys);
+    };
+    deleteStore = () => {
+        var key = this.props.deleteKey;
+        this.props.DeleteStores(key);
+        // console.log("delete confirm",key)
+        this.setState({ open: false });
+        this.props.AvailibaleActions();
+        let keys = '';
+        this.props.DeleteKeys(keys);
+    };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
     OpenStore(keys) {
         // console.log("open store val", keys)
         this.props.OpenStore(keys);
         this.props.ProductsAction(keys);
     }
-    deleteStore(keys) {
-        console.log("Delete store ", keys)
-
-    }
     render() {
+        const actions = [
+            <mat.FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose}
+            />,
+            <mat.FlatButton
+                label="Yes"
+                primary={true}
+                keyboardFocused={true}
+                onTouchTap={this.deleteStore}
+            />,
+        ];
         let AllStatusDispay = Object.keys(this.props.AvailStatus).map((key, index) => {
             let val = this.props.AvailStatus[key];
             let keys = key;
@@ -70,9 +102,10 @@ class AvailibaleStores extends Component {
                         >
                             <span ><b>{val.storeName}</b></span><br />
                             <span >{val.location}</span><br /><br />
+
                             <mat.FlatButton
                                 label="Delete"
-                                onClick={this.deleteStore.bind(this, keys)}
+                                onClick={this.handleOpen.bind(this, keys)}
                                 style={styles.FlatButton}
                             />
                             <mat.FlatButton
@@ -97,6 +130,21 @@ class AvailibaleStores extends Component {
                             {AllStatusDispay}
                         </mat.CardText>
                     </mat.Card>
+
+                    <div>
+                        <mat.Dialog
+                            title="Warning.!"
+                            actions={actions}
+                            modal={false}
+                            open={this.state.open}
+                            onRequestClose={this.handleClose}
+                            
+                        >
+                            <center>
+                                <p>First you need to Delete All Prducts then delete Store</p>
+                            </center>
+                        </mat.Dialog>
+                    </div>
                 </center>
             </div>
         );
@@ -104,7 +152,8 @@ class AvailibaleStores extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        AvailStatus: state.StoreReducers.availibaleStoresArray
+        AvailStatus: state.StoreReducers.availibaleStoresArray,
+        deleteKey: state.DeleteReducers.deleteKeys
     };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -114,6 +163,15 @@ const mapDispatchToProps = (dispatch) => {
         },
         ProductsAction: (keys) => {
             dispatch(ProductsAction(keys))
+        },
+        DeleteKeys: (keys) => {
+            dispatch(DeleteKeys(keys))
+        },
+        DeleteStores: (key) => {
+            dispatch(DeleteStores(key))
+        },
+        AvailibaleActions: () => {
+            dispatch(AvailibaleActions())
         },
     };
 }

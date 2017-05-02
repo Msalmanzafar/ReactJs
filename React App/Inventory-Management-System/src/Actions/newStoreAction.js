@@ -12,7 +12,7 @@ export function NewStoreAction(NewStores) {
         firebase.database().ref('InventoryStore/').push(NewStores)
             .then(() => {
                 alert('Store Created');
-                console.log('Store Created');
+                // console.log('Store Created');
                 // browserHistory.push('/home')
             })
             .catch(() => {
@@ -62,11 +62,11 @@ export function AddProdutsAction(addProducts) {
             firebase.database().ref('StoresProducts/').push(addProducts)
                 .then(() => {
                     alert('Product Created');
-                    console.log('Store Created');
+                    // console.log('Store Created');
                 })
                 .catch(() => {
                     alert('check user email and password');
-                    console.log('check user email and password')
+                    // console.log('check user email and password')
                 })
         } else {
             alert('check user email and password');

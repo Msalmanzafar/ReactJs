@@ -39,8 +39,8 @@ class LogIn extends Component {
             password: password
         }
         this.props.SignInAction(userLogin);
-        email = this.refs.email.value = '';
-        password = this.refs.password.value = '';
+        // email = this.refs.email.value = '';
+        // password = this.refs.password.value = '';
 
     }
     render() {

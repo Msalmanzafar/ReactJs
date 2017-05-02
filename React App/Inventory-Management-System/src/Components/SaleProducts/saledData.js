@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
-import {DeleteSalesProduct} from '../../Actions/deleteActions'
+import { DeleteSalesProduct, DeleteKeys } from '../../Actions/deleteActions';
 
 const styles = {
     FlatButton: {
@@ -34,18 +34,50 @@ const styles = {
         // color: '#ff5722',
         fontSize: '1em'
     },
-     delete:{
+    delete: {
         fontSize: '1.7em',
         cursor: 'pointer',
     },
 }
 
 class SaledDetails extends Component {
-    Delete(keys) {
-        // console.log("==========", keys)
-        this.props.DeleteSalesProduct(keys);
-    }
+
+    state = {
+        open: false,
+    };
+
+    Delete = (keys) => {
+        this.setState({ open: true });
+        // console.log("Delete Product ", keys)
+        this.props.DeleteKeys(keys);
+    };
+    deleteStore = () => {
+        var key = this.props.deleteKey;
+        // console.log("delete confirm",key)
+        this.props.DeleteSalesProduct(key);
+        this.setState({ open: false });
+    };
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+    // Delete(keys) {
+    //     // console.log("==========", keys)
+    //     this.props.DeleteSalesProduct(keys);
+    // }
     render() {
+        const actions = [
+            <mat.FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose}
+            />,
+            <mat.FlatButton
+                label="Yes"
+                primary={true}
+                keyboardFocused={true}
+                onTouchTap={this.deleteStore}
+            />,
+        ];
         let Header = () => {
             return (
                 <div>
@@ -95,6 +127,19 @@ class SaledDetails extends Component {
                         </mat.CardText>
                     </mat.Card>
                 </center>
+                <div>
+                    <mat.Dialog
+                        title="Warning.!"
+                        actions={actions}
+                        modal={false}
+                        open={this.state.open}
+                        onRequestClose={this.handleClose}
+                    >
+                        <center>
+                            <p>Are you sure want to Delete</p>
+                        </center>
+                    </mat.Dialog>
+                </div>
             </div>
         );
     }
@@ -106,9 +151,12 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        DeleteKeys: (keys) => {
+            dispatch(DeleteKeys(keys))
+        },
         DeleteSalesProduct: (keys) => {
             dispatch(DeleteSalesProduct(keys));
         }
     };
 }
-export default connect(mapStateToProps,mapDispatchToProps)(SaledDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(SaledDetails);

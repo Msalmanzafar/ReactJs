@@ -15,11 +15,11 @@ export function SalesProductsAction() {
 
 export function SaledProducts(SalePro) {
     return dispatch => {
-        console.log("Sales Product---", SalePro);
+        // console.log("Sales Product---", SalePro);
         firebase.database().ref('SaledProducts/').push(SalePro)
             .then(() => {
                 alert('Product Saled');
-                console.log('Product Saled');
+                // console.log('Product Saled');
                 // browserHistory.push('/home')
             })
             .catch(() => {
@@ -32,9 +32,11 @@ export function UpgradeProducts(Objects, SalePro) {
     return dispatch => {
         // console.log("Objects=======",Objects)
         // console.log("SalePro=======",SalePro)
-
-        Objects.quantity = Objects.quantity - SalePro.quantity;
+        let Avail = Objects.quantity;
+        let sale = SalePro.quantity;
+        Objects.quantity = Avail - sale;
         let updateKey = Objects.prokey;
+        delete Objects['prokey'];
         firebase.database().ref('/StoresProducts/' + updateKey + '/').set(Objects)
             .then(() => {
                 // alert("data status set");
