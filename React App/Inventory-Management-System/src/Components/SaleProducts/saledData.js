@@ -60,10 +60,6 @@ class SaledDetails extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
-    // Delete(keys) {
-    //     // console.log("==========", keys)
-    //     this.props.DeleteSalesProduct(keys);
-    // }
     render() {
         const actions = [
             <mat.FlatButton

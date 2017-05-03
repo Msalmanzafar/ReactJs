@@ -10,18 +10,14 @@ const styles = {
         height: 'auto',
         position: 'relative',
         top: '50px',
-        // backgroundColor: '#d2b48c'
     },
     login: {
         textAlign: 'left',
     },
     title: {
         textAlign: 'left',
-        // backgroundColor: '#8b4513'
     },
-    // input: {
-    //     backgroundColor: '#f4a460'
-    // }
+    
 }
 
 class LogIn extends Component {
@@ -39,8 +35,6 @@ class LogIn extends Component {
             password: password
         }
         this.props.SignInAction(userLogin);
-        // email = this.refs.email.value = '';
-        // password = this.refs.password.value = '';
 
     }
     render() {
@@ -57,11 +51,11 @@ class LogIn extends Component {
                             <form onSubmit={this.SignIn} style={styles.login}>
                                 <div className="form-group " >
                                     <label htmlFor="email">Email address</label>
-                                    <input defaultValue="salmanzafar@gmail.com" type="email" className="form-control" ref="email" placeholder="Enter email" />
+                                    <input type="email" className="form-control" ref="email" placeholder="Enter email" />
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="password">Enter Password</label>
-                                    <input defaultValue="123456" type="password" className="form-control" ref="password" placeholder="Enter password" />
+                                    <input type="password" className="form-control" ref="password" placeholder="Enter password" />
                                 </div>
                                 {(Errors) ? (
                                     <div>
@@ -72,8 +66,6 @@ class LogIn extends Component {
                                     )}
                                 <div className="form-group ">
                                     <mat.RaisedButton type="submit" label="Log In" primary={true} />
-
-                                    {/*<button type="submit" className="btn btn-success custom-button">Log In</button>*/}
                                 </div>
 
                             </form>

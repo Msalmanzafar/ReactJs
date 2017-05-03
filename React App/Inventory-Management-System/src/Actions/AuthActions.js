@@ -10,6 +10,8 @@ export function SignInAction(userLogin) {
             .then((user) => {
                 dispatch(userSignInUpdate(user));
                 browserHistory.push('/home');
+				var errorMessage=[];
+				dispatch(AuthErrors(errorMessage))
             })
             .catch((error) => {
                 var errorMessage = error.message;

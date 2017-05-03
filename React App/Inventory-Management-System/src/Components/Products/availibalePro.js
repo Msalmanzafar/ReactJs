@@ -14,7 +14,7 @@ const styles = {
     delete: {
         fontSize: '1.7em',
         cursor: 'pointer',
-        marginRight: '10px',
+        marginRight: '20px',
     },
     heading: {
         // color: '#ff5722',

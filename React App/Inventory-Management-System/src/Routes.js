@@ -19,13 +19,16 @@ injectTapEventPlugin();
 
 
 var config = {
-    apiKey: "AIzaSyArVpiyJ0wPxATriQBnPzvbCqjIBVWSppc",
-    authDomain: "sky-auth.firebaseapp.com",
-    databaseURL: "https://sky-auth.firebaseio.com",
-    storageBucket: "sky-auth.appspot.com",
-    messagingSenderId: "936918632809"
-};
-firebase.initializeApp(config);
+    apiKey: "AIzaSyAz-OClI43ywtTv7fMKdCJnc3-LcpZWTcE",
+    authDomain: "inventory-store-2720b.firebaseapp.com",
+    databaseURL: "https://inventory-store-2720b.firebaseio.com",
+    projectId: "inventory-store-2720b",
+    storageBucket: "inventory-store-2720b.appspot.com",
+    messagingSenderId: "190443387553"
+  };
+  firebase.initializeApp(config);
+
+
 
 
 export default class Routes extends Component {
