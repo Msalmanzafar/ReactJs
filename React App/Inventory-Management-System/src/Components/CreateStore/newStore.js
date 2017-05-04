@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
-import { NewStoreAction } from '../../Actions/newStoreAction';
+import { NewStoreAction, LoaderAction } from '../../Actions/newStoreAction';
 import { connect } from 'react-redux';
+
 
 const styles = {
     card: {
@@ -29,6 +30,7 @@ class CreateNewStore extends Component {
             location: location,
         }
         //  console.log(NewStores);
+        this.props.LoaderAction();
         this.props.NewStoreAction(NewStores);
         storeName = this.refs.storeName.value = " ";
         location = this.refs.location.value = " ";
@@ -71,6 +73,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        LoaderAction: () => {
+            dispatch(LoaderAction());
+        },
         NewStoreAction: (NewStores) => {
             dispatch(NewStoreAction(NewStores));
         }

@@ -7,7 +7,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import AppBar from 'material-ui/AppBar';
 import IconButton from 'material-ui/IconButton';
 import MdMenu from 'react-icons/lib/md/menu';
-import { AvailibaleActions } from '../../Actions/newStoreAction'
+import { AvailibaleActions, LoaderAction } from '../../Actions/newStoreAction'
 import { SalesProductsAction, SaledListActions } from '../../Actions/SalesActions'
 
 
@@ -43,6 +43,7 @@ class DrawerUndockedExample extends React.Component {
     this.state = { open: false };
   }
   SalesDetails() {
+    this.props.LoaderAction();
     this.props.SaledListActions();
     browserHistory.push('/salesdetails');
     this.setState({ open: false });
@@ -53,8 +54,9 @@ class DrawerUndockedExample extends React.Component {
     this.setState({ open: false });
   }
   AvailibaleStores() {
-    this.props.AvailibaleActions()
-    browserHistory.push('/availstores')
+    this.props.LoaderAction();
+    this.props.AvailibaleActions();
+    browserHistory.push('/availstores');
     this.setState({ open: false });
   }
   CreateStore() {
@@ -110,11 +112,14 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
   return {
+    LoaderAction: () => {
+      dispatch(LoaderAction());
+    },
     AvailibaleActions: () => {
-      dispatch(AvailibaleActions())
+      dispatch(AvailibaleActions());
     },
     SalesProductsAction: () => {
-      dispatch(SalesProductsAction())
+      dispatch(SalesProductsAction());
     },
     SaledListActions: () => {
       dispatch(SaledListActions());

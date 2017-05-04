@@ -2,6 +2,12 @@ import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
 import { browserHistory } from 'react-router';
 
+export function LoaderAction() {
+    return dispatch => {
+        dispatch(LoaderDispatch());
+    }
+}
+
 
 export function NewStoreAction(NewStores) {
     return dispatch => {
@@ -11,12 +17,14 @@ export function NewStoreAction(NewStores) {
         NewStores.emailId = user.email;
         firebase.database().ref('InventoryStore/').push(NewStores)
             .then(() => {
+                dispatch(LoaderDispatch());
                 alert('Store Created');
                 // console.log('Store Created');
                 // browserHistory.push('/home')
             })
             .catch(() => {
-                console.log('check user email and password')
+                dispatch(LoaderDispatch());
+                alert('check user email and password');
             })
     }
 }
@@ -27,6 +35,7 @@ export function AvailibaleActions() {
             let obj = data.val();
             // obj.StoreKey = data.key;
             // console.log('AvailibaleActions',obj);
+            dispatch(LoaderDispatch());
             dispatch(AvailibaleAction(obj));
         })
     }
@@ -39,6 +48,7 @@ export function OpenStore(keys) {
             obj.objKey = data.key;
             // console.log('my firebase data --------', obj);
             if (keys === obj.objKey) {
+                dispatch(LoaderDispatch());
                 dispatch(StoreDispatchDispay(obj));
                 browserHistory.push('/mystore')
 
@@ -53,20 +63,19 @@ export function OpenStore(keys) {
 
 export function AddProdutsAction(addProducts) {
     return dispatch => {
-        // console.log("addProducts---------", addProducts)
-        // dispatch(ForNewProduts())
-        var user = firebase.auth().currentUser;
+        let user = firebase.auth().currentUser;
+        // let email = user.email;
         // console.log(user.uid, '----------------------')
         addProducts.uId = user.uid;
         if (user !== null) {
             firebase.database().ref('StoresProducts/').push(addProducts)
                 .then(() => {
+                    dispatch(LoaderDispatch());
                     alert('Product Created');
-                    // console.log('Store Created');
                 })
                 .catch(() => {
+                    dispatch(LoaderDispatch());
                     alert('check user email and password');
-                    // console.log('check user email and password')
                 })
         } else {
             alert('check user email and password');
@@ -91,9 +100,8 @@ function AvailibaleAction(payload) {
 
 
 
-// function ForNewProduts(payload) {
-//     return {
-//         type: ActionTypes.NewProdutsAction,
-//         payload
-//     }
-// }
+function LoaderDispatch() {
+    return {
+        type: ActionTypes.LoaderActions,
+    }
+}

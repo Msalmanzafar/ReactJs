@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as mat from 'material-ui';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import { AddProdutsAction } from '../../Actions/newStoreAction';
+import { AddProdutsAction,LoaderAction } from '../../Actions/newStoreAction';
 import AvailibaleProducts from '../Products/availibalePro';
 // import FaRepeat from 'react-icons/lib/fa/repeat';
 
@@ -76,6 +76,7 @@ class MyStore extends Component {
             StoreKey: StoreKey
         };
         // console.log(addProducts);
+        this.props.LoaderAction();
         this.props.AddProdutsAction(addProducts);
 
         this.setState({ open: false });
@@ -173,6 +174,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        LoaderAction:()=>{
+            dispatch(LoaderAction());
+        },
         AddProdutsAction: (addProducts) => {
             dispatch(AddProdutsAction(addProducts));
         }

@@ -4,6 +4,7 @@ import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 import { LogOutAction } from '../../Actions/AuthActions';
 import DrawerUndockedExample from './navbar-child'
+import EventLoader from '../Loader/loader';
 
 const styles = {
   appBar: {
@@ -22,6 +23,12 @@ const styles = {
   logo: {
     width: '145px',
     height: '32px'
+  },
+  loader:{
+    position: 'relative',
+    height: '4px',
+    width: '100%',
+    backgroundColor: '#009688',
   }
 };
 
@@ -36,10 +43,18 @@ class NavBar extends Component {
   render() {
     const {
         auth,
+        Loaders,
     } = this.props;
     return (
-          
+
       <div >
+        <div>
+          {(Loaders === true) ? (
+            < EventLoader/>
+          ) : (
+              <div style={styles.loader}></div>
+            )}
+        </div>
         <mat.AppBar
           style={styles.appBar}
           title={<span className="colors">Inventory Store</span>}
@@ -78,7 +93,8 @@ class NavBar extends Component {
 }
 const mapStateToProps = (state) => {
   return {
-    auth: state.AuthReducer.authLogOut
+    auth: state.AuthReducer.authLogOut,
+    Loaders: state.AuthReducer.loader,
   };
 }
 const mapDispatchToProps = (dispatch) => {

@@ -5,7 +5,7 @@ import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import { OpenStore } from '../../Actions/newStoreAction';
 import { ProductsAction } from '../../Actions/ProductsActions'
 import { DeleteStores, DeleteKeys } from '../../Actions/deleteActions';
-import {AvailibaleActions} from '../../Actions/newStoreAction';
+import {AvailibaleActions,LoaderAction} from '../../Actions/newStoreAction';
 
 const style = {
     height: 'auto',
@@ -71,6 +71,7 @@ class AvailibaleStores extends Component {
     };
     OpenStore(keys) {
         // console.log("open store val", keys)
+        this.props.LoaderAction();
         this.props.OpenStore(keys);
         this.props.ProductsAction(keys);
     }
@@ -158,6 +159,9 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        LoaderAction:()=>{
+            dispatch(LoaderAction());
+        },
         OpenStore: (keys) => {
             dispatch(OpenStore(keys))
         },

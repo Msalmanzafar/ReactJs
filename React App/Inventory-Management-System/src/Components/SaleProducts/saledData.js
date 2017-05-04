@@ -142,7 +142,8 @@ class SaledDetails extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        List: state.SalesReducers.SaledList
+        List: state.SalesReducers.SaledList,
+        deleteKey: state.DeleteReducers.deleteKeys,
     };
 }
 const mapDispatchToProps = (dispatch) => {
@@ -150,8 +151,8 @@ const mapDispatchToProps = (dispatch) => {
         DeleteKeys: (keys) => {
             dispatch(DeleteKeys(keys))
         },
-        DeleteSalesProduct: (keys) => {
-            dispatch(DeleteSalesProduct(keys));
+        DeleteSalesProduct: (key) => {
+            dispatch(DeleteSalesProduct(key));
         }
     };
 }

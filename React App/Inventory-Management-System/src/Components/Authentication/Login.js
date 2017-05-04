@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { SignInAction } from '../../Actions/AuthActions';
+import { SignInAction,LoaderAction } from '../../Actions/AuthActions';
 import { connect } from 'react-redux';
 import * as mat from 'material-ui';
-// import { Link } from 'react-router';
 
 const styles = {
     card: {
@@ -34,6 +33,7 @@ class LogIn extends Component {
             email: email,
             password: password
         }
+        this.props.LoaderAction();
         this.props.SignInAction(userLogin);
 
     }
@@ -87,6 +87,9 @@ const mapDispatchToProps = (dispatch) => {
     return {
         SignInAction: (userLogin) => {
             dispatch(SignInAction(userLogin));
+        },
+        LoaderAction: ()=>{
+            dispatch(LoaderAction())
         }
     };
 }

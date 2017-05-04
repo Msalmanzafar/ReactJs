@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
-import { SaledProducts, ProductPrice, UpgradeProducts } from '../../Actions/SalesActions';
+import { SaledProducts, ProductPrice, UpgradeProducts, LoaderAction } from '../../Actions/SalesActions';
 
 const styles = {
     card: {
@@ -57,9 +57,10 @@ class SaleProducts extends Component {
             TotalPrice: TotalPrice
         };
         // console.log("sales Data", SalePro);
+        this.props.LoaderAction()
         this.props.SaledProducts(SalePro);
         let Objects = this.props.SelectPrice;
-        this.props.UpgradeProducts(Objects,SalePro);
+        this.props.UpgradeProducts(Objects, SalePro);
     }
     render() {
         let productNames = Object.keys(this.props.AllStores).map((key, index) => {
@@ -83,6 +84,7 @@ class SaleProducts extends Component {
                                     <div className="form-group">
                                         <label htmlFor="store">Select Product</label>
                                         <select className="form-control" ref='store' onChange={this.ProductCheck} >
+                                            <option >Select Product</option>
                                             {productNames}
                                         </select>
                                     </div>
@@ -129,14 +131,17 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
+        LoaderAction: () => {
+            dispatch(LoaderAction());
+        },
         SaledProducts: (SalePro) => {
             dispatch(SaledProducts(SalePro));
         },
         ProductPrice: (SelectedProduct) => {
             dispatch(ProductPrice(SelectedProduct));
         },
-        UpgradeProducts: (Objects,SalePro) => {
-            dispatch(UpgradeProducts(Objects,SalePro));
+        UpgradeProducts: (Objects, SalePro) => {
+            dispatch(UpgradeProducts(Objects, SalePro));
         }
     };
 }

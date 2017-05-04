@@ -2,6 +2,11 @@ import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
 // import { browserHistory } from 'react-router';
 
+export function LoaderAction() {
+    return dispatch => {
+        dispatch(LoaderDispatch());
+    }
+}
 
 export function SalesProductsAction() {
     return dispatch => {
@@ -18,12 +23,12 @@ export function SaledProducts(SalePro) {
         // console.log("Sales Product---", SalePro);
         firebase.database().ref('SaledProducts/').push(SalePro)
             .then(() => {
+                dispatch(LoaderDispatch());
                 alert('Product Saled');
-                // console.log('Product Saled');
-                // browserHistory.push('/home')
             })
             .catch(() => {
-                console.log('check user email and password')
+                dispatch(LoaderDispatch());
+                alert('check user email and password')
             })
     }
 }
@@ -69,7 +74,14 @@ export function SaledListActions() {
     return dispatch => {
         firebase.database().ref('SaledProducts/').on('value', (data) => {
             let obj = data.val();
-            dispatch(SaledList(obj));
+            if (obj !== null) {
+                dispatch(LoaderDispatch());
+                dispatch(SaledList(obj));
+            } else {
+                dispatch(LoaderDispatch());                
+                alert("Nothing saled")
+            }
+
         })
     }
 }
@@ -91,5 +103,10 @@ function SalesActionDispatch(payload) {
     return {
         type: ActionTypes.SalesAction,
         payload
+    }
+}
+function LoaderDispatch() {
+    return {
+        type: ActionTypes.LoaderActions,
     }
 }
