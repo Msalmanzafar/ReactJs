@@ -6,6 +6,7 @@ import ProductsReducers from '../Reducers/ProductsReducers';
 import SalesReducers from '../Reducers/SalesReducers';
 import DeleteReducers from '../Reducers/DeleteReducers';
 import EditReducers from '../Reducers/EditReducers';
+
 export default createStore(
     combineReducers({
         AuthReducer,
