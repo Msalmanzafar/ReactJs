@@ -41,11 +41,13 @@ class AvailibaleProducts extends Component {
     deleteStore = () => {
         var key = this.props.deleteKey;
         // console.log("delete confirm",key)
+        // this.props.LoaderAction();
         this.props.DeleteProduct(key);
         this.setState({ Warning: false });
     };
     handleClose = () => {
         this.setState({ Warning: false });
+        // this.props.LoaderAction()
     };
 
     Edit = (keys) => {
@@ -77,11 +79,13 @@ class AvailibaleProducts extends Component {
             uId: uId,
         };
         // console.log(UpdateProduct);
+        // this.props.LoaderAction()
         this.props.UpdateEditProduct(UpdateProduct);
         this.setState({ edit: false });
     }
     handleClose2 = () => {
         this.setState({ edit: false });
+        // this.props.LoaderAction()
     }
     render() {
         const actions = [
@@ -245,7 +249,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         UpdateEditProduct: (UpdateProduct) => {
             dispatch(UpdateEditProduct(UpdateProduct))
-        }
+        },
+        // LoaderAction: () => {
+        //     dispatch(LoaderAction());
+        // }
     };
 }
 export default connect(mapStateToProps, mapDispatchToProps)(AvailibaleProducts);

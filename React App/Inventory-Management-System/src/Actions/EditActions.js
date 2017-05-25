@@ -1,7 +1,16 @@
 import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
 
-
+// export function LoaderAction() {
+//     return dispatch => {
+//         dispatch(LoaderDispatch());
+//     }
+// }
+// function LoaderDispatch() {
+//     return {
+//         type: ActionTypes.LoaderActions,
+//     }
+// }
 export function EditProduct(keys) {
     return dispatch => {
         // console.log("Edit Product Action ", keys)
@@ -10,6 +19,7 @@ export function EditProduct(keys) {
             obj.ProKey = data.key;
             if (keys === obj.ProKey) {
                 // console.log("firebase data==== ", obj)
+                // dispatch(LoaderAction())
                 dispatch(EditDispatch(obj));
             }
 
@@ -34,6 +44,7 @@ export function UpdateEditProduct(UpdateProduct) {
         firebase.database().ref('/StoresProducts/' + ProId + '/').set(UpdateProduct)
             .then(() => {
                 alert('Product Updated');
+                
                 // console.log('Product Updated');
             })
             .catch(() => {

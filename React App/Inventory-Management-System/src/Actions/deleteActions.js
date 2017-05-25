@@ -1,6 +1,8 @@
 import ActionTypes from './ActionTypes';
 import * as firebase from 'firebase';
 // import { browserHistory } from 'react-router';
+
+
 export function LoaderAction() {
     return dispatch => {
         dispatch(LoaderDispatch());
@@ -11,6 +13,8 @@ function LoaderDispatch() {
         type: ActionTypes.LoaderActions,
     }
 }
+
+
 export function DeleteProduct(keys) {
     return dispatch => {
         // console.log("---Delete Product---", keys);
@@ -26,7 +30,7 @@ export function DeleteSalesProduct(key) {
         // console.log("---DeleteSalesProduct---", keys);
         // var user = firebase.auth().currentUser;
         firebase.database().ref('/SaledProducts/').child(key).remove();
-        //dispatch(LoaderDispatch());        
+        dispatch(LoaderDispatch());        
     }
 }
 
@@ -34,7 +38,7 @@ export function DeleteStores(key) {
     return dispatch => {
         // console.log("---DeleteStores---", key);
         firebase.database().ref('/InventoryStore/').child(key).remove();
-        // dispatch(LoaderDispatch());
+        dispatch(LoaderDispatch());
         
     }
 }
@@ -44,7 +48,6 @@ export function DeleteKeys(keys){
         // console.log("---DeleteKeys++++", keys);
         dispatch(DeleteDispatch(keys))
         // dispatch(LoaderDispatch());
-        
     }
 }
 function DeleteDispatch(payload){
