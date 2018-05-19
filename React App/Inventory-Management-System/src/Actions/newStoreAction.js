@@ -17,14 +17,21 @@ export function NewStoreAction(NewStores) {
         NewStores.emailId = user.email;
         firebase.database().ref('InventoryStore/').push(NewStores)
             .then(() => {
+                // alert('Store Created');
+                dispatch(messageFlag())
+                dispatch(messageDispatch("Store Created"))
                 dispatch(LoaderDispatch());
-                alert('Store Created');
                 // console.log('Store Created');
-                // browserHistory.push('/home')
+                setTimeout(()=>{
+                    dispatch(messageFlag())
+                    browserHistory.push('/home')
+                },3000)
             })
-            .catch(() => {
+            .catch((error) => {
+                let mess = error.message
                 dispatch(LoaderDispatch());
-                alert('check user email and password');
+                dispatch(messageFlag())
+                dispatch(messageDispatch(mess))
             })
     }
 }
@@ -36,7 +43,11 @@ export function AvailibaleActions() {
             // obj.StoreKey = data.key;
             // console.log('AvailibaleActions',obj);
             dispatch(LoaderDispatch());
-            dispatch(AvailibaleAction(obj));
+            if(obj !== null){
+                dispatch(AvailibaleAction(obj));
+            }else{
+                dispatch(AvailibaleAction({}));
+            }
         })
     }
 }
@@ -49,9 +60,13 @@ export function OpenStore(keys) {
             // console.log('my firebase data --------', obj);
             if (keys === obj.objKey) {
                 dispatch(LoaderDispatch());
-                dispatch(StoreDispatchDispay(obj));
-                browserHistory.push('/mystore')
-
+                if(obj !== null){
+                    dispatch(StoreDispatchDispay(obj));
+                    browserHistory.push('/mystore')
+                }else{
+                    dispatch(StoreDispatchDispay({}));
+                    browserHistory.push('/mystore')
+                }
             }
         })
     }
@@ -70,12 +85,16 @@ export function AddProdutsAction(addProducts) {
         if (user !== null) {
             firebase.database().ref('StoresProducts/').push(addProducts)
                 .then(() => {
+                    dispatch(messageFlag())
+                    dispatch(messageDispatch("Added New Product"))
                     dispatch(LoaderDispatch());
-                    alert('Product Created');
+                    // alert('Product Created');
                 })
-                .catch(() => {
+                .catch((error) => {
                     dispatch(LoaderDispatch());
-                    alert('check user email and password');
+                    let mess = error.message
+                    dispatch(messageFlag())
+                    dispatch(messageDispatch(mess))
                 })
         } else {
             alert('check user email and password');
@@ -103,5 +122,16 @@ function AvailibaleAction(payload) {
 function LoaderDispatch() {
     return {
         type: ActionTypes.LoaderActions,
+    }
+}
+function messageDispatch(payload){
+    return{
+        type: ActionTypes.MessageAction,
+        payload
+    }
+}
+function messageFlag(){
+    return {
+        type: ActionTypes.MessageFlag,
     }
 }

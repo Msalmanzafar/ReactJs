@@ -5,7 +5,8 @@ import ActionAssignment from 'material-ui/svg-icons/action/assignment';
 import { OpenStore } from '../../Actions/newStoreAction';
 import { ProductsAction } from '../../Actions/ProductsActions'
 import { DeleteStores, DeleteKeys } from '../../Actions/deleteActions';
-import {AvailibaleActions,LoaderAction} from '../../Actions/newStoreAction';
+import { AvailibaleActions, LoaderAction } from '../../Actions/newStoreAction';
+import './style.css'
 
 const style = {
     height: 'auto',
@@ -89,43 +90,48 @@ class AvailibaleStores extends Component {
                 onTouchTap={this.deleteStore}
             />,
         ];
-        let AllStatusDispay = Object.keys(this.props.AvailStatus).map((key, index) => {
-            let val = this.props.AvailStatus[key];
-            let keys = key;
-            return (
-                <mat.Paper style={style} zDepth={1} key={index} >
-                    <mat.List >
-                        <mat.ListItem
-                            disabled={true}
-                            leftAvatar={
-                                <mat.Avatar icon={<ActionAssignment />} style={styles.Assignment} />
-                            }
-                        >
-                            <span ><b>{val.storeName}</b></span><br />
-                            <span >{val.location}</span><br /><br />
+        let AllStatusDispay
+        if (!AllStatusDispay) {
 
-                            <mat.FlatButton
-                                label="Delete"
-                                onClick={this.handleOpen.bind(this, keys)}
-                                style={styles.FlatButton}
-                            />
-                            <mat.FlatButton
-                                label="Open"
-                                onClick={this.OpenStore.bind(this, keys)}
-                                style={styles.FlatButton}
-                            />
+            AllStatusDispay = Object.keys(this.props.AvailStatus).map((key, index) => {
+                let val = this.props.AvailStatus[key];
+                let keys = key;
+                return (
+                    <mat.Paper style={style} zDepth={1} key={index} >
+                        <mat.List >
+                            <mat.ListItem
+                                disabled={true}
+                                leftAvatar={
+                                    <mat.Avatar icon={<ActionAssignment />} style={styles.Assignment} />
+                                }
+                            >
+                                <span ><b>{val.storeName}</b></span><br />
+                                <span >{val.location}</span><br /><br />
 
-                        </mat.ListItem>
-                    </mat.List>
-                </mat.Paper>
-            )
-        })
+                                <mat.FlatButton
+                                    label="Delete"
+                                    onClick={this.handleOpen.bind(this, keys)}
+                                    style={styles.FlatButton}
+                                />
+                                <mat.FlatButton
+                                    label="Open"
+                                    onClick={this.OpenStore.bind(this, keys)}
+                                    style={styles.FlatButton}
+                                />
+
+                            </mat.ListItem>
+                        </mat.List>
+                    </mat.Paper>
+                )
+            })
+        }
+
         // console.log('All status',this.props.Status);
         return (
             <div>
                 <center>
                     {/*<h3 style={heading}></h3>*/}
-                    <mat.Card style={styles.card} zDepth={2}>
+                    <mat.Card className='card' zDepth={2}>
                         <mat.AppBar style={styles.store} title="Availibale Stores" showMenuIconButton={false} />
                         <mat.CardText>
                             {AllStatusDispay}
@@ -139,7 +145,7 @@ class AvailibaleStores extends Component {
                             modal={false}
                             open={this.state.open}
                             onRequestClose={this.handleClose}
-                            
+
                         >
                             <center>
                                 <p>First you need to Delete All Prducts then delete Store</p>
@@ -159,7 +165,7 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        LoaderAction:()=>{
+        LoaderAction: () => {
             dispatch(LoaderAction());
         },
         OpenStore: (keys) => {

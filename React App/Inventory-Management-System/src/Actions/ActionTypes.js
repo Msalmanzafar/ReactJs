@@ -13,5 +13,7 @@ const ActionTypes={
     DeleteActions: 'DeleteActions',
     EditActions: 'EditActions',
     LoaderActions: 'LoaderActions',
+    MessageAction: 'MessageAction',
+    MessageFlag: 'MessageFlag'
 }
 export default ActionTypes;

@@ -36,20 +36,27 @@ class NavBar extends Component {
   constructor(props) {
     super(props);
     this.logOut = this.logOut.bind(this);
+    this.state={
+      loader: false
+    }
   }
   logOut() {
     this.props.LogOutAction();
   }
+  componentWillReceiveProps(nextProps){
+    this.setState({
+      loader: nextProps.Loaders
+    })
+  }
   render() {
     const {
         auth,
-        Loaders,
     } = this.props;
     return (
 
       <div >
         <div>
-          {(Loaders === true) ? (
+          {(this.state.loader === true) ? (
             < EventLoader/>
           ) : (
               <div style={styles.loader}></div>
@@ -57,7 +64,7 @@ class NavBar extends Component {
         </div>
         <mat.AppBar
           style={styles.appBar}
-          title={<span className="colors">Inventory Store</span>}
+          title={<span className="colors">OCS</span>}
           iconElementLeft={
             <span>
               {(auth === true) ? (

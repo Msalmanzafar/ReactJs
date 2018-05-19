@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import logo from '../../images/inventory.png'
+import logo from '../../images/04.png'
 
 const styles = {
     logo: {
-        width: '60vw',
+        width: '50%',
         height: 'auto',
         top: '35px',
         position:'relative'

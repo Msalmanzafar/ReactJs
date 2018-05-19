@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 import { SignInAction,LoaderAction } from '../../Actions/AuthActions';
 import { connect } from 'react-redux';
 import * as mat from 'material-ui';
+import './style.css'
 
 const styles = {
-    card: {
-        width: '90%',
-        height: 'auto',
-        position: 'relative',
-        top: '50px',
-    },
+    
     login: {
         textAlign: 'left',
     },
@@ -45,7 +41,7 @@ class LogIn extends Component {
         return (
             <div >
                 <center>
-                    <mat.Card style={styles.card} zDepth={2}>
+                    <mat.Card className='card' zDepth={2}>
                         <mat.AppBar style={styles.title} title="Log In" showMenuIconButton={false} />
                         <mat.CardText>
                             <form onSubmit={this.SignIn} style={styles.login}>

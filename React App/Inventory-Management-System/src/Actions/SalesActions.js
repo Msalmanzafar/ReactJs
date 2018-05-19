@@ -79,7 +79,7 @@ export function SaledListActions() {
                 dispatch(SaledList(obj));
             } else {
                 dispatch(LoaderDispatch());                
-                alert("Nothing saled")
+                dispatch(SaledList({}));
             }
 
         })

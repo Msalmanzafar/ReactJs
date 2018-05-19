@@ -2,15 +2,16 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { NewStoreAction, LoaderAction } from '../../Actions/newStoreAction';
 import { connect } from 'react-redux';
+import './style.css'
 
 
 const styles = {
-    card: {
-        width: '90%',
-        height: 'auto',
-        position: 'relative',
-        top: '50px'
-    },
+    // card: {
+    //     width: '90%',
+    //     height: 'auto',
+    //     position: 'relative',
+    //     top: '50px'
+    // },
     store: {
         textAlign: 'left'
     }
@@ -20,6 +21,10 @@ class CreateNewStore extends Component {
     constructor(props) {
         super(props);
         this.NewStores = this.NewStores.bind(this);
+        this.state={
+            successMes: '',
+            openFlag: false
+        }
     }
     NewStores(ev) {
         ev.preventDefault();
@@ -35,11 +40,21 @@ class CreateNewStore extends Component {
         storeName = this.refs.storeName.value = " ";
         location = this.refs.location.value = " ";
     }
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            successMes: nextProps.success,
+            openFlag: nextProps.successFlag
+        })
+    }
     render() {
+        // const{
+        //     successFlag,
+        //     success
+        // } = this.props;
         return (
             <div>
                 <center>
-                    <mat.Card style={styles.card} zDepth={2}>
+                    <mat.Card className='card' zDepth={2}>
                         <mat.AppBar style={styles.store} title="Create Store" showMenuIconButton={false} />
                         <mat.CardText>
                             <form onSubmit={this.NewStores} style={styles.store}>
@@ -60,6 +75,14 @@ class CreateNewStore extends Component {
                         </mat.CardText>
                     </mat.Card>
                 </center>
+                <mat.Snackbar
+                    open={this.state.openFlag}
+                    message={this.state.successMes}
+                    contentStyle={{ color: '#ffffff' }}
+                    autoHideDuration={3000}
+                    bodyStyle={{ backgroundColor: '#68bc00', width: 200 }}
+                // onRequestClose={this.handleRequestClose}
+                />
             </div>
         )
     }
@@ -68,7 +91,9 @@ class CreateNewStore extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        newStores: state.StoreReducers.newStore
+        newStores: state.StoreReducers.newStore,
+        successFlag: state.newStore.messageFlag,
+        success: state.newStore.messageAction
     };
 }
 const mapDispatchToProps = (dispatch) => {

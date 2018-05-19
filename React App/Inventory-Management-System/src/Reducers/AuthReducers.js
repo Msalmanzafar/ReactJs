@@ -3,6 +3,7 @@ import ActionTypes from '../Actions/ActionTypes';
 const AuthReducer = (state = {
     authLogOut: false,
     loader: false,
+    LoginSuccess: false,
     authSignIn: [],
     authErrors: '',
 }, action) => {
@@ -17,6 +18,7 @@ const AuthReducer = (state = {
             return state = {
                 ...state,
                 authLogOut: !state.authLogOut,
+                LoginSuccess: !state.LoginSuccess,
                 authSignIn: action.payload
             };
         }

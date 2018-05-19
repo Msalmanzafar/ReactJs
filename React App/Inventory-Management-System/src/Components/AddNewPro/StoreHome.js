@@ -48,13 +48,14 @@ const style = {
 };
 
 class MyStore extends Component {
-    state = {
-        open: false,
-    };
-
     constructor(props) {
         super(props);
         this.NewProduct = this.NewProduct.bind(this);
+        this.state={
+            successMes: '',
+            openFlag: false,
+            open: false,
+        }
     }
     NewProduct(ev) {
         ev.preventDefault();
@@ -88,6 +89,12 @@ class MyStore extends Component {
     handleClose = () => {
         this.setState({ open: false });
     };
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            successMes: nextProps.success,
+            openFlag: nextProps.successFlag
+        })
+    }
     render() {
         const actions = [
             <mat.FlatButton
@@ -162,6 +169,14 @@ class MyStore extends Component {
                         </mat.Dialog>
                     </div>
                 </center>
+                <mat.Snackbar
+                    open={this.state.openFlag}
+                    message={this.state.successMes}
+                    contentStyle={{ color: '#ffffff' }}
+                    autoHideDuration={3000}
+                    bodyStyle={{ backgroundColor: '#68bc00', width: 200 }}
+                // onRequestClose={this.handleRequestClose}
+                />
             </div>
         );
     }
@@ -170,6 +185,8 @@ class MyStore extends Component {
 const mapStateToProps = (state) => {
     return {
         StoreDash: state.StoreReducers.StoreKeys,
+        successFlag: state.newStore.messageFlag,
+        success: state.newStore.messageAction
     };
 }
 const mapDispatchToProps = (dispatch) => {

@@ -1,0 +1,16 @@
+@media (max-width: 1000px){
+    .card {
+        width: 95%;
+        height: auto;
+        position: relative;
+        top: 50px
+    }
+}
+@media (min-width: 1000px){
+    .card {
+        width: 45%;
+        height: auto;
+        position: relative;
+        top: 50px
+    }
+}
