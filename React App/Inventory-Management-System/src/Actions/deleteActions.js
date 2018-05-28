@@ -8,11 +8,6 @@ export function LoaderAction() {
         dispatch(LoaderDispatch());
     }
 }
-function LoaderDispatch() {
-    return {
-        type: ActionTypes.LoaderActions,
-    }
-}
 
 
 export function DeleteProduct(keys) {
@@ -21,16 +16,33 @@ export function DeleteProduct(keys) {
         // var user = firebase.auth().currentUser;
         firebase.database().ref('/StoresProducts/').child(keys).remove();
         // dispatch(LoaderDispatch());
-        
+
     }
 }
 
-export function DeleteSalesProduct(key) {
+export function DeleteSalesProduct(data) {
     return dispatch => {
-        // console.log("---DeleteSalesProduct---", keys);
+        // console.log("---DeleteSalesProduct---", data);
         // var user = firebase.auth().currentUser;
-        firebase.database().ref('/SaledProducts/').child(key).remove();
-        dispatch(LoaderDispatch());        
+        dispatch(LoaderDispatch());
+        let productDetails;
+        let total;
+        firebase.database().ref('StoresProducts/').once('value', (snap) => {
+            let allData = snap.val();
+            // console.log(allData, 'allData')
+            for (var prop in allData) {
+                // console.log(allData[prop], "allData[key].productName")
+                if (allData[prop].Prokey === data.proKey) {
+                    productDetails = allData[prop]
+                }
+            }
+            console.log(productDetails)
+            total = Number(productDetails.quantity) + Number(data.quantity)
+            // console.log(total, 'total')
+            firebase.database().ref('StoresProducts/' + productDetails.Prokey + '/').child('quantity').set(total)
+            firebase.database().ref('/SaledProducts/').child(data.uid).remove();
+            dispatch(LoaderDispatch());
+        })
     }
 }
 
@@ -39,20 +51,26 @@ export function DeleteStores(key) {
         // console.log("---DeleteStores---", key);
         firebase.database().ref('/InventoryStore/').child(key).remove();
         dispatch(LoaderDispatch());
-        
+
     }
 }
 
-export function DeleteKeys(keys){
+export function deleteSoldData(val, key) {
     return dispatch => {
-        // console.log("---DeleteKeys++++", keys);
-        dispatch(DeleteDispatch(keys))
-        // dispatch(LoaderDispatch());
+        // console.log("---DeleteKeys++++", val, key);
+        val.uid = key
+        dispatch(DeleteDispatch(val))
+        dispatch(LoaderDispatch());
     }
 }
-function DeleteDispatch(payload){
-    return{
+function DeleteDispatch(payload) {
+    return {
         type: ActionTypes.DeleteActions,
         payload
+    }
+}
+function LoaderDispatch() {
+    return {
+        type: ActionTypes.LoaderActions,
     }
 }

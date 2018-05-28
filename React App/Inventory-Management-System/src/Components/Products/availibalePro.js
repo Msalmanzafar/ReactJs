@@ -62,7 +62,8 @@ class AvailibaleProducts extends Component {
         let description = this.refs.description.value;
         let quantity = this.refs.quantity.value;
         let dates = this.refs.dates.value;
-        let price = this.refs.price.value;
+        let retailPrice = this.refs.retailPrice.value;
+        let salePrice = this.refs.salePrice.value;
         let Prokey = this.props.ForEdit.ProKey;
         let StoreKey = this.props.ForEdit.StoreKey;
         let uId = this.props.ForEdit.uId;
@@ -73,7 +74,8 @@ class AvailibaleProducts extends Component {
             description: description,
             quantity: quantity,
             dates: dates,
-            price: price,
+            retailPrice: retailPrice,
+            salePrice: salePrice,
             Prokey: Prokey,
             StoreKey: StoreKey,
             uId: uId,
@@ -120,6 +122,8 @@ class AvailibaleProducts extends Component {
                                 <mat.TableHeaderColumn style={styles.heading}>Quantity</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Purchase Date</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Manufactur</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Sale Price</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Retail Price</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Options</mat.TableHeaderColumn>
                             </mat.TableRow>
                         </mat.TableHeader>
@@ -140,6 +144,8 @@ class AvailibaleProducts extends Component {
                                     <mat.TableRowColumn style={styles.heading}>{v.quantity}</mat.TableRowColumn>
                                     <mat.TableRowColumn style={styles.heading}>{v.dates}</mat.TableRowColumn>
                                     <mat.TableRowColumn style={styles.heading}>{v.manufacturer}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.salePrice}</mat.TableRowColumn>
+                                    <mat.TableRowColumn style={styles.heading}>{v.retailPrice}</mat.TableRowColumn>
                                     <mat.TableRowColumn style={styles.heading}>
                                         <FaTrashO
                                             style={styles.delete}
@@ -214,12 +220,18 @@ class AvailibaleProducts extends Component {
                                 />
                             </div>
                             <div className="form-group ">
-                                <label htmlFor="price">Unit Price</label>
-                                <input type="number" className="form-control" ref="price"
-                                    defaultValue={Edited.price}
+                                <label htmlFor="retailPrice">Retail Price</label>
+                                <input type="number" className="form-control" ref="retailPrice"
+                                    defaultValue={Edited.retailPrice}
                                 />
                             </div>
                             <div className="form-group ">
+                                <label htmlFor="salePrice">Sale Price</label>
+                                <input type="number" className="form-control" ref="salePrice"
+                                    defaultValue={Edited.salePrice}
+                                />
+                            </div>
+                            <div className="form-group text-right">
                                 <mat.RaisedButton type="submit" label="Update Product" primary={true} />
                             </div>
                         </form>

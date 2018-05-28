@@ -64,7 +64,8 @@ class MyStore extends Component {
         let description = this.refs.description.value;
         let quantity = this.refs.quantity.value;
         let dates = this.refs.dates.value;
-        let price = this.refs.price.value;
+        let retailPrice = this.refs.retailPrice.value;
+        let salePrice = this.refs.salePrice.value;
         let StoreKey = this.props.StoreDash.objKey;
 
         let addProducts = {
@@ -73,7 +74,8 @@ class MyStore extends Component {
             description: description,
             quantity: quantity,
             dates: dates,
-            price: price,
+            salePrice: salePrice,
+            retailPrice: retailPrice,
             StoreKey: StoreKey
         };
         // console.log(addProducts);
@@ -159,8 +161,12 @@ class MyStore extends Component {
                                     <input type="date" className="form-control" ref="dates" />
                                 </div>
                                 <div className="form-group ">
-                                    <label htmlFor="price">Unit Price</label>
-                                    <input type="number" className="form-control" ref="price" />
+                                    <label htmlFor="salePrice">Sale Price</label>
+                                    <input type="number" className="form-control" ref="salePrice" />
+                                </div>
+                                <div className="form-group ">
+                                    <label htmlFor="retailPrice">Retail Price</label>
+                                    <input type="number" className="form-control" ref="retailPrice" />
                                 </div>
                                 <div className="form-group ">
                                     <mat.RaisedButton type="submit" label="Add Product" primary={true} />

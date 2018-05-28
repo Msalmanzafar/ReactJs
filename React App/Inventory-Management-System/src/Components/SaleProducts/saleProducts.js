@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
+import './style.css'
 import { SaledProducts, ProductPrice, UpgradeProducts, LoaderAction } from '../../Actions/SalesActions';
 
 const styles = {
@@ -22,10 +23,10 @@ class SaleProducts extends Component {
         super(props);
         this.SaleProduct = this.SaleProduct.bind(this);
         this.ProductCheck = this.ProductCheck.bind(this);
-        this.QunatityCheck = this.QunatityCheck.bind(this);
+        // this.QunatityCheck = this.QunatityCheck.bind(this);
 
         this.state = {
-            QunatityChecks: "",
+            saledData: "",
 
         }
     }
@@ -35,26 +36,26 @@ class SaleProducts extends Component {
         // console.log("productName",product);
         this.props.ProductPrice(SelectedProduct);
     }
-    QunatityCheck() {
-        // var quantity = this.refs.quantity.value;
-        // console.log("Your Quantity", quantity);
-        // lest Dprice = this.props.SelectPrice.quantity;
-
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            saledData: nextProps.SelectPrice
+        })
     }
     SaleProduct(ev) {
         ev.preventDefault()
         let productName = this.refs.store.value;
         let quantity = this.refs.quantity.value;
         let SaleDates = this.refs.dates.value;
-        let unitPrice = this.refs.price.value;
+        let retailPrice = this.state.saledData.retailPrice;
         let TotalPrice = this.refs.Tprice.value;
 
         let SalePro = {
             productName: productName,
             quantity: quantity,
             SaleDates: SaleDates,
-            unitPrice: unitPrice,
-            TotalPrice: TotalPrice
+            retailPrice: retailPrice,
+            TotalPrice: TotalPrice,
+            proKey: this.state.saledData.Prokey
         };
         // console.log("sales Data", SalePro);
         this.props.LoaderAction()
@@ -71,15 +72,14 @@ class SaleProducts extends Component {
                 <option key={index}>{val.productName}</option>
             )
         })
-        let unitPrice = this.props.SelectPrice.price;
-        // console.log("Quantity--------------", this.props.SelectPrice.quantity)
+        // console.log("Quantity--------------", this.props.SelectPrice)
         return (
             <div >
                 <center>
-                    <mat.Card style={styles.card} zDepth={2}>
+                    <mat.Card className='card' zDepth={2}>
                         <mat.AppBar style={styles.title} title="Sale Product" showMenuIconButton={false} />
                         <mat.CardText>
-                            <form onSubmit={this.SaleProduct} style={styles.login}>
+                            <form style={styles.login}>
                                 <div className="form-group " >
                                     <div className="form-group">
                                         <label htmlFor="store">Select Product</label>
@@ -88,6 +88,20 @@ class SaleProducts extends Component {
                                             {productNames}
                                         </select>
                                     </div>
+                                </div>
+                                <div className="form-group ">
+                                    <label htmlFor="retailPrice">Retail Price</label>
+                                    <input type="text" className="form-control"
+                                        value={this.state.saledData.retailPrice} 
+                                        disabled
+                                    />
+                                </div>
+                                <div className="form-group ">
+                                    <label htmlFor="quantity">Available Quantity</label>
+                                    <input type="text" className="form-control"
+                                        value={this.state.saledData.quantity} 
+                                        disabled
+                                    />
                                 </div>
                                 <div className="form-group ">
                                     <label htmlFor="quantity">Enter Quantity</label>
@@ -99,18 +113,13 @@ class SaleProducts extends Component {
                                     <label htmlFor="quantity">Sale Date</label>
                                     <input type="date" className="form-control" ref="dates" />
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="price">Unit Price</label>
-                                    <select className="form-control" ref='price' >
-                                        <option >{unitPrice}</option>
-                                    </select>
-                                </div>
+                               
                                 <div className="form-group">
                                     <label htmlFor="Tprice">Total Price</label>
                                     <input type="number" className="form-control" ref="Tprice" placeholder="Enter total price" />
                                 </div>
-                                <div className="form-group ">
-                                    <mat.RaisedButton type="submit" label="Sale Now" primary={true} />
+                                <div className="form-group text-right">
+                                    <mat.RaisedButton label="Sale Now" primary={true} onClick={this.SaleProduct}/>
                                 </div>
 
                             </form>

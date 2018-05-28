@@ -58,10 +58,11 @@ export function UpgradeProducts(Objects, SalePro) {
 
 export function ProductPrice(SelectedProduct) {
     return dispatch => {
+        console.log(SelectedProduct,'SelectedProduct')
         firebase.database().ref('/StoresProducts/').on('child_added', (data) => {
             let obj = data.val();
             obj.prokey = data.key;
-            if (SelectedProduct === obj.productName) {
+            if (SelectedProduct === obj.productName ) {
                 // console.log("selected Product ", obj)
                 dispatch(SelectedPriceProduct(obj))
             }

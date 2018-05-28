@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import * as mat from 'material-ui';
 import { connect } from 'react-redux';
 import FaTrashO from 'react-icons/lib/fa/trash-o';
-import { DeleteSalesProduct, DeleteKeys } from '../../Actions/deleteActions';
+import { DeleteSalesProduct, deleteSoldData } from '../../Actions/deleteActions';
 
 const styles = {
     FlatButton: {
@@ -46,10 +46,10 @@ class SaledDetails extends Component {
         open: false,
     };
 
-    Delete = (keys) => {
+    Delete = (val, key) => {
         this.setState({ open: true });
         // console.log("Delete Product ", keys)
-        this.props.DeleteKeys(keys);
+        this.props.deleteSoldData(val, key);
     };
     deleteStore = () => {
         var key = this.props.deleteKey;
@@ -82,8 +82,8 @@ class SaledDetails extends Component {
                             <mat.TableRow>
                                 <mat.TableHeaderColumn style={styles.heading}>Product Name</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Quantity</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn style={styles.heading}>Sales Date</mat.TableHeaderColumn>
-                                <mat.TableHeaderColumn style={styles.heading}>Total Price</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Sold On</mat.TableHeaderColumn>
+                                <mat.TableHeaderColumn style={styles.heading}>Sold Price</mat.TableHeaderColumn>
                                 <mat.TableHeaderColumn style={styles.heading}>Delete</mat.TableHeaderColumn>
                             </mat.TableRow>
                         </mat.TableHeader>
@@ -104,7 +104,7 @@ class SaledDetails extends Component {
                             <mat.TableRowColumn style={styles.heading}>{val.SaleDates}</mat.TableRowColumn>
                             <mat.TableRowColumn style={styles.heading}>{val.TotalPrice}</mat.TableRowColumn>
                             <mat.TableRowColumn style={styles.heading}>
-                                <FaTrashO style={styles.delete} onClick={this.Delete.bind(this, keys)} />
+                                <FaTrashO style={styles.delete} onClick={this.Delete.bind(this, val, key)} />
                             </mat.TableRowColumn>
                         </mat.TableRow>
                     </mat.TableBody>
@@ -148,11 +148,11 @@ const mapStateToProps = (state) => {
 }
 const mapDispatchToProps = (dispatch) => {
     return {
-        DeleteKeys: (keys) => {
-            dispatch(DeleteKeys(keys))
+        deleteSoldData: (val, key) => {
+            dispatch(deleteSoldData(val, key))
         },
-        DeleteSalesProduct: (key) => {
-            dispatch(DeleteSalesProduct(key));
+        DeleteSalesProduct: (val, key) => {
+            dispatch(DeleteSalesProduct(val, key));
         }
     };
 }
